@@ -120,11 +120,11 @@ request.setAttribute("leftMenuId",list[3]);
 							</li>
 							
 							<li>
-								<a href="admin/point-list-1-1"> <i class="fa fa-sitemap"></i> 知识分类列表 </a>
+								<a href="admin/point-list-1-1"> <i class="fa fa-sitemap"></i> 评估领域列表 </a>
 							</li>
 							
 							<li>
-								<a href="admin/add-point"> <i class="fa fa-pencil"></i> 添加知识分类 </a>
+								<a href="admin/add-point"> <i class="fa fa-pencil"></i> 添加评估领域 </a>
 							</li>
 							<li>
 								<a href="teacher/tag-list-1"> <i class="fa fa-tag"></i> 标签列表 </a>

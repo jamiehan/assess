@@ -170,7 +170,7 @@ a.join-practice-btn {
 							<thead>
 
 								<tr>
-									<td>知识分类</td>
+									<td>评估领域</td>
 									<td>题目数量</td>
 									<td></td>
 									<td></td>

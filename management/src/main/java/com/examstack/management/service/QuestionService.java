@@ -97,7 +97,7 @@ public interface QuestionService {
 	public void deleteFieldByIdList(List<Integer> idList);
 
 	/**
-	 * 删除知识分类
+	 * 删除评估领域
 	 * 
 	 * @param idList
 	 */

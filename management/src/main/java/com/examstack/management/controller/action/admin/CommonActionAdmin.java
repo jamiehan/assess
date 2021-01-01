@@ -157,7 +157,7 @@ public class CommonActionAdmin {
 	}
 	
 	/**
-	 * 删除一个知识分类
+	 * 删除一个评估领域
 	 * @param model
 	 * @param pointId
 	 * @return

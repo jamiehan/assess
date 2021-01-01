@@ -106,13 +106,13 @@ request.setAttribute("leftMenuId",list[3]);
 					</div>
 					<div class="col-xs-10" id="right-content">
 						<div class="page-header">
-							<h1><i class="fa fa-list-ul"></i> 试题管理 </h1>
+							<h1><i class="fa fa-list-ul"></i> 题目管理 </h1>
 						</div>
 						<div class="page-content">
 
 							<div id="question-filter">
 
-								<dl id="question-filter-field">
+								<dl id="question-filter-field" style="display:none">
 									<dt>
 										专业题库：
 									</dt>
@@ -139,7 +139,7 @@ request.setAttribute("leftMenuId",list[3]);
 								</dl>
 								<dl id="question-filter-knowledge">
 									<dt>
-										知识分类：
+										评估领域：
 									</dt>
 									<dd>
 										<c:choose>
@@ -163,7 +163,7 @@ request.setAttribute("leftMenuId",list[3]);
 									</dd>
 								</dl>
 
-								<dl id="question-filter-qt">
+								<dl id="question-filter-qt"  style="display:none">
 									<dt>
 										试题类型：
 									</dt>
@@ -189,7 +189,7 @@ request.setAttribute("leftMenuId",list[3]);
 
 									</dd>
 								</dl>
-								<dl id="question-filter-tag">
+								<dl id="question-filter-tag" style="display:none">
 									<dt>
 										标签：
 									</dt>
@@ -214,7 +214,8 @@ request.setAttribute("leftMenuId",list[3]);
 										</c:forEach>
 
 									</dd>
-								</dl><div class="page-link-content" style="float:right;margin-left:30px;">
+								</dl>
+									<div class="page-link-content" style="float:right;margin-left:30px;">
 								<ul class="pagination pagination-sm">
 									${pageStr}
 								</ul>
@@ -238,7 +239,14 @@ request.setAttribute("leftMenuId",list[3]);
 								<table class="table-striped table">
 									<thead>
 										<tr>
-											<!-- <td></td> --><td>ID</td><td class="question-name-td" style="width:240px">试题名称</td><td style="width:60px">类型</td><td>专业</td><td>知识类</td><td>创建人</td><td style="width:90px;">操作</td>
+											<!-- <td></td> -->
+											<td>ID</td>
+											<td class="question-name-td" style="width:240px">试题名称</td>
+									<%--		<td style="width:60px">类型</td>
+											<td>专业</td>--%>
+											<td>评估领域</td>
+											<td>创建人</td>
+											<td style="width:90px;">操作</td>
 										</tr>
 									</thead>
 									<tbody>
@@ -258,7 +266,9 @@ request.setAttribute("leftMenuId",list[3]);
 													
 													</td>
 
-												<td>${items.questionTypeName }</td><td>${items.fieldName }</td><td>${items.pointName }</td>
+												<%--<td>${items.questionTypeName }</td>
+												<td>${items.fieldName }</td>--%>
+												<td>${items.pointName }</td>
 												<td>${items.creator }</td> 
 												<td>
 													<c:choose>
@@ -312,7 +322,7 @@ request.setAttribute("leftMenuId",list[3]);
 														<br>
 													</div>
 													<div class="form-line question-knowledge">
-														<span class="form-label"><span class="warning-label">*</span>知识分类：</span>
+														<span class="form-label"><span class="warning-label">*</span>评估领域：</span>
 														<div>
 															<div class="clearfix">
 																<div id="aq-course1" style="padding:0px;float:left; width:48%;">
@@ -329,14 +339,14 @@ request.setAttribute("leftMenuId",list[3]);
 															</div>
 															
 															<div style="text-align:center;margin:10px 0;">
-																<button id="add-point-btn" class="btn btn-primary btn-xs">选择知识分类</button>
-																<button id="del-point-btn" class="btn btn-danger btn-xs">删除知识分类</button>
+																<button id="add-point-btn" class="btn btn-primary btn-xs">选择评估领域</button>
+																<button id="del-point-btn" class="btn btn-danger btn-xs">删除评估领域</button>
 																<button id="remove-all-point-btn" class="btn btn-warning btn-xs">清除列表</button>
 															</div>
 															<div id="kn-selected" style="padding-left:0px;text-align:center;margin-bottom:20px;">
 																	<select id="point-to-select" class="df-input-narrow" size="4" style="width:80%;">
 																	</select>
-																	<p style="font-size:12px;color:#AAA;">您可以从上面选择4个知识分类</p>
+																	<p style="font-size:12px;color:#AAA;">您可以从上面选择4个评估领域</p>
 															</div>
 														</div>
 														<span class="form-message"></span>

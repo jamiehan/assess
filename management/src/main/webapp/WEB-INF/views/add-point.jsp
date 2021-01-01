@@ -91,7 +91,7 @@ request.setAttribute("leftMenuId",list[3]);
 					</div>
 					<div class="col-xs-10" id="right-content">
 						<div class="page-header">
-							<h1><i class="fa fa-list-ul"></i> 添加知识分类 </h1>
+							<h1><i class="fa fa-list-ul"></i> 添加评估领域 </h1>
 						</div>
 						<div class="page-content">
 
@@ -108,12 +108,12 @@ request.setAttribute("leftMenuId",list[3]);
 									<br>
 								</div>
 								<div class="form-line form-name" style="display: block;">
-									<span class="form-label"><span class="warning-label"></span>知识分类名：</span>
+									<span class="form-label"><span class="warning-label"></span>评估领域名：</span>
 										<input type="text" class="df-input-narrow" id="name"><span class="form-message"></span>
 									<br>
 								</div>
 								<div class="form-line form-memo" style="display: block;">
-									<span class="form-label"><span class="warning-label"></span>知识分类描述：</span>
+									<span class="form-label"><span class="warning-label"></span>评估领域描述：</span>
 										<input type="text" class="df-input-narrow" id="memo"><span class="form-message"></span>
 									<br>
 								</div>

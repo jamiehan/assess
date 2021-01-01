@@ -208,7 +208,7 @@ request.setAttribute("leftMenuId",list[3]);
 												</div>
 
 												<div class="form-line form-question-name" >
-													<span class="form-label"><span class="warning-label"></span>知识分类：</span>
+													<span class="form-label"><span class="warning-label"></span>评估领域：</span>
 													<input id="point_ids">
 													<span class="form-message"></span>
 													<br>

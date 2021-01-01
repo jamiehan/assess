@@ -56,7 +56,7 @@ var add_point = {
 	checkName : function checkName() {
 		var f_name = $(".form-name input").val();
 		if (f_name == "") {
-			$(".form-name .form-message").text("知识分类名不能为空");
+			$(".form-name .form-message").text("评估领域名不能为空");
 			return false;
 		} else if (f_name.length > 40 || f_name.length < 3) {
 			$(".form-name .form-message").text("请保持在3-40个字符以内");

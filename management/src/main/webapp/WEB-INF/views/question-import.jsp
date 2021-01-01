@@ -113,7 +113,7 @@ request.setAttribute("leftMenuId",list[3]);
 							</div>
 
 								<div class="form-line question-knowledge">
-									<span class="form-label"><span class="warning-label">*</span>知识分类：</span>
+									<span class="form-label"><span class="warning-label">*</span>评估领域：</span>
 									<div>
 										<div class="clearfix">
 											<div id="aq-course1" style="padding:0px;float:left; width:48%;">
@@ -133,14 +133,14 @@ request.setAttribute("leftMenuId",list[3]);
 										</div>
 
 										<div style="text-align:center;margin:10px 0;">
-											<button id="add-point-btn" class="btn btn-primary btn-xs">选择知识分类</button>
-											<button id="del-point-btn" class="btn btn-danger btn-xs">删除知识分类</button>
+											<button id="add-point-btn" class="btn btn-primary btn-xs">选择评估领域</button>
+											<button id="del-point-btn" class="btn btn-danger btn-xs">删除评估领域</button>
 											<button id="remove-all-point-btn" class="btn btn-warning btn-xs">清除列表</button>
 										</div>
 										<div  id="kn-selected" style="padding-left:0px;text-align:center;margin-bottom:20px;">
 											<select id="point-to-select" class="df-input-narrow" size="4"  style="width:80%;">
 											</select>
-											<p style="font-size:12px;color:#AAA;">您可以从上面选择4个知识分类</p>
+											<p style="font-size:12px;color:#AAA;">您可以从上面选择4个评估领域</p>
 										</div>
 									</div>
 									<div id="knowledge-select-msg">
