@@ -23,7 +23,7 @@ request.setAttribute("leftMenuId",list[3]);
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>试题管理</title>
+		<title>题目管理</title>
 		<meta name="keywords" content="">
 		<link rel="shortcut icon" href="<%=basePath%>resources/images/favicon.ico" />
 		<link href="resources/bootstrap/css/bootstrap-huan.css" rel="stylesheet">
@@ -165,7 +165,7 @@ request.setAttribute("leftMenuId",list[3]);
 
 								<dl id="question-filter-qt"  style="display:none">
 									<dt>
-										试题类型：
+										题目类型：
 									</dt>
 									<dd>
 										<c:choose>
@@ -222,7 +222,7 @@ request.setAttribute("leftMenuId",list[3]);
 							</div>
 
 								<div class="input-group search-form" style="float: left;width: 300px;padding: 10px 0px;">
-									<input type="text" class="form-control" placeholder="搜索试题" value="${searchParam }" id="txt-search">
+									<input type="text" class="form-control" placeholder="搜索题目" value="${searchParam }" id="txt-search">
 									<span class="input-group-btn">
 										<button class="btn btn-sm btn-default" type="button" id="btn-search" data-id="0">
 											<i class="fa fa-search"></i>搜索
@@ -241,7 +241,7 @@ request.setAttribute("leftMenuId",list[3]);
 										<tr>
 											<!-- <td></td> -->
 											<td>ID</td>
-											<td class="question-name-td" style="width:240px">试题名称</td>
+											<td class="question-name-td" style="width:240px">题目名称</td>
 									<%--		<td style="width:60px">类型</td>
 											<td>专业</td>--%>
 											<td>评估领域</td>
@@ -290,7 +290,7 @@ request.setAttribute("leftMenuId",list[3]);
 
 									</tbody><tfoot></tfoot>
 								</table>
-								<!-- 修改试题modal -->
+								<!-- 修改题目modal -->
 								<div class="modal fade" id="change-property-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 									<div class="modal-dialog">
 										<div class="modal-content">
@@ -298,7 +298,7 @@ request.setAttribute("leftMenuId",list[3]);
 												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 													&times;
 												</button>
-												<h6 class="modal-title" id="myModalLabel">修改试题</h6>
+												<h6 class="modal-title" id="myModalLabel">修改题目</h6>
 											</div>
 											<div class="modal-body">
 												<form id="question-edit-form">
@@ -306,13 +306,13 @@ request.setAttribute("leftMenuId",list[3]);
 													<span id="question_type_id" style="display:none;"></span>
 
 													<div class="form-line form-question-id" >
-														<span class="form-label"><span class="warning-label"></span>试题ID：</span>
+														<span class="form-label"><span class="warning-label"></span>题目ID：</span>
 														<span id="question_id"></span>
 														<span class="form-message"></span>
 														<br>
 													</div>
 													<div class="form-line form-question-name" >
-														<span class="form-label"><span class="warning-label"></span>试题名称：</span>
+														<span class="form-label"><span class="warning-label"></span>题目名称：</span>
 														<span id="question_name"></span>
 
 														<div id="add-opt-items" class="add-opt-items" style="display: none;" >
@@ -352,7 +352,7 @@ request.setAttribute("leftMenuId",list[3]);
 														<span class="form-message"></span>
 													</div>
 													<div class="form-line question-type" id="question-type">
-														<span class="form-label"><span class="warning-label">*</span>试题类型：</span>
+														<span class="form-label"><span class="warning-label">*</span>题目类型：</span>
 														<select id="question-type-select" class="df-input-narrow" readonly>
 
 															<option value="1">单选题</option>

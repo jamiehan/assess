@@ -22,7 +22,7 @@ request.setAttribute("leftMenuId",list[3]);
     
     	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>试题管理</title>
+		<title>题目管理</title>
 		<meta name="keywords" content="">
 		<link rel="shortcut icon" href="<%=basePath%>resources/images/favicon.ico" />
 		<link href="resources/bootstrap/css/bootstrap-huan.css" rel="stylesheet">
@@ -69,7 +69,7 @@ request.setAttribute("leftMenuId",list[3]);
 
 							<div id="question-filter">
 
-								<dl id="question-filter-field">
+								<dl id="question-filter-field" hidden>
 									<dt>
 										专业：
 									</dt>
@@ -97,7 +97,7 @@ request.setAttribute("leftMenuId",list[3]);
 								</dl>
 								<dl id="question-filter-knowledge">
 									<dt>
-										知识类：
+										评估领域：
 									</dt>
 									<dd>
 										<c:choose>
@@ -121,9 +121,9 @@ request.setAttribute("leftMenuId",list[3]);
 									</dd>
 								</dl>
 
-								<dl id="question-filter-qt">
+								<dl id="question-filter-qt" hidden>
 									<dt>
-										试题类型：
+										题目类型：
 									</dt>
 									<dd>
 										<c:choose>
@@ -161,7 +161,13 @@ request.setAttribute("leftMenuId",list[3]);
 								<table class="table-striped table">
 									<thead>
 										<tr>
-											<td></td><td>ID</td><td class="question-name-td">试题名称</td><td>试题类型</td><td>专业</td><td>知识类</td><td>创建人</td>
+											<td></td>
+											<td>ID</td>
+											<td class="question-name-td">题目名称</td>
+											<%--<td>题目类型</td>
+											<td>专业</td>--%>
+											<td>评估领域</td>
+											<td>创建人</td>
 										</tr>
 									</thead>
 									<tbody>
@@ -177,7 +183,10 @@ request.setAttribute("leftMenuId",list[3]);
 													<span class="examing-point">${items.examingPoint} </span>
 												</td>
 												
-												<td>${items.questionTypeName }</td><td>${items.fieldName }</td><td>${items.pointName }</td><td>${items.creator }</td>
+												<%--<td>${items.questionTypeName }</td>
+												<td>${items.fieldName }</td>--%>
+												<td>${items.pointName }</td>
+												<td>${items.creator }</td>
 											</tr>
 										</c:forEach>
 										

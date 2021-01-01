@@ -196,7 +196,7 @@ public class QuestionPageAdmin {
 	}
 	
 	/**
-	 * 添加试题页面
+	 * 添加题目页面
 	 * 
 	 * @param model
 	 * @return
@@ -209,7 +209,7 @@ public class QuestionPageAdmin {
 	}
 	
 	/**
-	 * 试题导入页面
+	 * 题目导入页面
 	 * 
 	 * @param model
 	 * @return

@@ -40,7 +40,7 @@ public interface QuestionService {
 	public Map<Integer,KnowledgePoint> getKnowledgePointByFieldId(Page<KnowledgePoint> page, int... fieldIdList);
 	
 	/**
-	 * 按专业获取试题
+	 * 按专业获取题目
 	 * @param fieldId
 	 * @param page
 	 * @return
@@ -48,21 +48,21 @@ public interface QuestionService {
 	public Map<Integer,Map<Integer,List<QuestionQueryResult>>> getQuestionMapByFieldId(int fieldId,Page<QuestionQueryResult> page);
 	
 	/**
-	 * 根据试题id获取试题清单
+	 * 根据题目id获取题目清单
 	 * @param idList
 	 * @return
 	 */
 	List<QuestionQueryResult> getQuestionAnalysisListByIdList(List<Integer> idList);
 	
 	/**
-	 * 根据fieldId,pointId分组统计试题数量
+	 * 根据fieldId,pointId分组统计题目数量
 	 * @param fieldId
 	 * @return
 	 */
 	public Map<Integer,QuestionStatistic> getQuestionStaticByFieldId(int fieldId);
 	
 	/**
-	 * 根据fieldId,pointId,typeId分组统计试题数量
+	 * 根据fieldId,pointId,typeId分组统计题目数量
 	 * @param fieldId
 	 * @return
 	 */

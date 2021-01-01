@@ -143,8 +143,8 @@ var question_import={
 			var result = true;
             $(".form-message").text("");
 			if ($("#point-to-select option").length == 0) {
-				// $(".question-knowledge .form-message").text("该试题至少对应一个知识点");
-                $("#knowledge-select-msg .form-message").text("该试题至少对应一个知识点。");
+				// $(".question-knowledge .form-message").text("该题目至少对应一个知识点");
+                $("#knowledge-select-msg .form-message").text("该题目至少对应一个知识点。");
 				$("#point-to-select").addClass("has-error");
 				result = false;
 			} else if ($("#point-to-select option").length > 4) {

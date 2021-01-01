@@ -65,7 +65,7 @@ public class BasePage {
 	@RequestMapping(value = { "/admin/home" }, method = RequestMethod.GET)
 	public String adminHomePage(Model model, HttpServletRequest request) {
 
-		return "redirect:/admin/dashboard";
+		return "redirect:/admin/user/student-list";
 	}
 	
 	
@@ -79,7 +79,7 @@ public class BasePage {
 	@RequestMapping(value = { "/teacher/home" }, method = RequestMethod.GET)
 	public String teacherHomePage(Model model, HttpServletRequest request) {
 
-		return "redirect:/teacher/dashboard";
+		return "redirect:/teacher/user/student-list";
 	}
 
 	/**

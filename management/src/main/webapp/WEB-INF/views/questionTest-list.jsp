@@ -23,7 +23,7 @@ request.setAttribute("leftMenuId",list[3]);
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>试题管理</title>
+		<title>题目管理</title>
 		<meta name="keywords" content="">
 		<link rel="shortcut icon" href="<%=basePath%>resources/images/favicon.ico" />
 		<link href="resources/bootstrap/css/bootstrap-huan.css" rel="stylesheet">
@@ -106,7 +106,7 @@ request.setAttribute("leftMenuId",list[3]);
 					</div>
 					<div class="col-xs-10" id="right-content">
 						<div class="page-header">
-							<h1><i class="fa fa-list-ul"></i> 试题管理 </h1>
+							<h1><i class="fa fa-list-ul"></i> 题目管理 </h1>
 						</div>
 						<div class="page-content">
 
@@ -118,7 +118,7 @@ request.setAttribute("leftMenuId",list[3]);
 									</ul>
 								</div>
 								<div class="input-group search-form" style="float: left;width: 300px;padding: 10px 0px;">
-									<input type="text" class="form-control" placeholder="搜索试题" value="${searchParam }" id="txt-search">
+									<input type="text" class="form-control" placeholder="搜索题目" value="${searchParam }" id="txt-search">
 									<span class="input-group-btn">
 										<button class="btn btn-sm btn-default" type="button" id="btn-search" data-id="0">
 											<i class="fa fa-search"></i>搜索
@@ -134,7 +134,7 @@ request.setAttribute("leftMenuId",list[3]);
 								<table class="table-striped table">
 									<thead>
 										<tr>
-											<!-- <td></td> --><td>ID</td><td class="question-name-td" style="width:240px">试题名称</td><td style="width:60px">时间</td><td>一级标题</td><td>创建人</td><td style="width:90px;">操作</td>
+											<!-- <td></td> --><td>ID</td><td class="question-name-td" style="width:240px">题目名称</td><td style="width:60px">时间</td><td>一级标题</td><td>创建人</td><td style="width:90px;">操作</td>
 										</tr>
 									</thead>
 									<tbody>
@@ -178,7 +178,7 @@ request.setAttribute("leftMenuId",list[3]);
 								</table>
 							</div>
 
-							<!-- 修改试题modal -->
+							<!-- 修改题目modal -->
 							<div class="modal fade" id="change-property-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 								<div class="modal-dialog">
 									<div class="modal-content">

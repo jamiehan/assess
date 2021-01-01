@@ -20,7 +20,7 @@ request.setAttribute("leftMenuId",list[3]);
   	<head>
    		<base href="<%=basePath%>">
    	 	<meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>试题管理</title>
+		<title>题目管理</title>
 		<meta name="keywords" content="">
 		<link rel="shortcut icon" href="<%=basePath%>resources/images/favicon.ico" />
 		<link href="resources/bootstrap/css/bootstrap-huan.css" rel="stylesheet">
@@ -89,7 +89,7 @@ request.setAttribute("leftMenuId",list[3]);
 					</div>
 					<div class="col-xs-10" id="right-content">
 						<div class="page-header">
-							<h1><i class="fa fa-cloud-upload"></i> 导入试题 </h1>
+							<h1><i class="fa fa-cloud-upload"></i> 导入题目 </h1>
 						</div>
 						<div class="page-content" style="padding-top:20px;">
 							<form id="from-question-import" action="secure/question-import/">

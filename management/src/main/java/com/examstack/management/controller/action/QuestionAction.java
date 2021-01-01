@@ -40,7 +40,7 @@ public class QuestionAction {
 	private QuestionService questionService;
 
 	/**
-	 * 添加试题
+	 * 添加题目
 	 * 
 	 * @param question
 	 * @return
@@ -67,7 +67,7 @@ public class QuestionAction {
 	}
 
 	/**
-	 * 获取试题的标签列表
+	 * 获取题目的标签列表
 	 * 
 	 * @param questionId
 	 * @return
@@ -83,7 +83,7 @@ public class QuestionAction {
 	}
 
 	/**
-	 * 为试题添加标签
+	 * 为题目添加标签
 	 * 
 	 * @param questionId
 	 * @param questionTagList
@@ -105,7 +105,7 @@ public class QuestionAction {
 	}
 
 	/**
-	 * 获取试题详细信息
+	 * 获取题目详细信息
 	 * @param questionId
 	 * @return
 	 */
@@ -140,7 +140,7 @@ public class QuestionAction {
 	}
 
 	/**
-	 * 修改试题知识点
+	 * 修改题目知识点
 	 * 
 	 * @param questionId
 	 * @param pointId

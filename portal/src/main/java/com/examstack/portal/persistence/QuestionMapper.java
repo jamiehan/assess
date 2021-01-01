@@ -24,7 +24,7 @@ public interface QuestionMapper {
 	public Question getQuestionByQuestionId(@Param("questionId") int questionId);
 
 	/**
-	 * 获取某一题型的试题
+	 * 获取某一题型的题目
 	 * 
 	 * @param QuestionTypeId
 	 * @param page
@@ -34,7 +34,7 @@ public interface QuestionMapper {
 			@Param("page") Page<Question> page);
 
 	/**
-	 * 按知识点获取试题
+	 * 按知识点获取题目
 	 * 
 	 * @param idList
 	 * @return
@@ -42,7 +42,7 @@ public interface QuestionMapper {
 	List<QuestionStruts> getQuestionListByPointId(@Param("array") List<Integer> idList);
 
 	/**
-	 * 根据试题类型和知识点获取试题
+	 * 根据题目类型和知识点获取题目
 	 * 
 	 * @param typeId
 	 * @param pointId
@@ -52,7 +52,7 @@ public interface QuestionMapper {
 			@Param("pointId") int pointId);
 
 	/**
-	 * 根据试题id获取试题清单
+	 * 根据题目id获取题目清单
 	 * 
 	 * @param idList
 	 * @return
@@ -79,7 +79,7 @@ public interface QuestionMapper {
 			@Param("page") Page<KnowledgePoint> page);
 
 	/**
-	 * 按专业获取试题
+	 * 按专业获取题目
 	 * 
 	 * @param fieldId
 	 * @param page
@@ -89,14 +89,14 @@ public interface QuestionMapper {
 			@Param("page") Page<QuestionQueryResult> page);
 	
 	/**
-	 * 根据fieldId,pointId分组统计试题数量
+	 * 根据fieldId,pointId分组统计题目数量
 	 * @param fieldId
 	 * @return
 	 */
 	public List<QuestionStatistic> getQuestionStaticByFieldId(int fieldId);
 	
 	/**
-	 * 根据fieldId,pointId,typeId分组统计试题数量
+	 * 根据fieldId,pointId,typeId分组统计题目数量
 	 * @param fieldId
 	 * @return
 	 */

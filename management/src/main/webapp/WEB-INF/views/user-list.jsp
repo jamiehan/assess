@@ -98,7 +98,7 @@ request.setAttribute("leftMenuId",list[3]);
 					</div>
 					<div class="col-xs-10" id="right-content">
 						<div class="page-header">
-							<h1><i class="fa fa-list-ul"></i> 用户管理 </h1>
+							<h1><i class="fa fa-list-ul"></i> 学生管理 </h1>
 						</div>
 						<div class="page-content row">
 							<div class="col-xs-2" id="left-menu">
@@ -473,12 +473,12 @@ request.setAttribute("leftMenuId",list[3]);
 											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 												&times;
 											</button>
-											<h6 class="modal-title" id="myModalLabel">关联用户</h6>
+											<h6 class="modal-title" id="myModalLabel">关联分组</h6>
 										</div>
 										<div class="modal-body">
 											<form id="link-user-form-r">
 												<div class="form-line form-link" style="display: block;">
-													<span class="form-label"><span class="warning-label"></span>关联用户到：</span>
+													<span class="form-label"><span class="warning-label"></span>关联学生到：</span>
 													<select id="group-add-link-r" class="df-input-narrow">
 														<c:forEach items="${groupList }" var="item">
 															<option value="${item.groupId }">${item.groupName }</option>

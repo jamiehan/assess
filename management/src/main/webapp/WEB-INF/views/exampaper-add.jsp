@@ -22,7 +22,7 @@ request.setAttribute("leftMenuId",list[3]);
     
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>试题管理</title>
+		<title>题目管理</title>
 		<meta name="keywords" content="">
 		<link rel="shortcut icon" href="<%=basePath%>resources/images/favicon.ico" />
 		<link href="resources/bootstrap/css/bootstrap-huan.css" rel="stylesheet">
@@ -97,17 +97,17 @@ request.setAttribute("leftMenuId",list[3]);
 					</div>
 					<div class="col-xs-10" id="right-content">
 						<div class="page-header">
-							<h1><i class="fa fa-file-text-o"></i> 创建新试卷 </h1>
+							<h1><i class="fa fa-file-text-o"></i> 创建康复计划 </h1>
 						</div>
 						<div class="page-content">
 							<form id="form-exampaper-add">
 								<div class="form-line add-update-exampapername">
-									<span class="form-label"><span class="warning-label">*</span>试卷名称：</span>
+									<span class="form-label"><span class="warning-label">*</span>康复计划名称：</span>
 									<input type="text" class="df-input-narrow">
 									<span class="form-message"></span>
 								</div>
-								<div class="form-line add-update-exampaper-type">
-									<span class="form-label"><span class="warning-label">*</span>试卷类型：</span>
+								<div class="form-line add-update-exampaper-type" hidden>
+									<span class="form-label"><span class="warning-label">*</span>康复计划类型：</span>
 									<select class="df-input-narrow">
 										<option value="-1">------请选择试卷类型（专业）------</option>
 										<c:forEach items="${fieldList }" var="item">
@@ -117,26 +117,27 @@ request.setAttribute("leftMenuId",list[3]);
 									</select>
 									<span class="form-message"></span>
 								</div>
-								<div class="form-line add-update-exampaper-creat-type">
+								<div class="form-line add-update-exampaper-creat-type" hidden>
 									<span class="form-label"><span class="warning-label">*</span>组卷方式：</span>
 									<select class="df-input-narrow">
+										<option value="1" selected="selected">手动组卷</option>
 										<option value="2">自动组卷</option>
-										<option value="1">手动组卷</option>
+
 										
 									</select>
 									<span class="form-message"></span>
 								</div>
-								<div class="form-line add-update-pass-point">
+								<div class="form-line add-update-pass-point" hidden>
 									<span class="form-label"><span class="warning-label">*</span>及格分数：</span>
-									<input type="text" class="df-input-narrow">
+									<input type="text" class="df-input-narrow" value="60">
 									<span class="form-message"></span>
 								</div>
-								<div class="form-line add-update-duration">
+								<div class="form-line add-update-duration" hidden>
 									<span class="form-label"><span class="warning-label">*</span>时长（分钟）：</span>
-									<input type="text" class="df-input-narrow">
+									<input type="text" class="df-input-narrow" value="60">
 									<span class="form-message"></span>
 								</div>
-								<div class="form-line add-update-types" style="display: block;">
+								<div class="form-line add-update-types" style="display: none;">
 									<span class="form-label"><span class="warning-label">*</span>题型：</span>
 									<fieldset>
 										<legend>
@@ -215,12 +216,12 @@ request.setAttribute("leftMenuId",list[3]);
 									</fieldset>
 									<span class="form-message"></span>
 								</div>
-								<div class="form-line add-total-point">
+								<div class="form-line add-total-point" hidden>
 									<span class="form-label"><span class="warning-label">*</span>总分：</span>
 									<input id="total-point" type="text" class="df-input-narrow" disabled="disbaled">
 									<span class="form-message"></span>
 								</div>
-								<div class="form-line add-update-exampaper-scope" style="display: block;">
+								<div class="form-line add-update-exampaper-scope" style="display: none;">
 									<span class="form-label"><span class="warning-label">*</span>评估领域：</span>
 									<fieldset>
 										<legend>

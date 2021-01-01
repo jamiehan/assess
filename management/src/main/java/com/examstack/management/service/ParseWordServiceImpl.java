@@ -338,7 +338,7 @@ int nn = 0;
                 }else {
                     System.out.println("页面选择知识列表不为空");
                 }
-//试题中设置 试卷标题ID
+//题目中设置 试卷标题ID
                 question.setTest_id(testMaxId);
 
 //1.解析一级标题

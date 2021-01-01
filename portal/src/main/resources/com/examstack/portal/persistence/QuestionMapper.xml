@@ -10,7 +10,7 @@
 		select
 		id,name,subjective from et_question_type
 	</select>
-	<!-- 试题列表部分 -->
+	<!-- 题目列表部分 -->
 	<select id="getQuestionByQuestionId" resultType="com.examstack.common.domain.question.Question">
 		select * from et_question
 		<where>

@@ -104,7 +104,7 @@ public class ExamPaperActionAdmin {
 	}
 	
 	/**
-	 * 批量添加试题
+	 * 批量添加题目
 	 * @param model
 	 * @param idList
 	 * @return

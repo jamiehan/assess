@@ -197,7 +197,7 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		User user = userMapper.getUserByName(userName);
 		if(user.getRoles().contains(authority) && !"ROLE_ADMIN".equals(authority))
-			throw new Exception("教师只能更新学员的密码！");
+			throw new Exception("老师只能更新学员的密码！");
 		PasswordEncoder passwordEncoder = new StandardPasswordEncoderForSha1();
 		password = passwordEncoder.encode(password + "{" + userName + "}");
 		User tmpUser = new User();

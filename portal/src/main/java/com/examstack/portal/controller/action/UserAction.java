@@ -27,7 +27,7 @@ public class UserAction {
 	 * 
 	 * @param user
 	 * @param groupId
-	 *            如果添加的用户为学员，必须指定groupId。如果添加的用户为教师，则groupId为任意数字
+	 *            如果添加的用户为学员，必须指定groupId。如果添加的用户为老师，则groupId为任意数字
 	 * @return
 	 */
 	@RequestMapping(value = { "/add-user" }, method = RequestMethod.POST)

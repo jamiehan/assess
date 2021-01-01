@@ -21,7 +21,7 @@ request.setAttribute("leftMenuId",list[3]);
 		<base href="<%=basePath%>">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>试题管理</title>
+		<title>题目管理</title>
 		<meta name="keywords" content="">
 		<link rel="shortcut icon" href="<%=basePath%>resources/images/favicon.ico" />
 		<link href="resources/bootstrap/css/bootstrap-huan.css" rel="stylesheet">
@@ -94,10 +94,10 @@ request.setAttribute("leftMenuId",list[3]);
 					</div>
 					<div class="col-xs-10" id="right-content">
 						<div class="page-header">
-							<h1><i class="fa fa-list-ul"></i> 试卷管理 </h1>
+							<h1><i class="fa fa-list-ul"></i> 康复计划管理 </h1>
 						</div>
 						<div class="page-content">
-							<div id="question-filter">
+							<div id="question-filter" hidden>
 								<dl id="question-filter-pagetype">
 									<dt>
 										分类：
@@ -123,7 +123,7 @@ request.setAttribute("leftMenuId",list[3]);
 							<div class="table-search table-controller-item"
 							style="float: left; width: 200px;">
 								<div class="input-group search-form">
-									<input type="text" class="form-control" placeholder="搜索试卷" value="${searchStr }"
+									<input type="text" class="form-control" placeholder="搜索康复计划" value="${searchStr }"
 									id="txt-search">
 									<span class="input-group-btn">
 										<button class="btn btn-sm btn-default" type="button"
@@ -136,7 +136,14 @@ request.setAttribute("leftMenuId",list[3]);
 								<table class="table-striped table">
 									<thead>
 										<tr>
-											<td></td><td>ID</td><td>试卷名称</td><td>时长</td><td>类别</td><td>创建人</td><td>状态</td><td>操作</td>
+											<td></td>
+											<td>ID</td>
+											<td>康复计划名称</td>
+											<%--<td>时长</td>
+											<td>类别</td>--%>
+											<td>创建人</td>
+											<td>状态</td>
+											<td>操作</td>
 										</tr>
 									</thead>
 									<tbody>
@@ -147,7 +154,7 @@ request.setAttribute("leftMenuId",list[3]);
 												</td>
 												<td>${item.id }</td>
 												<td><a href="<%=list[1]%>/exampaper/exampaper-preview/${item.id }" target="_blank" title="预览" class="td-paper-name">${item.name }</a></td>
-												<td><span class="td-paper-duration">${item.duration}</span>分钟</td>
+												<%--<td><span class="td-paper-duration">${item.duration}</span>分钟</td>
 												<td>
 													<c:if test="${item.paper_type == '1' }">
 														<span class="td-paper-type" data-id="${item.paper_type}">
@@ -164,7 +171,7 @@ request.setAttribute("leftMenuId",list[3]);
 														专家试卷
 														</span>
 													</c:if>
-												</td>
+												</td>--%>
 												<td>${item.creator }</td>
 												<td>
 													<c:choose>
@@ -189,7 +196,7 @@ request.setAttribute("leftMenuId",list[3]);
 															<a class="offline-paper simple-btn">下线</a>
 														</c:when>
 													</c:choose>
-													<a class="export-paper btn-sm btn-success" data-id="${item.id}" title="导出"><i class="fa fa-download"></i></a>
+													<%--<a class="export-paper btn-sm btn-success" data-id="${item.id}" title="导出"><i class="fa fa-download"></i></a>--%>
 												</td>
 											</tr>
 										</c:forEach>

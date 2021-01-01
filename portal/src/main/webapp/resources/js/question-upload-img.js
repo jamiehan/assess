@@ -28,10 +28,10 @@ var question_upload_img = {
 				$("#file-name").empty();
 				
 				if($(this).hasClass("add-content-img")){
-					$(".img-destination label").text("试题内容");
+					$(".img-destination label").text("题目内容");
 					$(".img-destination input").val(-1);
 				}else if($(this).hasClass("add-opt-img")){
-					$(".img-destination label").text("试题选项 ");
+					$(".img-destination label").text("题目选项 ");
 					var this_index = $(".add-opt-img").index($(this));
 					$(".img-destination label").append(String.fromCharCode(65 + this_index));
 					$(".img-destination input").val(this_index);

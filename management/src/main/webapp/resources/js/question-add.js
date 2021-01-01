@@ -129,7 +129,7 @@ question_add = {
 		var result = true;
 
 		if ($("#point-to-select option").length == 0) {
-			$(".question-knowledge .form-message").text("该试题至少对应一个知识点");
+			$(".question-knowledge .form-message").text("该题目至少对应一个知识点");
 			$("#point-to-select").addClass("has-error");
 			result = false;
 		} else if ($("#point-to-select option").length > 4) {
@@ -143,12 +143,12 @@ question_add = {
 	},
 
 	/**
-	 *检查试题内容
+	 *检查题目内容
 	 */
 	checkContent : function checkContent() {
 		var content = $(".question-content textarea").val();
 		if (content == "") {
-			$(".question-content .form-message").text("请输入试题内容");
+			$(".question-content .form-message").text("请输入题目内容");
 			$(".question-content textarea").focus();
 			$(".question-content textarea").addClass("has-error");
 			return false;

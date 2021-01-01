@@ -59,7 +59,7 @@ var examing = {
 				if(answerSheetItems[i].comment == null){
 					answerSheetItems[i].comment = "";
 				}
-				str = str + "<span>  教师批注：</span><br>" + "<textarea class=\"raw-answer-comment\" style=\"width:100%;\">  " + answerSheetItems[i].comment +" </textarea><br>";
+				str = str + "<span>  老师批注：</span><br>" + "<textarea class=\"raw-answer-comment\" style=\"width:100%;\">  " + answerSheetItems[i].comment +" </textarea><br>";
 				$(questions[i]).find(".answer-desc-summary").append(str);
 				
 			}
@@ -136,7 +136,7 @@ var examing = {
 			});
 		},
 		/**
-		 * 刷新试题导航
+		 * 刷新题目导航
 		 */
 		refreshNavi : function refreshNavi() {
 			$("#question-navi-content").empty();

@@ -92,14 +92,14 @@ request.setAttribute("leftMenuId",list[3]);
 					</div>
 					<div class="col-xs-10" id="right-content">
 						<div class="page-header">
-							<h1><i class="fa fa-bar-chart-o"></i> 教师管理 </h1>
+							<h1><i class="fa fa-bar-chart-o"></i> 老师管理 </h1>
 						</div>
 						<div class="page-content">
 							<div id="teacher-list">
 								<div class="table-controller">
 									<div class="btn-group table-controller-item" style="float:left">
 										<button class="btn btn-default btn-sm" id="add-teacher-modal-btn">
-											<i class="fa fa-plus-square"></i> 创建教师账号
+											<i class="fa fa-plus-square"></i> 创建老师账号
 										</button>
 									</div>
 								</div>
@@ -211,7 +211,7 @@ request.setAttribute("leftMenuId",list[3]);
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 								&times;
 							</button>
-							<h6 class="modal-title" id="myModalLabel">创建教师账号</h6>
+							<h6 class="modal-title" id="myModalLabel">创建老师账号</h6>
 						</div>
 						<div class="modal-body">
 							<form id="teacher-add-form" style="margin-top:40px;"  action="admin/add-user-ROLE_TEACHER-0">
@@ -326,7 +326,7 @@ request.setAttribute("leftMenuId",list[3]);
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 								&times;
 							</button>
-							<h6 class="modal-title" id="myModalLabel">修改教师账号</h6>
+							<h6 class="modal-title" id="myModalLabel">修改老师账号</h6>
 						</div>
 						<div class="modal-body">
 							<form id="teacher-update-form" style="margin-top:40px;"  action="admin/update-teacher">

@@ -144,7 +144,7 @@ exampaper_add = {
 			$(".has-error").removeClass("has-error");
 			var result = true;
 			var r_checkName = exampaper_add.checkName();
-			var r_checkTotalPoint = exampaper_add.checkTotalPoint();
+/*			var r_checkTotalPoint = exampaper_add.checkTotalPoint();
 			var r_checkPassPoint = exampaper_add.checkPassPoint();
 			var r_checkDuration = exampaper_add.checkDuration();
 			var r_checkKnowledge = exampaper_add.checkKnowledge();
@@ -153,7 +153,8 @@ exampaper_add = {
 				result = r_checkName && r_checkTotalPoint && r_checkPassPoint && r_checkDuration && r_checkKnowledge && r_checkType;
 			}else{
 				result = r_checkName && r_checkPassPoint && r_checkDuration && r_checkType;
-			}
+			}*/
+			result = r_checkName;
 			
 			
 			

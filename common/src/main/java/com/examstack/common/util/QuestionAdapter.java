@@ -29,11 +29,11 @@ public class QuestionAdapter {
 	/**
 	 * 
 	 * @param question
-	 *            试题
+	 *            题目
 	 * @param answerSheetItem
 	 *            答题卡
 	 * @param questionQueryResult
-	 *            试题描述
+	 *            题目描述
 	 */
 	public QuestionAdapter(Question question, AnswerSheetItem answerSheetItem,
 			QuestionQueryResult questionQueryResult, String baseUrl) {

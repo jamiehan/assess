@@ -22,7 +22,7 @@ request.setAttribute("leftMenuId",list[3]);
     
    		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>试题管理</title>
+		<title>题目管理</title>
 		<meta name="keywords" content="">
 		<link rel="shortcut icon" href="<%=basePath%>resources/images/favicon.ico" />
 		<link href="resources/bootstrap/css/bootstrap-huan.css" rel="stylesheet">
@@ -123,12 +123,12 @@ request.setAttribute("leftMenuId",list[3]);
 					</div>
 					<div class="col-xs-10" id="right-content">
 						<div class="page-header">
-							<h1><i class="fa fa-pencil-square-o"></i> 添加试题 </h1>
+							<h1><i class="fa fa-pencil-square-o"></i> 添加题目 </h1>
 						</div>
 						<div class="page-content">
 							<form id="question-add-form">
-								<div class="form-line question-type" id="question-type">
-									<span class="form-label"><span class="warning-label">*</span>试题类型：</span>
+								<div class="form-line question-type" id="question-type" hidden>
+									<span class="form-label"><span class="warning-label">*</span>题目类型：</span>
 									<select id="question-type-select" class="df-input-narrow">
 
 										<option value="1">单选题</option>
@@ -147,7 +147,15 @@ request.setAttribute("leftMenuId",list[3]);
 
 									</select><span class="form-message"></span>
 								</div>
-								<div class="form-line question-knowledge">
+								<div class="form-line question-type" id="assess-field">
+									<span class="form-label"><span class="warning-label">*</span>评估领域：</span>
+									<select id="assess-field-select" class="df-input-narrow">
+
+										<option value="1">AAA.配合与强化物的效能</option>
+
+									</select><span class="form-message"></span>
+								</div>
+								<div class="form-line question-knowledge" hidden>
 									<span class="form-label"><span class="warning-label">*</span>评估领域：</span>
 									<div>
 										<div class="clearfix">
@@ -177,15 +185,19 @@ request.setAttribute("leftMenuId",list[3]);
 									</div>
 									<span class="form-message"></span>
 								</div>
-								
+								<div class="form-line form-question-reference" style="display: block;">
+									<span class="form-label"><span class="warning-label">*</span>编号：</span>
+									<input type="text" class="df-input-narrow"><span class="form-message"></span>
+									<br>
+								</div>
 								<div class="form-line question-content">
-									<span class="form-label"><span class="warning-label">*</span>试题内容：</span>
+									<span class="form-label"><span class="warning-label">*</span>任务目标：</span>
 									<textarea class="add-question-ta"></textarea>									
 									<span class="add-img add-content-img" style="width:100px;">添加图片</span>
 									<span class="form-message"></span>
 								</div>
 								<div class="form-line form-question-opt" style="display: block;">
-									<span class="form-label"><span class="warning-label">*</span>选项：</span>
+									<span class="form-label"><span class="warning-label">*</span>评分标准：</span>
 									<div class="add-opt-items">
 										<span class="add-opt-item"><label class="que-opt-no">A</label>
 											<input type="text" class="df-input-narrow form-question-opt-item">
@@ -209,7 +221,7 @@ request.setAttribute("leftMenuId",list[3]);
 									<br>
 									<span class="form-message"></span>
 								</div>
-								<div class="form-line form-question-answer1 correct-answer" style="display: block;">
+								<div class="form-line form-question-answer1 correct-answer" style="display: none;">
 									<span class="form-label"><span class="warning-label">*</span>正确答案：</span>
 									<select class="df-input-narrow">
 										<option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option>
@@ -253,22 +265,22 @@ request.setAttribute("leftMenuId",list[3]);
 									<br>
 
 								</div>
-								<div class="form-line form-question-reference" style="display: block;">
+								<div class="form-line form-question-reference" style="display: none;">
 									<span class="form-label"><span class="warning-label"></span>来源：</span>
 										<input type="text" class="df-input-narrow"><span class="form-message"></span>
 									<br>
 								</div>
-								<div class="form-line form-question-examingpoint" style="display: block;">
+								<div class="form-line form-question-examingpoint" style="display: none;">
 									<span class="form-label"><span class="warning-label"></span>考点：</span>
 										<input type="text" class="df-input-narrow"><span class="form-message"></span>
 									<br>
 								</div>
-								<div class="form-line form-question-keyword" style="display: block;">
+								<div class="form-line form-question-keyword" style="display: none;">
 									<span class="form-label"><span class="warning-label"></span>关键字：</span>
 										<input type="text" class="df-input-narrow"><span class="form-message"></span>
 									<br>
 								</div>
-								<div class="form-line form-question-analysis" style="display: block;">
+								<div class="form-line form-question-analysis" style="display: none;">
 									<span class="form-label"><span class="warning-label"></span>题目解析：</span>
 									<textarea class="add-question-ta"></textarea><span class="form-message"></span>
 									<br>

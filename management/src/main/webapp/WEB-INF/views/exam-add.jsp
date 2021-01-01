@@ -22,7 +22,7 @@ request.setAttribute("leftMenuId",list[3]);
     
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>发布考试</title>
+		<title>创建评估</title>
 		<meta name="keywords" content="">
 		<link rel="shortcut icon" href="<%=basePath%>resources/images/favicon.ico" />
 		<link href="resources/bootstrap/css/bootstrap-huan.css" rel="stylesheet">
@@ -99,16 +99,16 @@ request.setAttribute("leftMenuId",list[3]);
 					</div>
 					<div class="col-xs-10" id="right-content">
 						<div class="page-header">
-							<h1><i class="fa fa-file-text-o"></i> 发布考试 </h1>
+							<h1><i class="fa fa-file-text-o"></i> 创建评估 </h1>
 						</div>
 						<div class="page-content">
 							<form id="form-examp-add">
 								<div class="form-line add-update-examname">
-									<span class="form-label"><span class="warning-label">*</span>考试名称：</span>
+									<span class="form-label"><span class="warning-label">*</span>评估名称：</span>
 									<input id="exam-name" type="text" class="df-input-narrow">
 									<span class="form-message"></span>
 								</div>
-								<div class="form-line add-update-exam-type">
+								<div class="form-line add-update-exam-type" hidden>
 									<span class="form-label"><span class="warning-label">*</span>考试类型：</span>
 									<select class="df-input-narrow">
 										<option value="2">公开考试</option>
@@ -117,9 +117,9 @@ request.setAttribute("leftMenuId",list[3]);
 									<span class="form-message"></span>
 								</div>
 								<div class="form-line add-update-exam-paper">
-									<span class="form-label"><span class="warning-label">*</span>选择试卷：</span>
+									<span class="form-label"><span class="warning-label">*</span>选择康复计划：</span>
 									<select class="df-input-narrow">
-										<option value="-1" selected="selected">-----------请选择试卷-----------</option>
+										<option value="-1" selected="selected">-----------请选择康复计划-----------</option>
 										<c:forEach items="${examPaperList }" var="item">
 											<option value="${item.id }">${item.name }</option>
 										</c:forEach>
@@ -128,7 +128,7 @@ request.setAttribute("leftMenuId",list[3]);
 									<span class="form-message"></span>
 								</div>
 								<div class="form-line add-update-group-list">
-									<span class="form-label"><span class="warning-label">*</span>参考人员：</span>
+									<span class="form-label"><span class="warning-label">*</span>被评估人员：</span>
 									<fieldset>
 										<legend>
 											请选择
@@ -142,7 +142,7 @@ request.setAttribute("leftMenuId",list[3]);
 									<span class="form-message"></span>
 								</div>
 								<div class="form-line form-exam-duration">
-									<span class="form-label"><span class="warning-label">*</span>生效日期：</span>
+									<span class="form-label"><span class="warning-label">*</span>开始日期：</span>
 									<input id="exam-eff-date" type="text" class="df-input-narrow">
 									<select class="df-input-narrow" id="exam-eff-time">
 										<option value="8:00">8:00</option>
@@ -186,7 +186,7 @@ request.setAttribute("leftMenuId",list[3]);
 								</div>
 								
 								<div class="form-line">
-									<input value="确认发布" type="button" id="exam-add-btn" class="df-submit btn btn-info">
+									<input value="确认" type="button" id="exam-add-btn" class="df-submit btn btn-info">
 								</div>
 							</form>
 

@@ -39,7 +39,7 @@ public interface QuestionService {
 	public void addTag(Tag tag);
 
 	/**
-	 * 添加试题，同时添加试题知识点对应关系
+	 * 添加题目，同时添加题目知识点对应关系
 	 * 
 	 * @param question
 	 */
@@ -60,7 +60,7 @@ public interface QuestionService {
 	public void addKnowledgePoint(KnowledgePoint point);
 
 	/**
-	 * 获取试题的tag，只包含公有tag和自己的私有tag
+	 * 获取题目的tag，只包含公有tag和自己的私有tag
 	 * 
 	 * @param questionId
 	 * @param userId
@@ -121,7 +121,7 @@ public interface QuestionService {
 	public HashMap<Integer, HashMap<Integer, List<QuestionStruts>>> getQuestionStrutsMap(List<Integer> idList);
 
 	/**
-	 * 导入试题
+	 * 导入题目
 	 * 
 	 * @param filePath
 	 * @param username
@@ -130,7 +130,7 @@ public interface QuestionService {
 	public void uploadQuestions(String filePath, String username, int fieldId);
 
 	/**
-	 * 导入试题
+	 * 导入题目
 	 *
 //	 * @param filePath
 	 * @param username
@@ -154,7 +154,7 @@ public interface QuestionService {
 	public void uploadQuestionsAnswer(Question question2, String username, int testId);
 	
 	/**
-	 * 根据fieldId,pointId,typeId分组统计试题数量
+	 * 根据fieldId,pointId,typeId分组统计题目数量
 	 * @param fieldId
 	 * @return
 	 */
@@ -168,13 +168,13 @@ public interface QuestionService {
 	public Map<Integer,String> getKnowledgePointMap(int fieldId);
 	
 	/**
-	 * 获取试题类型字典
+	 * 获取题目类型字典
 	 * @return
 	 */
 	public Map<Integer,String> getQuestionTypeMap();
 	
 	/**
-	 * 更新试题
+	 * 更新题目
 	 * @param question
 	 * @param questionTagList
 	 */
@@ -183,7 +183,7 @@ public interface QuestionService {
 	public void updateQuestionTest(QuestionTest question);
 	
 	/**
-	 * 获取试题信息（详细）
+	 * 获取题目信息（详细）
 	 * @param questionId
 	 */
 	public Question getQuestionDetail(int questionId, int userId);
@@ -196,7 +196,7 @@ public interface QuestionService {
 	public List<PointStatistic> getPointCount(int fieldId, Page<PointStatistic> page);
 
 	/**
-	 * 获取导入试题标题列表
+	 * 获取导入题目标题列表
 	 * @param
 	 * @return
 	 */
@@ -206,7 +206,7 @@ public interface QuestionService {
 
 
 	/**
-	 * 获取某一试题标题记录
+	 * 获取某一题目标题记录
 	 * @param id
 	 * @return
 	 */

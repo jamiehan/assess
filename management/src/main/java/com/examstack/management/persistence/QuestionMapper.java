@@ -61,7 +61,7 @@ public interface QuestionMapper {
 	public void addKnowledgePoint(KnowledgePoint point);
 	
 	/**
-	 * 获取试题的tag
+	 * 获取题目的tag
 	 * @param questionId
 	 * @param userId
 	 * @param page
@@ -100,7 +100,7 @@ public interface QuestionMapper {
 
 
 	/**
-	 * 获取某一题型的试题
+	 * 获取某一题型的题目
 	 * @param QuestionTypeId
 	 * @param page
 	 * @return
@@ -108,7 +108,7 @@ public interface QuestionMapper {
 	public List<Question> getQuestionByTypeId(@Param("QuestionTypeId") int QuestionTypeId, @Param("page") Page<Question> page);
 	
 	/**
-	 * 按知识点获取试题
+	 * 按知识点获取题目
 	 * 
 	 * @param idList
 	 * @return
@@ -116,14 +116,14 @@ public interface QuestionMapper {
 	List<QuestionStruts> getQuestionListByPointId(@Param("array") List<Integer> idList);
 	
 	/**
-	 * 根据fieldId,pointId,typeId分组统计试题数量
+	 * 根据fieldId,pointId,typeId分组统计题目数量
 	 * @param fieldId
 	 * @return
 	 */
 	public List<QuestionStatistic> getTypeQuestionStaticByFieldId(int fieldId);
 	
 	/**
-	 * 更新一道试题
+	 * 更新一道题目
 	 * @param question Object为null，int＝0则不更新
 	 */
 	public void updateQuestion(Question question);
@@ -137,13 +137,13 @@ public interface QuestionMapper {
 	public void updateQuestionAnswer(Question question);
 	
 	/**
-	 * 获取试题的知识点
+	 * 获取题目的知识点
 	 * @param questionId
 	 */
 	public List<KnowledgePoint> getQuestionPoint(int questionId);
 	
 	/**
-	 * 获取试题标签
+	 * 获取题目标签
 	 * @param questionId
 	 * @return
 	 */
@@ -157,14 +157,14 @@ public interface QuestionMapper {
 	public List<PointStatistic> getPointCount(@Param("fieldId") int fieldId, @Param("page") Page<PointStatistic> page);
 
 	/**
-	 * 获取导入试题标题最大ID
+	 * 获取导入题目标题最大ID
 	 * @param
 	 * @return
 	 */
 	public int getQuestionTestMaxId();
 
 	/**
-	 * 获取导入试题标题列表
+	 * 获取导入题目标题列表
 	 * @param
 	 * @return
 	 */
@@ -175,18 +175,18 @@ public interface QuestionMapper {
 			@Param("filter") QuestionFilter filter,
 			@Param("page") Page<Question> page);
 	/**
-	 * 给导入试题添加题目
+	 * 给导入题目添加题目
 	 */
 	public void addQuestionTest(QuestionTest questionTest);
 
 	/**
-	 * 更新一道试题試卷
+	 * 更新一道题目試卷
 	 * @param questionTest Object为null，int＝0则不更新
 	 */
 	public void updateQuestionTest(QuestionTest questionTest);
 
 	/**
-	 * 获取某一试题标题记录
+	 * 获取某一题目标题记录
 	 * @param id
 	 * @return
 	 */

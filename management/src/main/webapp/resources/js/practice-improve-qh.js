@@ -159,7 +159,7 @@ var examing = {
 	},
 
 	/**
-	 * 刷新试题导航
+	 * 刷新题目导航
 	 */
 	refreshNavi : function refreshNavi() {
 		$("#exam-control #question-navi").empty();

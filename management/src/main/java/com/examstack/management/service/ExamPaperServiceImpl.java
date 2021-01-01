@@ -154,7 +154,7 @@ public class ExamPaperServiceImpl implements ExamPaperService {
 		
 		for(QuestionQueryResult question : questionList){
 			QuestionContent questionContent = gson.fromJson(question.getContent(), QuestionContent.class);
-			// 设置试题标题
+			// 设置题目标题
 			XWPFParagraph t = doc.createParagraph();
 			// 设置字体对齐方式
 			t.setAlignment(ParagraphAlignment.LEFT);
@@ -187,7 +187,7 @@ public class ExamPaperServiceImpl implements ExamPaperService {
 			//选择题和判断题增加选项
 			if(question.getQuestionTypeId() == 1 || question.getQuestionTypeId() == 2 || question.getQuestionTypeId() == 3){
 				for(Map.Entry<String, String> entry : questionContent.getChoiceList().entrySet()){
-					// 设置试题标题
+					// 设置题目标题
 					XWPFParagraph c = doc.createParagraph();
 					// 设置字体对齐方式
 					c.setAlignment(ParagraphAlignment.LEFT);

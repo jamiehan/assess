@@ -120,7 +120,7 @@ String basePath = request.getScheme() + "://"
 							<a href="home"><i class="fa fa-home"></i>主页</a>
 						</li>
 						<li>
-							<a href="student/practice-list"><i class="fa fa-edit"></i>试题练习</a>
+							<a href="student/practice-list"><i class="fa fa-edit"></i>题目练习</a>
 						</li>
 						<li>
 							<a href="exam-list"><i class="fa  fa-paper-plane-o"></i>在线考试</a>
