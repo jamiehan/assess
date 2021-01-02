@@ -80,6 +80,13 @@ public class UserServiceImpl implements UserService {
 		List<User> userList = userMapper.getUserListByRoleId(roleId, page);
 		return userList;
 	}
+
+	@Override
+	public List<User> getUserListByUserId(int userId) {
+		// TODO Auto-generated method stub
+		List<User> userList = userMapper.getUserListByUserId(userId);
+		return userList;
+	}
 	
 	@Override
 	@Transactional

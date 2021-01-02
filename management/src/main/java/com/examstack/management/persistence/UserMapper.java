@@ -44,6 +44,14 @@ public interface UserMapper {
 	public List<User> getUserListByRoleId(@Param("roleId") int roleId, @Param("page") Page<User> page);
 
 	/**
+	 * 根据用户ID查询某用户
+	 *
+	 * @param user_id
+	 * @return
+	 */
+	public List<User> getUserListByUserId(@Param("userId") int userId);
+
+	/**
 	 * 给用户授权一种角色
 	 * 
 	 * 
