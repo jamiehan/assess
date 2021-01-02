@@ -139,6 +139,17 @@ request.setAttribute("leftMenuId",list[3]);
 													<span class="form-message"></span>
 													<br>
 												</div>
+												<div class="form-line form-link" style="display: block;">
+													<span class="form-label"><span class="warning-label"></span>所属老师：</span>
+													<select id="group-teacher" class="df-input-narrow">
+														<c:forEach items="${teacherList }" var="item">
+															<option value="${item.teacherId }">${item.teacherName }</option>
+														</c:forEach>
+													</select>
+
+													<span class="form-message"></span>
+													<br>
+												</div>
 											</form>
 										</div>
 										<div class="modal-footer">

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.examstack.common.domain.user.Department;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -118,5 +119,31 @@ public class UserPageTeacher {
 		List<Field> fieldList = questionService.getAllField(null);
 		model.addAttribute("fieldList", fieldList);
 		return "add-user";
+	}
+
+	/**
+	 * 老师管理
+	 * @param model
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = { "teacher/user/teacher-list" }, method = RequestMethod.GET)
+	public String teacherListPage(Model model, HttpServletRequest request) {
+
+		int index = 1;
+		if (request.getParameter("page") != null)
+			index = Integer.parseInt(request.getParameter("page"));
+		Page<User> page = new Page<User>();
+		page.setPageNo(index);
+		page.setPageSize(10);
+		UserInfo userInfo = (UserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		List<Department> depList = userService.getDepList(null);
+//		List<User> userList = userService.getUserListByRoleId(userInfo.getRoleMap().get("ROLE_TEACHER").getRoleId(), page);
+		List<User> userList = userService.getUserListByUserId(userInfo.getUserid());
+		String pageStr = PagingUtil.getPagelink(index, page.getTotalPage(), "", "teacher/user/teacher-list");
+		model.addAttribute("depList", depList);
+		model.addAttribute("userList", userList);
+		model.addAttribute("pageStr", pageStr);
+		return "admin/teacher-list";
 	}
 }

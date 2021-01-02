@@ -30,6 +30,8 @@ public interface UserService {
 
 	public List<User> getUserListByRoleId(int roleId, Page<User> page);
 
+	public List<User> getUserListByUserId(int userId);
+
 	public void updateUser(User user, String oldPassword);
 
 	public void userImport(User user, String username);
