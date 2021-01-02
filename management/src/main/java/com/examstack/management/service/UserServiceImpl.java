@@ -203,8 +203,8 @@ public class UserServiceImpl implements UserService {
 	public void updateUserPwd(String userName, String password, String authority) throws Exception {
 		// TODO Auto-generated method stub
 		User user = userMapper.getUserByName(userName);
-		if(user.getRoles().contains(authority) && !"ROLE_ADMIN".equals(authority))
-			throw new Exception("老师只能更新学员的密码！");
+//		if(user.getRoles().contains(authority) && !"ROLE_ADMIN".equals(authority))
+//			throw new Exception("老师只能更新学员的密码！");
 		PasswordEncoder passwordEncoder = new StandardPasswordEncoderForSha1();
 		password = passwordEncoder.encode(password + "{" + userName + "}");
 		User tmpUser = new User();

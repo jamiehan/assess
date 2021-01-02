@@ -97,9 +97,9 @@ request.setAttribute("leftMenuId",list[3]);
 						<div class="page-content">
 							<div id="teacher-list">
 								<div class="table-controller">
-									<div class="btn-group table-controller-item" style="float:left">
+									<div class="btn-group table-controller-item" style="float:left;display: none">
 										<button class="btn btn-default btn-sm" id="add-teacher-modal-btn">
-											<i class="fa fa-plus-square"></i> 创建老师账号
+											<i class="fa fa-plus-square"></i> 创建老师账号1
 										</button>
 									</div>
 								</div>
@@ -154,7 +154,9 @@ request.setAttribute("leftMenuId",list[3]);
 														<span>禁用</span>
 													</c:otherwise>
 												</c:choose></td>
-												<td><span class="r-update-btn btn-sm btn-success" data-id="21321" data-depid="${item.depId }">修改</span><span class="disable-btn btn-sm btn-danger" data-id="${item.userId }" data-status="${!item.enabled }">
+												<td><span class="r-update-btn btn-sm btn-success" data-id="21321" data-depid="${item.depId }">修改</span>
+
+													<span class="disable-btn btn-sm btn-danger" data-id="${item.userId }" data-status="${!item.enabled }" hidden>
 													<c:choose>
 														<c:when test="${!item.enabled }">
 															启用

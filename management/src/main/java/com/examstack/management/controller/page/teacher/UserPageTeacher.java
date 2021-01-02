@@ -144,6 +144,6 @@ public class UserPageTeacher {
 		model.addAttribute("depList", depList);
 		model.addAttribute("userList", userList);
 		model.addAttribute("pageStr", pageStr);
-		return "admin/teacher-list";
+		return "teacher/teacher-list";
 	}
 }
