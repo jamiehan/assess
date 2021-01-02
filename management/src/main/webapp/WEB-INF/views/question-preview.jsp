@@ -26,7 +26,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>试题预览</title>
+<title>题目预览</title>
 <meta name="keywords" content="">
 <link rel="shortcut icon"
 	href="<%=basePath%>resources/images/favicon.ico" />
@@ -104,7 +104,7 @@
 				<div class="col-xs-10" id="right-content">
 					<div class="page-header">
 						<h1>
-							<i class="fa fa-file-text"></i> 试题预览
+							<i class="fa fa-file-text"></i> 题目预览
 						</h1>
 					</div>
 					<div class="page-content">

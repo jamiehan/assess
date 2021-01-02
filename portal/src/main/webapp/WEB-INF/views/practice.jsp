@@ -82,7 +82,7 @@ a.join-practice-btn {
 							<a href="home"><i class="fa fa-home"></i>主页</a>
 						</li>
 						<li class="active">
-							<a href="student/practice-list"><i class="fa fa-edit"></i>试题练习</a>
+							<a href="student/practice-list"><i class="fa fa-edit"></i>题目练习</a>
 						</li>
 						<li>
 							<a href="exam-list"><i class="fa  fa-paper-plane-o"></i>在线考试</a>
@@ -170,7 +170,7 @@ a.join-practice-btn {
 							<thead>
 
 								<tr>
-									<td>知识分类</td>
+									<td>评估领域</td>
 									<td>题目数量</td>
 									<td></td>
 									<td></td>
@@ -195,7 +195,7 @@ a.join-practice-btn {
 						<h3 class="title">
 							<i class="fa fa-superscript"></i> 随机练习
 						</h3>
-						<p>从题库中随机取出试题练习</p>
+						<p>从题库中随机取出题目练习</p>
 
 					</div>
 					<a class="btn btn-success " href="student/practice-test/${fieldId }">随机来20道 </i>

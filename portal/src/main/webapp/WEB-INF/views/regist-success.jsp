@@ -65,7 +65,7 @@ String basePath = request.getScheme() + "://"
 							<a href="home"><i class="fa fa-home"></i>主页</a>
 						</li>
 						<li>
-							<a href="student/practice-list"><i class="fa fa-edit"></i>试题练习</a>
+							<a href="student/practice-list"><i class="fa fa-edit"></i>题目练习</a>
 						</li>
 						<li>
 							<a href="exam-list"><i class="fa  fa-paper-plane-o"></i>在线考试</a>
@@ -101,7 +101,7 @@ String basePath = request.getScheme() + "://"
 				<hr>
 				<div class="link-list">
 					<h5>您可以选择访问其他页面</h5>
-					<a href="#">主页</a><a href="#">试题练习</a><a href="#">练习历史</a><a href="#">联系我们</a><a href="#">FAQ</a>
+					<a href="#">主页</a><a href="#">题目练习</a><a href="#">练习历史</a><a href="#">联系我们</a><a href="#">FAQ</a>
 				</div>
 				<div class="row">
 

@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+
+/**
+ * 考试
+ */
 public class Exam implements Serializable {
 
 	private static final long serialVersionUID = -1595051130848974880L;

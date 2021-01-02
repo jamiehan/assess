@@ -173,7 +173,7 @@ request.setAttribute("leftMenuId",list[3]);
 						    <div class="modal-content">
 						      <div class="modal-header">
 						        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						        <h4 class="modal-title">选择试题添加到试卷中</h4>
+						        <h4 class="modal-title">选择题目添加到康复计划中</h4>
 						      </div>
 						      <div class="modal-body">
 						        <iframe  id="qt-selector-iframe" src="<%=list[1]%>/question/question-list/filterdialog-0-0-0-0-1.html" width="100%"></iframe>

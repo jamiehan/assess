@@ -15,7 +15,7 @@ import com.examstack.common.util.Roulette;
 
 
 /**
- * 个体（试卷） 每次生成一个新试题序列，计算一次适应度 适应度越高，就越能遗传到下一代 这里适应度通过曝光率和难度系数计算 <br>
+ * 个体（试卷） 每次生成一个新题目序列，计算一次适应度 适应度越高，就越能遗传到下一代 这里适应度通过曝光率和难度系数计算 <br>
  * a.难度系数和给定难度系数差的绝对值（D）最小 b.曝光度（E）最小 适应度F=1/D+E 1/D+E 越小，适应度越好
  * 
  * <br>
@@ -31,7 +31,7 @@ import com.examstack.common.util.Roulette;
 public class Paper {
 	public static Log log = LogFactory.getLog(Paper.class);
 	/**
-	 * 试卷试题列表
+	 * 试卷题目列表
 	 */
 	private HashMap<Integer, QuestionStruts> paperQuestionMap = new HashMap<Integer, QuestionStruts>();
 
@@ -49,7 +49,7 @@ public class Paper {
 	private HashMap<Integer, Float> questionTypePoint;
 	//知识点字典
 	private HashMap<Integer,String> knowledgeMap;
-	//试题类型字典
+	//题目类型字典
 	private HashMap<Integer,String> typeMap;
 	
 	/**
@@ -60,7 +60,7 @@ public class Paper {
 	private int questionNum = 0;
 	// 涵盖的知识点，越多越好，暂时不使用
 	/* private HashMap<Integer,Float> knowledgeNum; */
-	// 试题库
+	// 题目库
 	private HashMap<Integer, HashMap<Integer, List<QuestionStruts>>> questionMap;
 
 	public HashMap<Integer, QuestionStruts> getPaperQuestionMap() {
@@ -114,9 +114,9 @@ public class Paper {
 		while (iterator3.hasNext()) {
 			int key = (Integer) iterator3.next();
 			if (!questionTypeNumCheck.containsKey(key))
-				throw new Exception("试题清单中无试题类型" + typeMap.get(key));
+				throw new Exception("题目清单中无题目类型" + typeMap.get(key));
 			if (questionTypeNum.get(key) > questionTypeNumCheck.get(key))
-				throw new Exception("试题库中试题类型：" + typeMap.get(key) + "数量不足");
+				throw new Exception("题目库中题目类型：" + typeMap.get(key) + "数量不足");
 		}
 
 		this.paperQuestionMap = new HashMap<Integer, QuestionStruts>();
@@ -210,7 +210,7 @@ public class Paper {
 		// 轮盘赌选择题型
 		Roulette<Integer> r1 = new Roulette<Integer>(resultList1, hm1);
 
-		// 如果没有选择足够的题量，循环选择试题
+		// 如果没有选择足够的题量，循环选择题目
 		while (questionNum > paperQuestionMap.size()) {
 			int pointId = -1;
 			int typeId = -1;

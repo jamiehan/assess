@@ -1,5 +1,9 @@
 package com.examstack.common.domain.question;
 
+
+/**
+ * 知识点统计信息
+ */
 public class PointStatistic {
 
 	private int fieldId;

@@ -22,7 +22,7 @@ request.setAttribute("leftMenuId",list[3]);
     
     	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>知识分类管理</title>
+		<title>评估领域管理</title>
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="keywords" content="">
 		<link rel="shortcut icon" href="<%=basePath%>resources/images/favicon.ico" />
@@ -91,10 +91,10 @@ request.setAttribute("leftMenuId",list[3]);
 					</div>
 					<div class="col-xs-10" id="right-content">
 						<div class="page-header">
-							<h1> <i class="fa fa-bar-chart-o"></i> 知识分类管理 </h1>
+							<h1> <i class="fa fa-bar-chart-o"></i> 评估领域管理 </h1>
 						</div>
 						<div class="page-content">
-							<div id="question-filter">
+							<div id="question-filter" style="display:none">
 								<dl id="question-filter-field">
 									<dt>
 										题库：
@@ -134,7 +134,7 @@ request.setAttribute("leftMenuId",list[3]);
 								<div class="table-controller">
 									<div class="btn-group table-controller-item" style="float:left">
 										<button class="btn btn-default btn-sm" id="add-knowledge-modal-btn">
-											<i class="fa fa-plus-square"></i> 添加知识分类
+											<i class="fa fa-plus-square"></i> 添加评估领域
 										</button>
 									</div>
 								</div>
@@ -142,8 +142,9 @@ request.setAttribute("leftMenuId",list[3]);
 									<thead>
 										<tr>
 											<td>ID</td>
-											<td>知识分类名</td>
-											<td>属于题库</td>
+											<td>评估领域编码</td>
+											<td>评估领域名</td>
+											<%--<td>属于题库</td>--%>
 											<td>描述</td>
 											<td>操作</td>
 										</tr>
@@ -153,8 +154,9 @@ request.setAttribute("leftMenuId",list[3]);
 											<tr>
 												
 												<td>${item.pointId }</td>
+												<td>ABCD</td>
 												<td>${item.pointName }</td>
-												<td>${item.fieldName }</td>
+												<%--<td>${item.fieldName }</td>--%>
 												<td>${item.memo }</td>
 												<td>
 													<c:choose>
@@ -188,11 +190,11 @@ request.setAttribute("leftMenuId",list[3]);
 											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 												&times;
 											</button>
-											<h6 class="modal-title" id="myModalLabel">添加知识分类</h6>
+											<h6 class="modal-title" id="myModalLabel">添加评估领域</h6>
 										</div>
 										<div class="modal-body">
 											<form id="knowledge-add-form" style="margin-top:40px;"  action="admin/common/point-add">
-												<div class="form-line form-field" style="display: block;">
+												<div class="form-line form-field" style="display: none;">
 													<span class="form-label"><span class="warning-label">*</span>默认题库：</span>
 													<select id="job-type-input-select" class="df-input-narrow">
 														<!-- <option value="-1">--请选择--</option> -->
@@ -200,6 +202,12 @@ request.setAttribute("leftMenuId",list[3]);
 															<option value="${item.fieldId }">${item.fieldName }</option>
 														</c:forEach>
 													</select>
+													<span class="form-message"></span>
+													<br>
+												</div>
+												<div class="form-line form-knowledge-name" style="display: block;">
+													<span class="form-label"><span class="warning-label">*</span>编码：</span>
+													<input type="text" class="df-input-narrow" id="code">
 													<span class="form-message"></span>
 													<br>
 												</div>

@@ -4,7 +4,7 @@
 
 <mapper namespace="com.examstack.management.persistence.QuestionMapper">
 
-	<!-- 试题列表部分 -->
+	<!-- 题目列表部分 -->
 	<select id="getQuestionList" resultType="com.examstack.common.domain.question.Question">
 		select a.id,a.name,a.content,a.question_type_id,a.creator,a.answer,a.analysis,a.reference referenceName,group_concat(concat(d.field_name,'-',c.point_name)) pointName,
 		e.name
@@ -88,7 +88,7 @@
 		select
 		id,name,subjective from et_question_type
 	</select>
-	<!-- 试题列表部分 -->
+	<!-- 题目列表部分 -->
 
 	<select id="getTagByUserId" resultType="com.examstack.common.domain.question.Tag">
 		select tag_id

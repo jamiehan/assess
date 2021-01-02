@@ -84,7 +84,7 @@ public class UserPageAdmin {
 	}
 	
 	/**
-	 * 教师管理
+	 * 老师管理
 	 * @param model
 	 * @param request
 	 * @return
@@ -109,7 +109,7 @@ public class UserPageAdmin {
 	}
 	
 	/**
-	 * 教师资料
+	 * 老师资料
 	 * @param model
 	 * @param request
 	 * @return

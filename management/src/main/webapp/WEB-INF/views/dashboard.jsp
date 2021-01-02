@@ -102,7 +102,7 @@ request.setAttribute("leftMenuId","");
 					<div class="col-xs-2" id="left-menu">
 						<ul class="nav default-sidenav">
 							<li>
-								<a href="<%=list[1]%>/question/question-add" title="添加试题"><i class="fa fa-plus">&nbsp;</i><span class="left-menu-item-name"> 添加试题</span></a>
+								<a href="<%=list[1]%>/question/question-add" title="添加题目"><i class="fa fa-plus">&nbsp;</i><span class="left-menu-item-name"> 添加题目</span></a>
 							</li>
 							<li>
 								<a href="<%=list[1]%>/exampaper/exampaper-add" title="创建新试卷"><i class="fa fa-leaf">&nbsp;</i><span class="left-menu-item-name"> 创建新试卷</span></a>
@@ -134,7 +134,7 @@ request.setAttribute("leftMenuId","");
 												<i class="fa fa-cloud"></i>
 											</div>
 											<div class="infobox-data">
-												<div class="infobox-content">试题</div>
+												<div class="infobox-content">题目</div>
 												<div class="infobox-content" id="question-num">-</div>
 											</div>
 											</div>

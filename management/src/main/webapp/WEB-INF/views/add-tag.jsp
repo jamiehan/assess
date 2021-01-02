@@ -22,7 +22,7 @@ request.setAttribute("leftMenuId",list[3]);
     
     	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>试题管理</title>
+		<title>题目管理</title>
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="keywords" content="">
 		<link rel="shortcut icon" href="<%=basePath%>resources/images/favicon.ico" />
@@ -76,7 +76,7 @@ request.setAttribute("leftMenuId",list[3]);
 							<a href="#"><i class="fa fa-home"></i>网站首页</a>
 						</li>
 						<li>
-							<a href="admin/question-list"><i class="fa fa-edit"></i>试题管理</a>
+							<a href="admin/question-list"><i class="fa fa-edit"></i>题目管理</a>
 						</li>
 
 						<li>
@@ -120,11 +120,11 @@ request.setAttribute("leftMenuId",list[3]);
 							</li>
 							
 							<li>
-								<a href="admin/point-list-1-1"> <i class="fa fa-sitemap"></i> 知识分类列表 </a>
+								<a href="admin/point-list-1-1"> <i class="fa fa-sitemap"></i> 评估领域列表 </a>
 							</li>
 							
 							<li>
-								<a href="admin/add-point"> <i class="fa fa-pencil"></i> 添加知识分类 </a>
+								<a href="admin/add-point"> <i class="fa fa-pencil"></i> 添加评估领域 </a>
 							</li>
 							<li>
 								<a href="teacher/tag-list-1"> <i class="fa fa-tag"></i> 标签列表 </a>

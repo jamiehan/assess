@@ -23,7 +23,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>考试管理</title>
+<title>评估管理</title>
 <meta name="keywords" content="">
 <link rel="shortcut icon"
 	href="<%=basePath%>resources/images/favicon.ico" />
@@ -107,7 +107,7 @@
 				<div class="col-xs-10" id="right-content">
 					<div class="page-header">
 						<h1>
-							<i class="fa fa-list-ul"></i> 考试管理
+							<i class="fa fa-list-ul"></i> 评估管理
 						</h1>
 					</div>
 					<div class="page-content">
@@ -116,7 +116,7 @@
 								<thead>
 									<tr>
 										<td>ID</td>
-										<td>考试名称</td>
+										<td>评估名称</td>
 										<td>起始时间</td>
 										<td>截止时间</td>
 

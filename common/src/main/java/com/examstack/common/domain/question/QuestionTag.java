@@ -3,6 +3,9 @@ package com.examstack.common.domain.question;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * 题目标签
+ */
 public class QuestionTag implements Serializable {
 
 	/**

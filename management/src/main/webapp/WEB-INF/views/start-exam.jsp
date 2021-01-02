@@ -118,7 +118,7 @@ String basePath = request.getScheme() + "://"
 							<a href="home"><i class="fa fa-home"></i>主页</a>
 						</li>
 						<li class="active">
-							<a href="start-exam"><i class="fa fa-edit"></i>试题练习</a>
+							<a href="start-exam"><i class="fa fa-edit"></i>题目练习</a>
 						</li>
 						<li>
 							<a href="student/usercenter"><i class="fa fa-dashboard"></i>会员中心</a>
@@ -161,7 +161,7 @@ String basePath = request.getScheme() + "://"
 									    <div class="modal-content">
 									    	<div class="modal-header">
 										        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-										        <h6 class="modal-title" id="myModalLabel">选择想要练习的知识分类</h6>
+										        <h6 class="modal-title" id="myModalLabel">选择想要练习的评估领域</h6>
 										     </div>
 										     <div class="modal-body">
 										     	<ul>

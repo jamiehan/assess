@@ -131,7 +131,7 @@ String basePath = request.getScheme() + "://"
 							<div class="flex-caption">
 								<!-- Left column -->
 								<div class="col-l">
-									<p style="text-indent:2em;">高技能人才培训管理考核平台可以稳定、顺畅的运行在Windows与Linux平台上。您可以通过它快捷方便的创建试题和题库，发布试卷，组织考试，系统自动批改。</p>
+									<p style="text-indent:2em;">高技能人才培训管理考核平台可以稳定、顺畅的运行在Windows与Linux平台上。您可以通过它快捷方便的创建题目和题库，发布试卷，组织考试，系统自动批改。</p>
 									<p style="text-indent:2em;">软件采用GPL协议，完全开放且免费，并且有固定的开发团队提供技术支持</p>
 								</div>
 								<!-- Right column -->
@@ -177,7 +177,7 @@ String basePath = request.getScheme() + "://"
 									    <div class="modal-content">
 									    	<div class="modal-header">
 										        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-										        <h6 class="modal-title" id="myModalLabel">选择想要练习的知识分类</h6>
+										        <h6 class="modal-title" id="myModalLabel">选择想要练习的评估领域</h6>
 										     </div>
 										     <div class="modal-body">
 										     	<ul>

@@ -6,6 +6,9 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * 题目
+ */
 @XmlRootElement
 public class Question implements Serializable {
 

@@ -10,19 +10,19 @@ public class PaperCreatorParam {
 	 */
 	private String paperName;
 	/**
-	 * 试题类型数量
+	 * 题目类型数量
 	 */
 	private HashMap<Integer,Integer> questionTypeNum;
 	/**
-	 * 试题类型分数
+	 * 题目类型分数
 	 */
 	private HashMap<Integer,Float> questionTypePoint;
 	/**
-	 * 试题知识点比例
+	 * 题目知识点比例
 	 */
 	private HashMap<Integer,Float> questionKnowledgePointRate;
 	/**
-	 * 试题难度系数
+	 * 题目难度系数
 	 */
 	private Float paperDifficulty;
 	/**

@@ -75,7 +75,7 @@ request.setAttribute("leftMenuId",list[3]);
 							</button> </span>
 					</div>
 				</div>
-				<div>
+				<div hidden>
 					<button class="btn btn-default btn-sm" id="import-user-modal-btn">
 						<i class="fa fa-plus-square"></i> 导入用户
 					</button>
@@ -94,7 +94,7 @@ request.setAttribute("leftMenuId",list[3]);
 						<td>用户名</td>
 						<td>姓名和身份证</td>
 						<td>手机邮箱</td>
-						<td>部门单位</td>
+						<td>所属分组</td>
 						<td>创建时间</td>
 						<td>状态</td>
 						<td>操作</td>
@@ -152,8 +152,10 @@ request.setAttribute("leftMenuId",list[3]);
 								</c:choose>
 							</td>
 							<td>
-								<span class="r-update-btn btn-sm btn-success" data-id="21321" data-depid="${item.depId }">修改</span><span class="disable-btn btn-sm btn-danger" data-id="${item.userId }"
-								data-status="${!item.enabled }">
+								<span class="r-update-btn btn-sm btn-success" data-id="21321" data-depid="${item.depId }">修改</span>
+								<span class="r-update-btn btn-sm btn-success" data-id="21321" data-depid="${item.depId }">生成评估报告</span>
+								<span class="disable-btn btn-sm btn-danger" data-id="${item.userId }"
+								data-status="${!item.enabled }" hidden>
 								<c:choose>
 									<c:when test="${!item.enabled }">
 										启用
@@ -163,7 +165,7 @@ request.setAttribute("leftMenuId",list[3]);
 									</c:otherwise>
 								</c:choose> 
 								</span>
-								<span class="r-reset-pwd-btn btn-sm btn-warning" data-id="21321" data-depid="${item.depId }">密码</span>
+								<span class="r-reset-pwd-btn btn-sm btn-warning" data-id="21321" data-depid="${item.depId }" hidden>密码</span>
 								<c:choose>
 									<c:when test="${ groupId == 0 }">
 										<span class="link-user-r-btn btn-sm btn-info" title="关联用户">

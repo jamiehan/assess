@@ -117,7 +117,7 @@ String basePath = request.getScheme() + "://"
 									</div>
 								</form>
 								<i class="fa fa-info"></i> 
-								通过教师/管理员账号登陆系统
+								通过老师/管理员账号登陆系统
 							</div>
 						</div>
 

@@ -130,6 +130,16 @@
 		where a.user_id=b.user_id and
 		b.role_id=#{roleId}
 	</select>
+
+	<select id="getUserListByUserId" resultType="com.examstack.common.domain.user.User">
+		select a.user_id as
+		userId,a.user_name as userName,a.true_name as trueName,
+		a.`password` as
+		`password`,a.email as email,a.phone_num as phoneNum,
+		a.create_time as
+		createTime from et_user a
+		where a.user_id=#{userId}
+	</select>
 	
 	<insert id="grantUserRole">
 		insert into et_user_2_role(user_id,role_id) value

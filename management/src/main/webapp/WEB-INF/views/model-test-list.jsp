@@ -94,19 +94,20 @@ request.setAttribute("leftMenuId",list[3]);
 					</div>
 					<div class="col-xs-10" id="right-content">
 						<div class="page-header">
-							<h1><i class="fa fa-list-ul"></i> 模拟考试 </h1>
+							<h1><i class="fa fa-list-ul"></i> 康复训练管理 </h1>
 						</div>
 						<div class="page-content">
 							<div id="question-list">
 								<table class="table-striped table">
 									<thead>
 										<tr>
-											<td>ID</td><td>考试名称</td>
+											<td>ID</td><td>康复训练名称</td>
 											<td>起始时间</td>
 											<td>截止时间</td>
-											
-											
-											<td>试卷</td><td>创建人</td><td>状态</td><td>操作</td>
+											<td>康复计划</td>
+											<td>创建人</td>
+											<td>状态</td>
+											<td>操作</td>
 										</tr>
 									</thead>
 									<tbody>

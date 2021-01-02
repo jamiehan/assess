@@ -20,7 +20,7 @@ request.setAttribute("leftMenuId",list[3]);
   	<head>
    		<base href="<%=basePath%>">
    	 	<meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>试题管理</title>
+		<title>题目管理</title>
 		<meta name="keywords" content="">
 		<link rel="shortcut icon" href="<%=basePath%>resources/images/favicon.ico" />
 		<link href="resources/bootstrap/css/bootstrap-huan.css" rel="stylesheet">
@@ -89,7 +89,7 @@ request.setAttribute("leftMenuId",list[3]);
 					</div>
 					<div class="col-xs-10" id="right-content">
 						<div class="page-header">
-							<h1><i class="fa fa-cloud-upload"></i> 导入试题 </h1>
+							<h1><i class="fa fa-cloud-upload"></i> 导入题目 </h1>
 						</div>
 						<div class="page-content" style="padding-top:20px;">
 							<form id="from-question-import" action="secure/question-import/">
@@ -113,7 +113,7 @@ request.setAttribute("leftMenuId",list[3]);
 							</div>
 
 								<div class="form-line question-knowledge">
-									<span class="form-label"><span class="warning-label">*</span>知识分类：</span>
+									<span class="form-label"><span class="warning-label">*</span>评估领域：</span>
 									<div>
 										<div class="clearfix">
 											<div id="aq-course1" style="padding:0px;float:left; width:48%;">
@@ -133,14 +133,14 @@ request.setAttribute("leftMenuId",list[3]);
 										</div>
 
 										<div style="text-align:center;margin:10px 0;">
-											<button id="add-point-btn" class="btn btn-primary btn-xs">选择知识分类</button>
-											<button id="del-point-btn" class="btn btn-danger btn-xs">删除知识分类</button>
+											<button id="add-point-btn" class="btn btn-primary btn-xs">选择评估领域</button>
+											<button id="del-point-btn" class="btn btn-danger btn-xs">删除评估领域</button>
 											<button id="remove-all-point-btn" class="btn btn-warning btn-xs">清除列表</button>
 										</div>
 										<div  id="kn-selected" style="padding-left:0px;text-align:center;margin-bottom:20px;">
 											<select id="point-to-select" class="df-input-narrow" size="4"  style="width:80%;">
 											</select>
-											<p style="font-size:12px;color:#AAA;">您可以从上面选择4个知识分类</p>
+											<p style="font-size:12px;color:#AAA;">您可以从上面选择4个评估领域</p>
 										</div>
 									</div>
 									<div id="knowledge-select-msg">

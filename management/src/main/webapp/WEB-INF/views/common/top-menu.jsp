@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <ul class="nav navbar-nav">
 <!-- 	<li><a href="#"><i class="fa fa-home"></i>网站首页</a></li>
-	<li><a href="admin/question-list"><i class="fa fa-edit"></i>试题管理</a>
+	<li><a href="admin/question-list"><i class="fa fa-edit"></i>题目管理</a>
 	</li>
 
 	<li><a href="admin/exampaper-list"><i

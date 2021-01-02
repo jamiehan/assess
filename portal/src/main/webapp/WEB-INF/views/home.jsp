@@ -16,7 +16,7 @@ String basePath = request.getScheme() + "://"
 		Remove this if you use the .htaccess -->
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>资源管理与考核系统</title>
+		<title>初心儿童行为评估系统</title>
 		<meta name="viewport"
 		content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
@@ -125,7 +125,7 @@ String basePath = request.getScheme() + "://"
 							</a>
 						</li>
 						<li>
-							<a href="student/practice-list"><i class="fa fa-edit"></i>试题练习</a>
+							<a href="student/practice-list"><i class="fa fa-edit"></i>题目练习</a>
 						</li>
 						<li>
 							<a href="exam-list"><i class="fa  fa-paper-plane-o"></i>在线考试</a>
@@ -160,7 +160,7 @@ String basePath = request.getScheme() + "://"
 								<!-- Left column -->
 								<%--<div class="col-l">--%>
 									<%--<p style="text-indent:2em;">--%>
-										<%--高技能人才培训管理考核平台可以稳定、顺畅的运行在Windows与Linux平台上。您可以通过它快捷方便的创建试题和题库，发布试卷，组织考试，系统自动批改。--%>
+										<%--高技能人才培训管理考核平台可以稳定、顺畅的运行在Windows与Linux平台上。您可以通过它快捷方便的创建题目和题库，发布试卷，组织考试，系统自动批改。--%>
 									<%--</p>--%>
 									<%--<p style="text-indent:2em;">--%>
 										<%--软件采用GPL协议--%>
@@ -193,7 +193,7 @@ String basePath = request.getScheme() + "://"
 						<div class="select-test-icon">
 							<i class="fa fa-book"></i>
 	
-						</div> <h3> 试题练习 </h3>
+						</div> <h3> 题目练习 </h3>
 						<p>
 							您可以免费获取对应专业的培训视频或者文档资料，通过在线练习可以考察您的知识掌握程度。
 						</p> 
@@ -203,14 +203,14 @@ String basePath = request.getScheme() + "://"
 							<i class="fa fa-trophy"></i>
 						</div> <h3> 在线考试 </h3>
 						<p>
-							参加正式或者模拟考试，您的教师可以发布正式的考试，您也可以主动申请这些考试
+							参加正式或者模拟考试，您的老师可以发布正式的考试，您也可以主动申请这些考试
 						</p> 
 					</a>
 					<div class="select-test col-xs-4">
 						<div>
 							<h3> 快速考试入口 </h3>
 							<p>
-								通过已有的准考证快速参加考试，具体的准考证请从相关教师处获取，或者在个人中心的考试信息中查找
+								通过已有的准考证快速参加考试，具体的准考证请从相关老师处获取，或者在个人中心的考试信息中查找
 							</p>
 
 						</div>

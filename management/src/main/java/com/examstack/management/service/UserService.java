@@ -18,7 +18,7 @@ import com.examstack.common.util.Page;
 public interface UserService {
 
 	/**
-	 * 添加一个用户，并授权。如果授权为（教师），则groupId无意义，如果授权为（学员）,groupId为教师管理的分组之一
+	 * 添加一个用户，并授权。如果授权为（老师），则groupId无意义，如果授权为（学员）,groupId为老师管理的分组之一
 	 * 
 	 * @param user
 	 * @param authority
@@ -29,6 +29,8 @@ public interface UserService {
 	public int addUser(User user, String authority, int groupId, HashMap<String, Role> roleMap);
 
 	public List<User> getUserListByRoleId(int roleId, Page<User> page);
+
+	public List<User> getUserListByUserId(int userId);
 
 	public void updateUser(User user, String oldPassword);
 

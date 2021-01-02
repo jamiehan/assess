@@ -93,7 +93,7 @@ var examing = {
 			});
 		},
 		/**
-		 * 刷新试题导航
+		 * 刷新题目导航
 		 */
 		refreshNavi : function refreshNavi() {
 			$("#question-navi-content").empty();
@@ -352,7 +352,7 @@ var examing = {
 					values.push(id);
 				});
 				if (checkboxs.length == 0) {
-					util.notify("请选择需要添加的试题!");
+					util.notify("请选择需要添加的题目!");
 				}else{
 					var request = $.ajax({
 						headers : {
