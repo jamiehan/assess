@@ -5,6 +5,9 @@ import java.util.Date;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * 用户
+ */
 @XmlRootElement
 public class User implements Serializable {
 	private static final long serialVersionUID = 2866441053387084227L;

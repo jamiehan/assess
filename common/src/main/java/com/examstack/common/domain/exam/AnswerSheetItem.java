@@ -1,5 +1,8 @@
 package com.examstack.common.domain.exam;
 
+/**
+ * 答题项
+ */
 public class AnswerSheetItem {
 	private float point;
 	private int questionTypeId;

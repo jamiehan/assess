@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * 分组
+ */
 @XmlRootElement
 public class Group implements Serializable {
 

@@ -1,5 +1,8 @@
 package com.examstack.common.domain.user;
 
+/**
+ * 部门
+ */
 public class Department {
 
 	private int depId;

@@ -2,6 +2,10 @@ package com.examstack.common.domain.exam;
 
 import java.io.Serializable;
 
+
+/**
+ * 题目详细信息
+ */
 public class Message implements Serializable {
 
 	private static final long serialVersionUID = -2999571571280318844L;

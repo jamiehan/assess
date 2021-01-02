@@ -3,6 +3,9 @@ package com.examstack.common.domain.exam;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * 答案卡
+ */
 public class AnswerSheet {
 	private int examHistroyId;
 	private int examId;

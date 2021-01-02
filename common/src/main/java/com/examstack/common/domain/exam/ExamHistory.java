@@ -2,6 +2,10 @@ package com.examstack.common.domain.exam;
 
 import java.util.Date;
 
+
+/**
+ * 考试历史
+ */
 public class ExamHistory {
 
 	private int histId;

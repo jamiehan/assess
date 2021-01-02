@@ -24,12 +24,19 @@ public class ExamAction {
 	private ExamPaperService examPaperService;
 	@Autowired
 	private ExamService examService;
+	
+	/**
+	 * 获取试卷
+	 */
 	@RequestMapping(value = "/api/exampaper/{id}", method = RequestMethod.GET)
 	public @ResponseBody ExamPaper getExamPaper(@PathVariable("id") int id){
 		ExamPaper paper = examPaperService.getExamPaperById(id);
 		return paper;
 	}
 	
+	/**
+	 * 提交答案表
+	 */
 	@RequestMapping(value = "/api/answersheet", method = RequestMethod.POST)
 	public @ResponseBody Message submitAnswerSheet(@RequestBody AnswerSheet answerSheet){
 
