@@ -31,6 +31,7 @@ public class User implements Serializable {
 	private String department;
 	private String filePath;
 	private String fileName;
+	private String groupNames;
 	public int getDepId() {
 		return depId;
 	}
@@ -155,4 +156,8 @@ public class User implements Serializable {
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
+
+	public String getGroupNames() { return groupNames; }
+
+	public void setGroupNames(String groupNames) { this.groupNames = groupNames; }
 }

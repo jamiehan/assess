@@ -69,7 +69,10 @@
 		a.field_id fieldId,a.last_login_time
 		lastLoginTime,a.company,a.enabled,(select dep_id from et_user_2_department p where p.user_id=a.user_id) depId,
 		(select dep_name from et_user_2_department m,et_department n
-		where m.dep_id=n.dep_id and m.user_id=a.user_id) department from
+		where m.dep_id=n.dep_id and m.user_id=a.user_id) department,
+		 (select GROUP_CONCAT(g.group_name,'-',t.true_name) from et_group g,et_user_2_group b,et_user t
+		where g.id= b.group_id and b.user_id = a.user_id and g.user_id=t.user_id)  groupNames
+		 from
 		et_user a
 		where (a.user_id in(select b.user_id from et_user_2_group b where b.group_id=#{groupId})
 		or #{groupId}=0) and a.user_id in(select m.user_id from et_user_2_role m,et_role n

@@ -132,6 +132,7 @@ request.setAttribute("leftMenuId",list[3]);
 									${item.company }
 								</div>
 								<div class="r-dept">
+									${item.groupNames }
 									${item.department }
 								</div>
 							</td>
