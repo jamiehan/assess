@@ -109,7 +109,7 @@ request.setAttribute("leftMenuId",list[3]);
 										</div>
 										<c:forEach items="${groupList }" var="item">
 											<div class="list-group-item group-nav-item" data-id="${item.groupId }">
-												${item.groupName } <span class="action-span"> <i class="fa fa-pencil action-btn edit-group-btn"></i><i class="fa fa-trash-o action-btn delete-group-btn"></i> </span>
+												${item.groupName }-${item.trueName } <span class="action-span"> <i class="fa fa-pencil action-btn edit-group-btn"></i><i class="fa fa-trash-o action-btn delete-group-btn"></i> </span>
 											</div>
 										</c:forEach>
 
@@ -122,7 +122,7 @@ request.setAttribute("leftMenuId",list[3]);
 									<c:forEach items="${groupList }" var="item">
 										<div class="list-group user-group-nav" style="margin-top: 0px;">
 												<div class="list-group-item group-nav-item" data-id="${item.groupId }">
-														${item.groupName } <span class="action-span"> <i class="fa fa-pencil action-btn edit-group-btn"></i><i class="fa fa-trash-o action-btn delete-group-btn"></i> </span>
+														${item.groupName }-${item.trueName } <span class="action-span"> <i class="fa fa-pencil action-btn edit-group-btn"></i><i class="fa fa-trash-o action-btn delete-group-btn"></i> </span>
 												</div>
 										</div>
 									</c:forEach>

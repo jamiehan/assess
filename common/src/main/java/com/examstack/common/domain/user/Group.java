@@ -15,6 +15,7 @@ public class Group implements Serializable {
 	private String groupName;
 	private int userId;
 	private boolean defaultt;
+	private String trueName;
 	public boolean isDefaultt() {
 		return defaultt;
 	}
@@ -39,5 +40,6 @@ public class Group implements Serializable {
 	public void setGroupName(String groupName) {
 		this.groupName = groupName;
 	}
-	
+	public String getTrueName() { return trueName; }
+	public void setTrueName(String trueName) { this.trueName = trueName; }
 }

@@ -151,12 +151,14 @@
 	
 	<!-- group -->
 	<select id="getGroupListByUserId" resultType="com.examstack.common.domain.user.Group">
-		select id groupId,group_name groupName,create_time createTime,is_default defaultt
-		from et_group where user_id=#{userId} order by id desc
+		select g.id groupId,g.group_name groupName,g.create_time createTime,g.is_default defaultt
+		,g.user_id userId,t.true_name trueName
+		from et_group g,et_user t  where g.user_id=t.user_id  and g.user_id=#{userId}   order by g.id desc
 	</select>
 	<select id="getGroupList" resultType="com.examstack.common.domain.user.Group">
-		select id groupId,group_name groupName,create_time createTime,is_default defaultt,user_id userId
-		from et_group  order by id desc
+		select g.id groupId,g.group_name groupName,g.create_time createTime,g.is_default defaultt,g.user_id userId
+		,g.user_id userId,t.true_name trueName
+		from et_group g,et_user t  where g.user_id=t.user_id  order by g.id desc
 	</select>
 	<insert id="addGroup" parameterType="com.examstack.common.domain.user.Group">
 		insert into et_group(group_name,user_id,is_default) values (#{group.groupName},#{group.userId},#{group.defaultt})
