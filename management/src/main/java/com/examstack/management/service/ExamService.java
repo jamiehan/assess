@@ -3,10 +3,12 @@ package com.examstack.management.service;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.examstack.common.domain.exam.AnswerSheet;
+import com.examstack.common.domain.exam.AnswerSheetItem;
 import com.examstack.common.domain.exam.Exam;
 import com.examstack.common.domain.exam.ExamHistory;
-import com.examstack.common.domain.exam.UserQuestionHistory;
 import com.examstack.common.domain.user.Role;
 import com.examstack.common.util.Page;
 
@@ -114,4 +116,27 @@ public interface ExamService {
 	 * @return
 	 */
 	public List<ExamHistory> getUserExamHistList(Page<ExamHistory> page, int ... approved);
+	
+	/**
+	 * 添加答题项目
+	 * 
+	 * @param answerSheetItem
+	 */
+	public void addAnswerSheetItem(AnswerSheetItem answerSheetItem);
+	
+	/**
+	 * 获取一个学生的所有答题卡
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	public List<AnswerSheet> getAnswerSheetListByStudentId(int studentId);
+
+	/**
+	 * 获取答题卡
+	 * 
+	 * @param answerSheetId
+	 * @return
+	 */
+	public AnswerSheet getAnswerSheetById(int answerSheetId);
 }

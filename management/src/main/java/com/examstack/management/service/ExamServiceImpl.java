@@ -5,11 +5,13 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.examstack.common.domain.exam.AnswerSheet;
+import com.examstack.common.domain.exam.AnswerSheetItem;
 import com.examstack.common.domain.exam.Exam;
 import com.examstack.common.domain.exam.ExamHistory;
 import com.examstack.common.domain.exam.ExamPaper;
@@ -55,6 +57,18 @@ public class ExamServiceImpl implements ExamService {
 					history.setVerifyTime(new Date());
 					history.setUserId(user.getUserId());
 					examMapper.addUserExamHist(history);
+					
+					// add AnswerSheet for assess
+					AnswerSheet answerSheet = new AnswerSheet();
+					answerSheet.setExamHistroyId(history.getHistId());
+					answerSheet.setExamId(exam.getExamId());
+					answerSheet.setExamPaperId(exam.getExamPaperId());
+					answerSheet.setUserId(user.getUserId());
+					
+					answerSheet.setCreateTime(new Date());
+					
+					examMapper.addAnswerSheet(answerSheet);
+					
 				}
 			}
 		} catch (Exception e) {
@@ -209,5 +223,34 @@ public class ExamServiceImpl implements ExamService {
 			approved = null;
 		return examMapper.getUserExamHistList(approved, page);
 	}
+	
+	/**
+	 * 添加答题项
+	 */
+	@Override
+	public void addAnswerSheetItem(AnswerSheetItem answerSheetItem) {
+		
+		examMapper.addAnswerSheetItem(answerSheetItem);
+		
+	}
 
+	/**
+	 * 获取一个学生所有的答题卡
+	 */
+	public List<AnswerSheet> getAnswerSheetListByStudentId(int studentId) {
+		
+		return examMapper.getAnswerSheetListByStudentId(studentId);
+		
+	}
+	
+	/**
+	 * 获取答题卡
+	 */
+	@Override
+	public AnswerSheet getAnswerSheetById(int answerSheetId) {
+		
+		return examMapper.getAnswerSheetById(answerSheetId);
+	}
+	
+	
 }
