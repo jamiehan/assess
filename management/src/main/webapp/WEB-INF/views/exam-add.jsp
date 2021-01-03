@@ -129,7 +129,14 @@ request.setAttribute("leftMenuId",list[3]);
 								</div>
 								<div class="form-line add-update-group-list">
 									<span class="form-label"><span class="warning-label">*</span>被评估人员：</span>
-									<fieldset>
+									<%--<select id="field-switch" class="form-control">--%>
+									<select class="df-input-narrow" id="userId">
+										<c:forEach items="${userList }" var="item">
+											<option value="${item.userId }">${item.userName }</option>
+										</c:forEach>
+									</select>
+
+									<%--<fieldset>
 										<legend>
 											请选择
 										</legend>
@@ -138,7 +145,7 @@ request.setAttribute("leftMenuId",list[3]);
 											<label>${item.groupName }</label>
 											<br>
 										</c:forEach>
-									</fieldset>
+									</fieldset>--%>
 									<span class="form-message"></span>
 								</div>
 								<div class="form-line form-exam-duration">
