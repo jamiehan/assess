@@ -193,4 +193,12 @@ public interface UserMapper {
 	 * @return
 	 */
 	public List<User> getUserListByGroupIdList(@Param("array") List<Integer> idList,@Param("page") Page<User> user);
+
+	/**
+	 * 获取
+	 *
+	 * @return
+	 */
+	public List<Group> getGroupList();
+
 }

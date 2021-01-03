@@ -77,9 +77,9 @@ public class UserAction {
 	@RequestMapping(value = "/secure/add-group", method = RequestMethod.POST)
 	public @ResponseBody Message addGroup(@RequestBody Group group) {
 
-		UserInfo userInfo = (UserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//		UserInfo userInfo = (UserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Message message = new Message();
-		group.setUserId(userInfo.getUserid());
+//		group.setUserId(userInfo.getUserid());
 		try {
 			userService.addGroup(group);
 		} catch (Exception e) {

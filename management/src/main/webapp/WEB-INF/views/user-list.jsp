@@ -102,20 +102,29 @@ request.setAttribute("leftMenuId",list[3]);
 						</div>
 						<div class="page-content row">
 							<div class="col-xs-2" id="left-menu">
-								<div class="list-group user-group-nav" style="margin-top: 0px;">
-									<div class="list-group-item group-nav-item active" data-id="0">
-										全部学员
+								<c:if test="${fn:contains(sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.authorities,'ROLE_ADMIN') }">
+									<div class="list-group user-group-nav" style="margin-top: 0px;">
+										<div class="list-group-item group-nav-item active" data-id="0">
+											全部学员
+										</div>
+										<c:forEach items="${groupList }" var="item">
+											<div class="list-group-item group-nav-item" data-id="${item.groupId }">
+												${item.groupName } <span class="action-span"> <i class="fa fa-pencil action-btn edit-group-btn"></i><i class="fa fa-trash-o action-btn delete-group-btn"></i> </span>
+											</div>
+										</c:forEach>
+
 									</div>
+									<div class="list-group">
+										<a id="add-group" href="javascript:void(0);" class="list-group-item" data-id="13" style="background-color: #47a447;color:#FFF;"><i class="fa fa-plus-square"></i> 添加分组</a>
+									</div>
+								</c:if>
+								<c:if test="${fn:contains(sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.authorities,'ROLE_TEACHER') }">
 									<c:forEach items="${groupList }" var="item">
 										<div class="list-group-item group-nav-item" data-id="${item.groupId }">
-											${item.groupName } <span class="action-span"> <i class="fa fa-pencil action-btn edit-group-btn"></i><i class="fa fa-trash-o action-btn delete-group-btn"></i> </span>
+												${item.groupName } <span class="action-span"> <i class="fa fa-pencil action-btn edit-group-btn"></i><i class="fa fa-trash-o action-btn delete-group-btn"></i> </span>
 										</div>
 									</c:forEach>
-
-								</div>
-								<div class="list-group">
-									<a id="add-group" href="javascript:void(0);" class="list-group-item" data-id="13" style="background-color: #47a447;color:#FFF;"><i class="fa fa-plus-square"></i> 添加分组</a>
-								</div>
+								</c:if>
 							</div>
 
 							<div class="col-xs-10">
@@ -143,7 +152,7 @@ request.setAttribute("leftMenuId",list[3]);
 													<span class="form-label"><span class="warning-label"></span>所属老师：</span>
 													<select id="group-teacher" class="df-input-narrow">
 														<c:forEach items="${teacherList }" var="item">
-															<option value="${item.teacherId }">${item.teacherName }</option>
+															<option value="${item.userId }">${item.trueName }</option>
 														</c:forEach>
 													</select>
 

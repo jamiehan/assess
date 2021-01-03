@@ -51,11 +51,14 @@ public class UserPageAdmin {
 		}
 		List<Department> depList = userService.getDepList(null);
 		List<User> userList = userService.getUserListByGroupIdAndParams(groupId, "ROLE_STUDENT", searchStr, page);
+		List<User> teacherList = userService.getUserListByRoleId(userInfo.getRoleMap().get("ROLE_TEACHER").getRoleId(), page);
 		String pageStr = PagingUtil.getPagelink(index, page.getTotalPage(), "", "admin/user-list");
-		List<Group> groupList = userService.getGroupListByUserId(userInfo.getUserid(), null);
+//		List<Group> groupList = userService.getGroupListByUserId(userInfo.getUserid(), null);
+		List<Group> groupList = userService.getGroupList();
 		model.addAttribute("depList", depList);
 		model.addAttribute("groupId", groupId);
 		model.addAttribute("userList", userList);
+		model.addAttribute("teacherList", teacherList);
 		model.addAttribute("pageStr", pageStr);
 		model.addAttribute("groupList", groupList);
 		return "user-list";

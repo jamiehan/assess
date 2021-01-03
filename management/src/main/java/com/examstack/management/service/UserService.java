@@ -45,6 +45,8 @@ public interface UserService {
 	 */
 	public List<Group> getGroupListByUserId(int userId, Page<Group> page);
 
+	public List<Group> getGroupList();
+
 	/**
 	 * 添加一个分组
 	 * 

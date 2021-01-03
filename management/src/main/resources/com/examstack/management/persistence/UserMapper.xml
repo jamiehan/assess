@@ -151,6 +151,10 @@
 		select id groupId,group_name groupName,create_time createTime,is_default defaultt
 		from et_group where user_id=#{userId} order by id desc
 	</select>
+	<select id="getGroupList" resultType="com.examstack.common.domain.user.Group">
+		select id groupId,group_name groupName,create_time createTime,is_default defaultt,user_id userId
+		from et_group  order by id desc
+	</select>
 	<insert id="addGroup" parameterType="com.examstack.common.domain.user.Group">
 		insert into et_group(group_name,user_id,is_default) values (#{group.groupName},#{group.userId},#{group.defaultt})
 	</insert>
