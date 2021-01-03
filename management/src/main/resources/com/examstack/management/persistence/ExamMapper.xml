@@ -129,7 +129,7 @@
 	<select id="getAnswerSheetListByStudentId" resultType="com.examstack.common.domain.exam.AnswerSheet">
 		select id answerSheetId, exam_history_id examHistroyId,exam_id examId,exam_paper_id examPaperId,user_id userId, times times, point point, create_time createTime, creator_id creatorId, modify_time modifyTime, modifier_id modifierId
 		from et_answer_sheet a 
-		where a.exam_id=#{studentId}
+		where a.user_id=#{studentId}
 	</select>
 	
 	<insert id="addAnswerSheetItem" parameterType="com.examstack.common.domain.exam.AnswerSheetItem" useGeneratedKeys="true" keyProperty="answerSheetItemId" >

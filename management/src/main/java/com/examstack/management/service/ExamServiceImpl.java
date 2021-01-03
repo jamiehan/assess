@@ -252,5 +252,49 @@ public class ExamServiceImpl implements ExamService {
 		return examMapper.getAnswerSheetById(answerSheetId);
 	}
 	
+	/**
+	 * 创建答题卡
+	 */
+	@Override
+	public void addAnswerSheet(AnswerSheet answerSheet) {
+		
+		examMapper.addAnswerSheet(answerSheet);
+		
+	}
+	
+	/**
+	 * 更新答题卡
+	 */
+	@Override
+	public void updateAnswerSheet(AnswerSheet answerSheet) {
+		examMapper.updateAnswerSheet(answerSheet);
+	}
+	
+	/**
+	 * 更新答题项
+	 */
+	@Override
+	public void updateAnswerSheetItem(AnswerSheetItem answerSheetItem) {
+		examMapper.updateAnswerSheetItem(answerSheetItem);
+		
+	}
+	
+	/**
+	 * 获取答题项
+	 */
+	@Override
+	public AnswerSheetItem getAnswerSheetItemById(int answerSheetItemId) {
+		
+		return examMapper.getAnswerSheetItemById(answerSheetItemId);	
+	}
+	
+	/**
+	 * 获取一个答题卡的所有答题项
+	 */
+	@Override
+	public List<AnswerSheetItem> getAnswerSheetItemListByAnswerSheetId(int answerSheetId) {
+		
+		return examMapper.getAnswerSheetItemListByAnswerSheetId(answerSheetId);
+	}
 	
 }

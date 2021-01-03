@@ -118,11 +118,29 @@ public interface ExamService {
 	public List<ExamHistory> getUserExamHistList(Page<ExamHistory> page, int ... approved);
 	
 	/**
-	 * 添加答题项目
+	 * 添加答题项
 	 * 
 	 * @param answerSheetItem
 	 */
 	public void addAnswerSheetItem(AnswerSheetItem answerSheetItem);
+	
+	/**
+	 * 更新答题项
+	 * 
+	 * @param answerSheetItem
+	 */
+	public void updateAnswerSheetItem(AnswerSheetItem answerSheetItem);
+	
+	/**
+	 * 获取答题项
+	 * 
+	 */
+	public AnswerSheetItem getAnswerSheetItemById(int answerSheetItemId);
+	
+	/**
+	 * 获取一个答题卡的所有答题项
+	 */
+	public List<AnswerSheetItem> getAnswerSheetItemListByAnswerSheetId(int answerSheetId);
 	
 	/**
 	 * 获取一个学生的所有答题卡
@@ -139,4 +157,18 @@ public interface ExamService {
 	 * @return
 	 */
 	public AnswerSheet getAnswerSheetById(int answerSheetId);
+
+	/**
+	 * 创建答题卡
+	 * 
+	 * @param answerSheet
+	 */
+	public void addAnswerSheet(AnswerSheet answerSheet);
+
+	/**
+	 * 更新答题卡
+	 * 
+	 * @param answerSheet
+	 */
+	public void updateAnswerSheet(AnswerSheet answerSheet);
 }
