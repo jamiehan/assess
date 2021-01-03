@@ -14,6 +14,7 @@ var group_manage = {
 		$("#add-group-btn").click(function(){
 			var data = new Object();
 			data.groupName = $("#group-name").val();
+			data.userId = $("#group-teacher").val();
 			$(".df-submit").attr("disabled","disabled");
 			jQuery.ajax({
 				headers : {

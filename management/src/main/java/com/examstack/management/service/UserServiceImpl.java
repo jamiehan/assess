@@ -112,6 +112,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public List<Group> getGroupList() {
+		// TODO Auto-generated method stub
+		return userMapper.getGroupList();
+	}
+
+	@Override
 	public void addGroup(Group group) {
 		// TODO Auto-generated method stub
 		userMapper.addGroup(group);
