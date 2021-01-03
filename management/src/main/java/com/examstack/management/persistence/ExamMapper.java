@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.examstack.common.domain.exam.AnswerSheet;
+import com.examstack.common.domain.exam.AnswerSheetItem;
 import com.examstack.common.domain.exam.Exam;
 import com.examstack.common.domain.exam.ExamHistory;
 import com.examstack.common.util.Page;
@@ -112,4 +113,57 @@ public interface ExamMapper {
 	 */
 	public List<ExamHistory> getUserExamHistList(@Param("array") int[] approvedType, @Param("page") Page<ExamHistory> page);
 		
+	/**
+	 * 添加答题卡
+	 */
+	public void addAnswerSheet(AnswerSheet answerSheet);
+	
+	/**
+	 * 更新答题卡
+	 */
+	public void updateAnswerSheet(AnswerSheet answerSheet);
+	
+	/**
+	 * 获取答题卡
+	 * 
+	 * @return
+	 */
+	public AnswerSheet getAnswerSheetById(int answerSheetId);
+	
+	/**
+	 * 获取一个学生的答题卡列表
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	public List<AnswerSheet> getAnswerSheetListByStudentId(int studentId);
+	
+	
+	/**
+	 * 添加答题项
+	 * @param answerSheetItem
+	 */
+	public void addAnswerSheetItem(AnswerSheetItem answerSheetItem);
+	
+	/**
+	 * 更新答题项
+	 * 
+	 * @param answerSheetItem
+	 */
+	public void updateAnswerSheetItem(AnswerSheetItem answerSheetItem);
+	
+	/**
+	 * 获取答题项
+	 * @param answerSheetItem
+	 */
+	public AnswerSheetItem getAnswerSheetItemById(int answerSheetItemId);
+	
+	/**
+	 * 获取一个答题卡的答题项列表
+	 * 
+	 * @param answerSheetId
+	 * @return
+	 */
+	public List<AnswerSheetItem> getAnswerSheetItemListByAnswerSheetId(int answerSheetId);
+	
 }

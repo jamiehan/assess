@@ -124,9 +124,9 @@
 										<td>试卷</td>
 										<td>创建人</td>
 										<td>状态</td>
-										<c:if test="${fn:contains(sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.authorities,'ROLE_ADMIN') }">
+										<%--<c:if test="${fn:contains(sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.authorities,'ROLE_ADMIN') }">--%>
 											<td>操作</td>
-										</c:if>
+										<%--</c:if>--%>
 										
 										
 									</tr>
@@ -136,8 +136,9 @@
 										<tr>
 											<td>${item.examId }</td>
 											<td><span>${item.examName }</span> 
-												<br> 
-												<a	href="<%=list[1]%>/exam/exam-student-list/${item.examId }" target="_blank">学员名单</a></td>
+												<%--<br> --%>
+												<%--<a	href="<%=list[1]%>/exam/exam-student-list/${item.examId }" target="_blank">学员名单</a>--%>
+											</td>
 											<td><fmt:formatDate value="${item.effTime}"
 													pattern="yyyy-MM-dd HH:mm" /></td>
 											<td><fmt:formatDate value="${item.expTime}"
@@ -146,17 +147,23 @@
 											<td>${item.creatorId }</td>
 											<td><c:choose>
 													<c:when test="${item.approved == 0 }">
-															未审核
+															未完成
 														</c:when>
 													<c:when test="${item.approved == 1 }">
-															审核通过
+															已完成
 														</c:when>
 													<c:otherwise>
-															审核未通过
+															未完成
 														</c:otherwise>
-												</c:choose></td>
-											<c:if test="${fn:contains(sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.authorities,'ROLE_ADMIN') }">
-												<td><c:choose>
+												</c:choose>
+											</td>
+											<%--<c:if test="${fn:contains(sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.authorities,'ROLE_ADMIN') }">--%>
+												<td>
+
+													<a target="_blank" href="<%=list[1]%>/exam/exam-assess/27">开始评估</a>
+
+													<%--<button class="assess-btn" data-id="${item.examId }">开始评估</button>--%>
+													<%--<c:choose>
 														<c:when test="${item.approved == 0 }">
 															<button class="approved-btn" data-id="${item.examId }">通过</button>
 															<button class="disapproved-btn" data-id="${item.examId }">不通过</button>
@@ -167,9 +174,9 @@
 													</c:choose>
 													<span class="link-user-r-btn btn-sm btn-info" title="关联学员" data-id="${item.examId }">
 													<i class="fa fa-random"></i>
-													</span> 
+													</span> --%>
 												</td>
-											</c:if>
+											<%--</c:if>--%>
 											
 
 										</tr>

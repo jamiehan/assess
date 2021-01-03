@@ -231,18 +231,153 @@ public class ExamActionTeacher {
 		examService.updateUserExamHist(answerSheet, gson.toJson(answerSheet),3);
 		return new Message();
 	}
+	
+	/**
+	 * 创建答题卡
+	 * 
+	 * add for assess
+	 */
+	@RequestMapping(value = "/teacher/exam/answersheet-add", method = RequestMethod.POST)
+	public @ResponseBody Message addAnswerSheet_assess(AnswerSheet answerSheet) {
+
+		Message message = new Message();
+		
+		examService.addAnswerSheet(answerSheet);
+		
+		return message;
+	}
+	
+	/**
+	 * 更新答题卡
+	 * 
+	 * @param answerSheet
+	 * @return
+	 */
+	@RequestMapping(value = "/teacher/exam/answersheet-update", method = RequestMethod.POST)
+	public @ResponseBody Message updateAnswerSheet_assess(AnswerSheet answerSheet) {
+
+		Message message = new Message();
+		
+		examService.updateAnswerSheet(answerSheet);
+		
+		return message;
+	}
+	
+	/**
+	 * 获取答题卡
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/teacher/exam/answersheet-get/{answerSheetId}", method = RequestMethod.GET)
+	public @ResponseBody AnswerSheet getAnswerSheet_assess(@PathVariable("answerSheetId") int answerSheetId) {
+
+//		Message message = new Message();
+		
+		AnswerSheet answerSheet = examService.getAnswerSheetById(answerSheetId);
+		
+		return answerSheet;
+	}
+	
+	/**
+	 * 查询一个学生的所有答题卡
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/teacher/exam/answersheet-list/{studentId}", method = RequestMethod.GET)
+	public @ResponseBody List<AnswerSheet> listAnswerSheet_assess(@PathVariable("studentId") int studentId) {
+
+//		Message message = new Message();
+		
+		List<AnswerSheet> answerSheetList = examService.getAnswerSheetListByStudentId(studentId);
+		
+		return answerSheetList;
+	}
+	
+	/**
+	 * 创建答题项
+	 * @param answerSheetItem
+	 * @return
+	 */
+	@RequestMapping(value = "/teacher/exam/answersheetitem-add", method = RequestMethod.POST)
+	public @ResponseBody Message addAnswerSheetItem(@RequestBody AnswerSheetItem answerSheetItem) {
+
+		Message message = new Message();
+		
+		examService.addAnswerSheetItem(answerSheetItem);
+		
+		return message;
+	}
+	
+	/**
+	 * 更新答题项
+	 * @param answerSheetItem
+	 * @return
+	 */
+	@RequestMapping(value = "/teacher/exam/answersheetitem-update", method = RequestMethod.POST)
+	public @ResponseBody Message updateAnswerSheetItem(@RequestBody AnswerSheetItem answerSheetItem) {
+
+		Message message = new Message();
+		
+		examService.updateAnswerSheetItem(answerSheetItem);
+		
+		return message;
+	}
+	
+	/**
+	 * 获取答题项
+	 * @param answerSheetItem
+	 * @return
+	 */
+	@RequestMapping(value = "/teacher/exam/answersheetitem-get/{answerSheetItemId}", method = RequestMethod.GET)
+	public @ResponseBody AnswerSheetItem getAnswerSheetItem_assess(@PathVariable("answerSheetItemId") int answerSheetItemId) {
+
+//		Message message = new Message();
+		
+		AnswerSheetItem AnswerSheetItem = examService.getAnswerSheetItemById(answerSheetItemId);
+		
+		return AnswerSheetItem;
+	}
+	
+	/**
+	 * 查询一个答题卡的所有答题项
+	 * 
+	 * @param answerSheetItem
+	 * @return
+	 */
+	@RequestMapping(value = "/teacher/exam/answersheetitem-list/{answerSheetId}", method = RequestMethod.GET)
+	public @ResponseBody List<AnswerSheetItem> listAnswerSheetItem_assess(@PathVariable("answerSheetId") int answerSheetId) {
+
+//		Message message = new Message();
+		
+		List<AnswerSheetItem> answerSheetItemList = examService.getAnswerSheetItemListByAnswerSheetId(answerSheetId);
+		
+		return answerSheetItemList;
+	}
+	
+	/**
+	 * 查询一个学生所有的答题卡, 生成评估报告需要的图形数据
+	 * 
+	 */
+	@RequestMapping(value = "/teacher/exam/{studentId}/assessreportdatas", method = RequestMethod.GET)
+	public @ResponseBody List<AnswerSheet> getAnswerSheetList(@PathVariable("studentId") int studentId) {
+	
+		// TODO 生成图形数据
+		List<AnswerSheet> answerSheetList = examService.getAnswerSheetListByStudentId(studentId);
+		
+		return answerSheetList;
+	}
+	
+	/**
+	 * 生成评估报告
+	 * 
+	 */
+	@RequestMapping(value = "/teacher/exam/{studentId}/assessreport", method = RequestMethod.GET)
+	public @ResponseBody List<AnswerSheet> createAssessReport(@PathVariable("studentId") int studentId) {
+	
+		// TODO 生成图形数据
+		List<AnswerSheet> answerSheetList = examService.getAnswerSheetListByStudentId(studentId);
+		
+		return answerSheetList;
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 

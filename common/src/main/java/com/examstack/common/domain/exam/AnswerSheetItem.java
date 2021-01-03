@@ -1,15 +1,50 @@
 package com.examstack.common.domain.exam;
 
+import java.io.Serializable;
+import java.util.Date;
+
 /**
  * 答题项
  */
-public class AnswerSheetItem {
+public class AnswerSheetItem implements Serializable {
+	
+	private static final long serialVersionUID = -4390783597629780267L;
+	
+	private int answerSheetItemId;
+	private int answerSheetId;
+	
 	private float point;
 	private int questionTypeId;
 	private String answer;
 	private int questionId;
 	private String comment;
 	private boolean right;
+	
+	// add for assess
+	private int studentId;
+	private int teacherId;
+	private Date assessTime;
+	private int pointId;
+	private Date createTime;
+	private int creatorId;
+	private Date modifyTime;
+	private int modifierId;
+	
+	public int getAnswerSheetItemId() {
+		return answerSheetItemId;
+	}
+
+	public void setAnswerSheetItemId(int answerSheetItemId) {
+		this.answerSheetItemId = answerSheetItemId;
+	}
+
+	public int getAnswerSheetId() {
+		return answerSheetId;
+	}
+
+	public void setAnswerSheetId(int answerSheetId) {
+		this.answerSheetId = answerSheetId;
+	}
 
 	public boolean isRight() {
 		return right;
@@ -59,6 +94,68 @@ public class AnswerSheetItem {
 		this.comment = comment;
 	}
 
+	public int getStudentId() {
+		return studentId;
+	}
 
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
+	}
+
+	public int getTeacherId() {
+		return teacherId;
+	}
+
+	public void setTeacherId(int teacherId) {
+		this.teacherId = teacherId;
+	}
+
+	public Date getAssessTime() {
+		return assessTime;
+	}
+
+	public void setAssessTime(Date assessTime) {
+		this.assessTime = assessTime;
+	}
+
+	public int getPointId() {
+		return pointId;
+	}
+
+	public void setPointId(int pointId) {
+		this.pointId = pointId;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public int getCreatorId() {
+		return creatorId;
+	}
+
+	public void setCreatorId(int creatorId) {
+		this.creatorId = creatorId;
+	}
+
+	public Date getModifyTime() {
+		return modifyTime;
+	}
+
+	public void setModifyTime(Date modifyTime) {
+		this.modifyTime = modifyTime;
+	}
+
+	public int getModifierId() {
+		return modifierId;
+	}
+
+	public void setModifierId(int modifierId) {
+		this.modifierId = modifierId;
+	}
 
 }

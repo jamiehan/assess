@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.examstack.common.domain.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -94,8 +95,13 @@ public class ExamPageTeacher {
 			    .getPrincipal();
 		List<Group> groupList = userService.getGroupListByUserId(userInfo.getUserid(), null);
 		List<ExamPaper> examPaperList = examPaperService.getEnabledExamPaperList(userInfo.getUsername(), null);
+		Page<User> pageUser = new Page<>();
+		pageUser.setPageNo(1);
+		pageUser.setPageSize(1);
+		List<User> userList = userService.getUserListByRoleId(userInfo.getRoleMap().get("ROLE_STUDENT").getRoleId(), pageUser);
 		model.addAttribute("groupList", groupList);
 		model.addAttribute("examPaperList", examPaperList);
+		model.addAttribute("userList", userList);
 		return "exam-add";
 	}
 	
@@ -225,5 +231,47 @@ public class ExamPageTeacher {
 		model.addAttribute("examId", history.getExamId());
 		return "exampaper-mark";
 	}
-	
+
+    /**
+     * 开始评估
+     * @param model
+     * @param request
+     * @param examId
+     * @return
+     */
+    @RequestMapping(value = "/teacher/exam/exam-assess/{examId}", method = RequestMethod.GET)
+    private String assessPage(Model model, HttpServletRequest request, @PathVariable int examId) {
+
+		Page<ExamHistory> pageModel = new Page<ExamHistory>();
+		pageModel.setPageNo(1);
+		pageModel.setPageSize(1);
+        List<ExamHistory> history = examService.getUserExamHistListByExamId(examId,null,null,0,pageModel);
+		if( history == null || history.size() == 0 ) {
+			return null;
+		}
+        int examPaperId = history.get(0).getExamPaperId();
+		String strUrl = "http://" + request.getServerName() // 服务器地址
+                + ":" + request.getServerPort() + "/";
+
+        ExamPaper examPaper = examPaperService.getExamPaperById(examPaperId);
+        StringBuilder sb = new StringBuilder();
+        if(examPaper.getContent() != null && !examPaper.getContent().equals("")){
+            Gson gson = new Gson();
+            String content = examPaper.getContent();
+            List<QuestionQueryResult> questionList = gson.fromJson(content, new TypeToken<List<QuestionQueryResult>>(){}.getType());
+
+            for(QuestionQueryResult question : questionList){
+                QuestionAdapter adapter = new QuestionAdapter(question,strUrl);
+                sb.append(adapter.getStringFromXML());
+            }
+        }
+
+        model.addAttribute("htmlStr", sb);
+        model.addAttribute("exampaperid", examPaperId);
+        model.addAttribute("examHistoryId", history.get(0).getHistId());
+        model.addAttribute("exampapername", examPaper.getName());
+        model.addAttribute("examId", history.get(0).getExamId());
+		model.addAttribute("userName", history.get(0).getUserName());
+        return "assess-content";
+    }
 }

@@ -107,4 +107,54 @@
 	<delete id="deleteExamById">
 		delete from et_exam where id=#{examId}
 	</delete>
+	
+	<insert id="addAnswerSheet" parameterType="com.examstack.common.domain.exam.AnswerSheet" useGeneratedKeys="true" keyProperty="answerSheetId" >
+		insert into et_answer_sheet(exam_history_id,exam_id,exam_paper_id,user_id,create_time,creator_id)
+		values(#{examHistroyId},#{examId},#{examPaperId},#{userId},#{createTime},#{creatorId})
+	</insert>
+	
+	<update id="updateAnswerSheet" parameterType="com.examstack.common.domain.exam.AnswerSheet">
+		update et_answer_sheet
+		<set>
+			exam_history_id = #{examHistroyId},exam_id=#{examId},exam_paper_id=#{examPaperId},point=#{point},modify_time=#{modifyTime},modifier_id=#{modifierId}
+		</set>
+		where id=#{answerSheetId}
+	</update>
+	
+	<select id="getAnswerSheetById" resultType="com.examstack.common.domain.exam.AnswerSheet">
+		select id answerSheetId, exam_history_id examHistroyId,exam_id examId,exam_paper_id examPaperId,user_id userId, times times, point point, create_time createTime, creator_id creatorId, modify_time modifyTime, modifier_id modifierId
+		from et_answer_sheet where id=#{answerSheetId}
+	</select>
+	
+	<select id="getAnswerSheetListByStudentId" resultType="com.examstack.common.domain.exam.AnswerSheet">
+		select id answerSheetId, exam_history_id examHistroyId,exam_id examId,exam_paper_id examPaperId,user_id userId, times times, point point, create_time createTime, creator_id creatorId, modify_time modifyTime, modifier_id modifierId
+		from et_answer_sheet a 
+		where a.user_id=#{studentId}
+	</select>
+	
+	<insert id="addAnswerSheetItem" parameterType="com.examstack.common.domain.exam.AnswerSheetItem" useGeneratedKeys="true" keyProperty="answerSheetItemId" >
+		insert into et_answer_sheet_item(answer_sheet_id, point, question_type_id, answer, question_id, comment, student_id, teacher_id, assess_time, point_id)
+		values(#{answerSheetId}, #{point},#{questionTypeId},#{answer},#{questionId},#{comment}, #{studentId}, #{teacherId}, #{assessTime}, #{pointId})
+	</insert>
+	
+	<select id="getAnswerSheetItemById" resultType="com.examstack.common.domain.exam.AnswerSheetItem">
+		select id answerSheetItemId, answer_sheet_id answerSheetId, point point,question_type_id questionTypeId,answer answer,question_id questionId,comment comment, student_id studentId, teacher_id teacherId, assess_time assessTime, point_id pointId
+		from et_answer_sheet_item
+		where id=#{answerSheetItemId}
+	</select>
+	
+	<update id="updateAnswerSheetItem" parameterType="com.examstack.common.domain.exam.AnswerSheetItem">
+		update et_answer_sheet_item
+		<set>
+			point = #{point},question_type_id=#{questionTypeId},answer=#{answer},question_id=#{questionId},comment=#{comment}, teacher_id=#{teacherId}, assess_time=#{assessTime}
+		</set>
+		where id=#{answerSheetItemId}
+	</update>
+	
+	<select id="getAnswerSheetItemListByAnswerSheetId" resultType="com.examstack.common.domain.exam.AnswerSheetItem">
+		select id answerSheetItemId, answer_sheet_id answerSheetId, point point,question_type_id questionTypeId,answer answer,question_id questionId,comment comment, student_id studentId, teacher_id teacherId, assess_time assessTime, point_id pointId
+		from et_answer_sheet_item a 
+		where a.answer_sheet_id=#{answerSheetId}
+	</select>
+	
 </mapper>

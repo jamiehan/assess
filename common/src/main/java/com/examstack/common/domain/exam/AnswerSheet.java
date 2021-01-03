@@ -1,12 +1,17 @@
 package com.examstack.common.domain.exam;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 /**
  * 答案卡
  */
-public class AnswerSheet {
+public class AnswerSheet implements Serializable {
+	
+	private static final long serialVersionUID = -6266186986931499355L;
+	
+	private int answerSheetId;
 	private int examHistroyId;
 	private int examId;
 	private int examPaperId;
@@ -15,6 +20,23 @@ public class AnswerSheet {
 	private float pointMax;
 	private float pointRaw ;
 	private Date startTime;
+	
+	// add for assess
+	private int userId;
+	private int times;
+	private int point;
+	private Date createTime;
+	private int creatorId;
+	private Date modifyTime;
+	private int modifierId;
+
+	public int getAnswerSheetId() {
+		return answerSheetId;
+	}
+
+	public void setAnswerSheetId(int answerSheetId) {
+		this.answerSheetId = answerSheetId;
+	}
 
 	public Date getStartTime() {
 		return startTime;
@@ -80,6 +102,62 @@ public class AnswerSheet {
 
 	public void setPointRaw(float pointRaw) {
 		this.pointRaw = pointRaw;
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public int getTimes() {
+		return times;
+	}
+
+	public void setTimes(int times) {
+		this.times = times;
+	}
+
+	public int getPoint() {
+		return point;
+	}
+
+	public void setPoint(int point) {
+		this.point = point;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public int getCreatorId() {
+		return creatorId;
+	}
+
+	public void setCreatorId(int creatorId) {
+		this.creatorId = creatorId;
+	}
+
+	public Date getModifyTime() {
+		return modifyTime;
+	}
+
+	public void setModifyTime(Date modifyTime) {
+		this.modifyTime = modifyTime;
+	}
+
+	public int getModifierId() {
+		return modifierId;
+	}
+
+	public void setModifierId(int modifierId) {
+		this.modifierId = modifierId;
 	}
 	
 	

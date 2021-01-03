@@ -223,4 +223,35 @@ public class ExamPaperActionTeacher {
 		}
 		return msg;
 	}
+	
+
+	/**
+	 * 生成康复计划
+	 * 
+	 * add for assess
+	 */
+	@RequestMapping(value = "/teacher/trainingplan-add/{studentId}", method = RequestMethod.POST)
+	public @ResponseBody Message addExamPlan(@PathVariable("studentId") int studentId) {
+		UserInfo userInfo = (UserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Message message = new Message();
+		
+		// TODO 获取学生信息
+		
+		// 获取评估成绩
+		
+		// 生成康复计划（考试卷）
+		ExamPaper examPaper = new ExamPaper();
+		
+		examPaper.setName("学生名_康复计划");
+		examPaper.setCreator(userInfo.getUsername());
+		examPaper.setIs_subjective(true);
+		
+		examPaperService.insertExamPaper(examPaper);
+		
+		// 添加考试题
+		
+		message.setGeneratedId(examPaper.getId());
+		
+		return message;
+	}
 }
