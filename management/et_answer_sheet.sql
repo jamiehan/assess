@@ -32,7 +32,7 @@ CREATE TABLE `et_answer_sheet`  (
   `start_time` datetime(0) NULL DEFAULT NULL,
   `user_id` int(11) NULL DEFAULT NULL COMMENT '学生ID',
   `times` int(11) NULL DEFAULT NULL COMMENT '考试轮次',
-  `point` int(255) NULL DEFAULT NULL COMMENT '总分',
+  `sum_score` int(255) NULL DEFAULT NULL COMMENT '总分',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `creator_id` int(11) NULL DEFAULT NULL COMMENT '创建者ID',
   `modify_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',

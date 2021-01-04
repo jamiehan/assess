@@ -17,6 +17,7 @@ public class AnswerSheetItem implements Serializable {
 	private int questionTypeId;
 	private String answer;
 	private int questionId;
+	private int questionCode;
 	private String comment;
 	private boolean right;
 	
@@ -24,7 +25,8 @@ public class AnswerSheetItem implements Serializable {
 	private int studentId;
 	private int teacherId;
 	private Date assessTime;
-	private int pointId;
+	private int knowlege_point_id;
+	private String knowlege_point_code;
 	private Date createTime;
 	private int creatorId;
 	private Date modifyTime;
@@ -118,12 +120,28 @@ public class AnswerSheetItem implements Serializable {
 		this.assessTime = assessTime;
 	}
 
-	public int getPointId() {
-		return pointId;
+	public int getQuestionCode() {
+		return questionCode;
 	}
 
-	public void setPointId(int pointId) {
-		this.pointId = pointId;
+	public void setQuestionCode(int questionCode) {
+		this.questionCode = questionCode;
+	}
+
+	public int getKnowlege_point_id() {
+		return knowlege_point_id;
+	}
+
+	public void setKnowlege_point_id(int knowlege_point_id) {
+		this.knowlege_point_id = knowlege_point_id;
+	}
+
+	public String getKnowlege_point_code() {
+		return knowlege_point_code;
+	}
+
+	public void setKnowlege_point_code(String knowlege_point_code) {
+		this.knowlege_point_code = knowlege_point_code;
 	}
 
 	public Date getCreateTime() {

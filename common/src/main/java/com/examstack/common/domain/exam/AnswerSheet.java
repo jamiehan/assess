@@ -24,7 +24,7 @@ public class AnswerSheet implements Serializable {
 	// add for assess
 	private int userId;
 	private int times;
-	private int point;
+	private int sumScore;
 	private Date createTime;
 	private int creatorId;
 	private Date modifyTime;
@@ -120,12 +120,12 @@ public class AnswerSheet implements Serializable {
 		this.times = times;
 	}
 
-	public int getPoint() {
-		return point;
+	public int getSumScore() {
+		return sumScore;
 	}
 
-	public void setPoint(int point) {
-		this.point = point;
+	public void setSumScore(int sumScore) {
+		this.sumScore = sumScore;
 	}
 
 	public Date getCreateTime() {
