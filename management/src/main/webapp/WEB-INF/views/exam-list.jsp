@@ -160,7 +160,10 @@
 											<%--<c:if test="${fn:contains(sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.authorities,'ROLE_ADMIN') }">--%>
 												<td>
 
-													<a target="_blank" href="<%=list[1]%>/exam/exam-assess/27">开始评估</a>
+													<%--<a target="_blank" href="<%=list[1]%>/exam/exam-assess/27">开始评估</a>
+													<a target="_blank" href="<%=list[1]%>/exam/generate-plan/27">生成康复计划</a>--%>
+													<button class="start-assess-btn" data-id="27">开始评估</button>
+													<button class="generate-plan-btn" data-id="27">生成康复计划</button>
 
 													<%--<button class="assess-btn" data-id="${item.examId }">开始评估</button>--%>
 													<%--<c:choose>

@@ -126,7 +126,7 @@ request.setAttribute("leftMenuId",list[3]);
 								<div class="expand-bk-content" id="bk-conent-exampaper">
 									<div id="exampaper-header">
 										<div id="exampaper-title">
-											<i class="fa fa-send"></i>
+											<%--<i class="fa fa-send"></i>--%>
 											<span style="display:none;" id="exampaper-title-name">${exampapername} </span>
 											<span style="display:none;" id="exampaper-id">${exampaperid}</span>
 
@@ -159,7 +159,7 @@ request.setAttribute("leftMenuId",list[3]);
 										<div style="padding-left:30px;">
 											<!-- <button class="btn btn-danger"><i class="fa fa-save"></i>保存试卷</button> -->
 										</div>
-										
+										<div style="text-align: center"><button id="assess-commit">提交评估</button></div>
 									</div>
 								</div>
 

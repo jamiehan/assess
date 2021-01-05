@@ -239,7 +239,7 @@ public class ExamPageTeacher {
      * @param examId
      * @return
      */
-    @RequestMapping(value = "/teacher/exam/exam-assess/{examId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/teacher/exam/start-assess/{examId}", method = RequestMethod.GET)
     private String assessPage(Model model, HttpServletRequest request, @PathVariable int examId) {
 
 		Page<ExamHistory> pageModel = new Page<ExamHistory>();
