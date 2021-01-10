@@ -18,7 +18,7 @@ var examing = {
 			this.bindRemoveQustionFromPaper();
 //			this.blindChangePoint();
 			this.bindAddQustionToPaper();
-			this.bindSavePaper();
+			// this.bindSavePaper();
 
 		},
 		bindNaviBehavior : function bindNaviBehavior() {

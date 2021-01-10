@@ -4,19 +4,14 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.examstack.common.domain.exam.*;
 import com.examstack.common.domain.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import com.examstack.common.domain.exam.Exam;
-import com.examstack.common.domain.exam.ExamHistory;
-import com.examstack.common.domain.exam.ExamPaper;
 import com.examstack.common.domain.question.QuestionQueryResult;
 import com.examstack.common.domain.user.Group;
 import com.examstack.common.util.Page;
@@ -267,11 +262,43 @@ public class ExamPageTeacher {
         }
 
         model.addAttribute("htmlStr", sb);
-        model.addAttribute("exampaperid", examPaperId);
+        model.addAttribute("examPaperId", examPaperId);
         model.addAttribute("examHistoryId", history.get(0).getHistId());
-        model.addAttribute("exampapername", examPaper.getName());
+        model.addAttribute("examPaperName", examPaper.getName());
         model.addAttribute("examId", history.get(0).getExamId());
 		model.addAttribute("userName", history.get(0).getUserName());
+		model.addAttribute("userId", history.get(0).getUserId());
         return "assess-content";
     }
+
+	/**
+	 * 提交评估
+	 */
+	@RequestMapping(value = "/teacher/exam/assesscommit", method = RequestMethod.POST)
+	public @ResponseBody Message submitAssess(@RequestBody AnswerSheet answerSheet){
+
+//		AnswerSheet answerSheet = answerSheet;
+//		int examHistoryId = exam_history_id;
+//				data.exam_history_id = exam_history_id;
+//		data.as = answerSheet;
+		List<AnswerSheetItem> itemList = answerSheet.getAnswerSheetItems();
+
+//		//全部是客观题，则状态更改为已阅卷
+		int approved = 3;
+//		for(AnswerSheetItem item : itemList){
+//			if(item.getQuestionTypeId() != 1 && item.getQuestionTypeId() != 2 && item.getQuestionTypeId() != 3){
+//				approved = 2;
+//				break;
+//			}
+//		}
+		Gson gson = new Gson();
+		examService.updateUserExamHist(answerSheet, gson.toJson(answerSheet),approved);
+
+		//TODO 保存到答题卡表
+
+
+		//TODO 保存到答题卡明细表
+
+		return new Message();
+	}
 }

@@ -19,6 +19,7 @@ var examing = {
 		this.startTimer();
 		this.bindSubmit();
 		this.loadAnswerSheet();
+		this.bindAssessCommit();
 	},
 
 	bindNaviBehavior : function bindNaviBehavior() {
@@ -263,7 +264,7 @@ var examing = {
 	 */
 	examTimeOut : function examTimeOut (int){
 		clearInterval(int); 
-		examing.finishExam();
+		// examing.finishExam();
 	},
 
 	/**
@@ -379,6 +380,7 @@ var examing = {
 		});
 	},
 
+
 	finishExam : function finishExam() {
 		modal.showProgress();
 		var answerSheet = examing.genrateAnswerSheet();
@@ -402,7 +404,7 @@ var examing = {
 				return false;
 			if (message.result == "success") {
 				$(window).unbind('beforeunload');
-				util.success("交卷成功！", function() {
+				util.success("提交成功！", function() {
 					window.location.replace(document.getElementsByTagName('base')[0].href + 'student/finish-exam');
 
 				});
@@ -416,6 +418,47 @@ var examing = {
 			modal.hideProgress();
 		});
 	},
+    finishAssess : function finishAssess() {
+        modal.showProgress();
+        var answerSheet = examing.genrateAnswerSheet();
+        var data = new Object();
+        var exam_history_id = $("#current-list-id").val();
+        data.exam_history_id = exam_history_id;
+        data.as = answerSheet;
+        $(".btn-success").attr("disabled", "disabled");
+        var request = $.ajax({
+            headers : {
+                'Accept' : 'application/json',
+                'Content-Type' : 'application/json'
+            },
+            type : "POST",
+            // url : "student/practice-finished",
+            url: util.getCurrentRole() + "/exam/assesscommit",
+            data : JSON.stringify(data)
+        });
+
+        request.done(function(message, tst, jqXHR) {
+            if (!util.checkSessionOut(jqXHR))
+                return false;
+            if (message.result == "success") {
+                $(window).unbind('beforeunload');
+                util.success("提交评估成功！", function() {
+                    // window.location.replace(document.getElementsByTagName('base')[0].href + 'student/finish-exam');
+                    window.location.replace(document.getElementsByTagName('base')[0].href + 'teacher/exam/exam-list');
+
+                });
+            } else {
+                util.error(message.result);
+            }
+            modal.hideProgress();
+        });
+        request.fail(function(jqXHR, textStatus) {
+            alert("系统繁忙请稍后尝试");
+            modal.hideProgress();
+        });
+    },
+
+
 
 	genrateAnswerSheet : function genrateAnswerSheet() {
 		//		var as = new Array();
@@ -509,7 +552,24 @@ var examing = {
 		data.as = answerSheet;
 		
 		localStorage.answerSheet = data;
-	}
+	},
+	//提交评估
+    bindAssessCommit : function bindAssessCommit(){
+        console.log("Assess commit...");
+        $("#assess-commit").click(function() {
+            if (confirm("确认提交吗？")) {
+                examing.finishAssess();
+            }
+        });
+
+/*        var answerSheet = examing.genrateAnswerSheet();
+        var data = new Object();
+        var exam_history_id = $("#current-list-id").val();
+        data.exam_history_id = exam_history_id;
+        data.as = answerSheet;
+
+        localStorage.answerSheet = data;*/
+    }
 };
 
 var modal = {

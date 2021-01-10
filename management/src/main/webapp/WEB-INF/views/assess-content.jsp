@@ -144,10 +144,14 @@ request.setAttribute("leftMenuId",list[3]);
 										
 										
 									</div>
+									<input type="hidden" id="hist-id" value="${examHistoryId }">
+									<input type="hidden" id="paper-id" value="${examPaperId }">
+									<input type="hidden" id="exam-id" value="${examId }">
+									<input type="hidden" id="user-id" value="${userId }">
 									<ul id="exampaper-body" style="padding:0px;">
 										${htmlStr }
 									</ul>
-									<div id="exampaper-footer">
+									<div id="assess-exampaper-footer">
 										<div id="question-navi">
 										<div id="question-navi-controller">
 											<i class="fa fa-arrow-circle-down"></i>
@@ -241,7 +245,9 @@ request.setAttribute("leftMenuId",list[3]);
 		<!-- Bootstrap JS -->
 		<script type="text/javascript" src="resources/bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="resources/js/all.js"></script>
-		<script type="text/javascript" src="resources/js/exampaper-preview.js"></script>
+		<script type="text/javascript" src="resources/js/assess.js"></script>
+		<%--<script type="text/javascript" src="resources/js/exampaper-preview.js"></script>--%>
+
 		
 	</body>
 </html>
