@@ -147,12 +147,12 @@ request.setAttribute("leftMenuId",list[3]);
 
 									</select><span class="form-message"></span>
 								</div>
-								<div class="form-line question-type" id="assess-field">
+								<div class="form-line assess-field" id="assess-field">
 									<span class="form-label"><span class="warning-label">*</span>评估领域：</span>
 									<select id="assess-field-select" class="df-input-narrow">
-
-										<option value="1">AAA.配合与强化物的效能</option>
-
+										<c:forEach items="${knowledgePointList}" var="item">
+											<option value="${item.pointId }">${item.pointName }</option>
+										</c:forEach>
 									</select><span class="form-message"></span>
 								</div>
 								<div class="form-line question-knowledge" hidden>
@@ -185,7 +185,7 @@ request.setAttribute("leftMenuId",list[3]);
 									</div>
 									<span class="form-message"></span>
 								</div>
-								<div class="form-line form-question-reference" style="display: block;">
+								<div class="form-line form-question-code" style="display: block;">
 									<span class="form-label"><span class="warning-label">*</span>编号：</span>
 									<input type="text" class="df-input-narrow"><span class="form-message"></span>
 									<br>
@@ -353,7 +353,7 @@ request.setAttribute("leftMenuId",list[3]);
 		<!-- jQuery -->
 		<script type="text/javascript" src="resources/js/jquery/jquery-1.9.0.min.js"></script>
 		<script type="text/javascript" src="resources/js/all.js"></script>
-		<script type="text/javascript" src="resources/js/jquery-ui-1.9.2.custom.min.js"></script>
+		<%--<script type="text/javascript" src="resources/js/jquery-ui-1.9.2.custom.min.js"></script>--%>
 		
 		<script type="text/javascript" src="resources/js/uploadify/jquery.uploadify3.1Fixed.js"></script>
 		<script type="text/javascript" src="resources/js/question-upload-img.js"></script>

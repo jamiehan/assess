@@ -204,7 +204,12 @@ public class QuestionPageAdmin {
 	@RequestMapping(value = "/admin/question/question-add", method = RequestMethod.GET)
 	public String questionAddPage(Model model) {
 		List<Field> fieldList = questionService.getAllField(null);
+		List<KnowledgePoint> knowledgePointList  = new ArrayList<>();
+		if( fieldList != null && fieldList.size() > 0 ) {
+			knowledgePointList = questionService.getKnowledgePointByFieldId(fieldList.get(0).getFieldId(), null);
+		}
 		model.addAttribute("fieldList", fieldList);
+		model.addAttribute("knowledgePointList", knowledgePointList);
 		return "question-add";
 	}
 	

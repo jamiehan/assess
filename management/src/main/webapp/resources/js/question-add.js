@@ -39,8 +39,9 @@ question_add = {
 
 	bindSubmit : function bindSubmit() {
 		$("#question-add-form").submit(function() {
-
+            console.log("bindSubmit");
 			var verify_result = question_add.verifyInput();
+			console.log("verify_result===" + verify_result);
 			if (verify_result) {
 				var question_entity = question_add.composeEntity();
 				$.ajax({
@@ -95,13 +96,14 @@ question_add = {
 	verifyInput : function verifyInput() {
 		$(".form-message").empty();
 		$(".has-error").removeClass("has-error");
-		var question_type = $("#question-type select").val();
+		var question_type = 1;//$("#question-type select").val();
 		var result = true;
-		result = result && question_add.checkKnowledge();
+		result = result && question_add.checkAssessField();//question_add.checkKnowledge();
 		if (1 == question_type) {
+			var r_checkCode = question_add.checkCode();
 			var r_checkContent = question_add.checkContent();
 			var r_checkOpt = question_add.checkOpt();
-			result = result && r_checkContent && r_checkOpt;
+			result = result && r_checkCode && r_checkContent && r_checkOpt;
 		} else if (2 == question_type) {
 			var r_checkContent = question_add.checkContent();
 			var r_checkOpt = question_add.checkOpt();
@@ -115,15 +117,28 @@ question_add = {
 			var r_checkAnswerText = question_add.checkAnswerText();
 			result = result && r_checkContent && r_checkAnswerText;
 		}
-		var r_checkAnalysis = question_add.checkAnalysis();
+		/*var r_checkAnalysis = question_add.checkAnalysis();
 		var r_checkReference = question_add.checkReference();
 		var r_checkExamingPoint = question_add.checkExamingPoint();
 		var r_checkKeyword = question_add.checkKeyword();
 
-		result = result && r_checkAnalysis && r_checkReference && r_checkExamingPoint && r_checkKeyword;
+		result = result && r_checkAnalysis && r_checkReference && r_checkExamingPoint && r_checkKeyword;*/
 
 		return result;
 	},
+
+    checkAssessField : function checkAssessField() {
+        var result = true;
+
+        if ($("#assess-field-select option").length == 0) {
+            $(".assess-field .form-message").text("请选择评估领域");
+            $("#assess-field-select").addClass("has-error");
+            result = false;
+        }
+
+        return result;
+
+    },
 
 	checkKnowledge : function checkKnowledge() {
 		var result = true;
@@ -141,6 +156,26 @@ question_add = {
 		return result;
 
 	},
+
+    /**
+     *检查编号
+     */
+    checkCode : function checkCode() {
+        var content = $(".form-question-code input").val();
+        if (content == "") {
+            $(".form-question-code .form-message").text("请输入编号");
+            $(".form-question-code input").focus();
+            $(".form-question-code input").addClass("has-error");
+            return false;
+        } else if (content.length > 500) {
+            $(".form-question-code .form-message").text("内容过长，请保持在500个字符以内");
+            $(".form-question-code input").focus();
+            $(".form-question-code input").addClass("has-error");
+            return false;
+        } else {
+            return true;
+        }
+    },
 
 	/**
 	 *检查题目内容
@@ -370,7 +405,7 @@ question_add = {
 	composeEntity : function composeEntity() {
 
         var question_entity = new Object();
-        question_entity.question_type_id = $("#question-type select").val();
+        question_entity.question_type_id = 1;//$("#question-type select").val();
 
 		if (1 == question_entity.question_type_id) {
 			question_entity.answer = $(".form-question-answer1 select").val();
@@ -401,6 +436,7 @@ question_add = {
 		question_entity.referenceName = $(".form-question-reference input").val();
 		question_entity.examingPoint = $(".form-question-examingpoint input").val();
 		question_entity.keyword = $(".form-question-keyword input").val();
+        question_entity.code = $(".form-question-code input").val();
 		// alert(question_entity)
 		return question_entity;
 	},

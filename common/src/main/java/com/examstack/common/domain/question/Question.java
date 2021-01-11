@@ -14,6 +14,7 @@ public class Question implements Serializable {
 
 	private static final long serialVersionUID = 6335675770371435246L;
 	private int id;
+	private String code;
 	private String name;
 	private String content;
 	private int duration;
@@ -44,6 +45,14 @@ public class Question implements Serializable {
 	private String filePath;
 	private int test_num;
 	private int test_id;
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
 
 	public List<QuestionTag> getTagList() {
 		return tagList;

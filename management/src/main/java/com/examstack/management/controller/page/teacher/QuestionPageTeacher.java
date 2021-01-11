@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.examstack.common.domain.question.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -14,11 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.examstack.common.domain.question.Field;
-import com.examstack.common.domain.question.Question;
-import com.examstack.common.domain.question.QuestionFilter;
-import com.examstack.common.domain.question.QuestionQueryResult;
-import com.examstack.common.domain.question.Tag;
 import com.examstack.common.util.Page;
 import com.examstack.common.util.PagingUtil;
 import com.examstack.common.util.QuestionAdapter;
@@ -155,7 +151,13 @@ public class QuestionPageTeacher {
 	@RequestMapping(value = "/teacher/question/question-add", method = RequestMethod.GET)
 	public String questionAddPage(Model model) {
 		List<Field> fieldList = questionService.getAllField(null);
+		List<KnowledgePoint> knowledgePointList  = new ArrayList<>();
+		if( fieldList != null && fieldList.size() > 0 ) {
+			knowledgePointList = questionService.getKnowledgePointByFieldId(fieldList.get(0).getFieldId(), null);
+		}
+
 		model.addAttribute("fieldList", fieldList);
+		model.addAttribute("knowledgePointList", knowledgePointList);
 		return "question-add";
 	}
 	
