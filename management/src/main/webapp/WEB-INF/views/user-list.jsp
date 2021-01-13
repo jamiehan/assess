@@ -452,6 +452,29 @@ request.setAttribute("leftMenuId",list[3]);
 									</div>
 								</div>
 							</div>
+							<div class="modal fade" id="assess-report" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+												&times;
+											</button>
+											<h6 class="modal-title" id="myModalLabel">评估报告</h6>
+										</div>
+										
+										<div class="modal-body" id="assess-report-chart-box"></div>
+										
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal">
+												关闭窗口
+											</button>
+											<button id="update-teacher-btn" type="button" class="btn btn-primary">
+												确定修改
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
 							<div class="modal fade" id="link-user-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 								<div class="modal-dialog">
 									<div class="modal-content">
@@ -567,6 +590,7 @@ request.setAttribute("leftMenuId",list[3]);
 		<script type="text/javascript" src="resources/js/update-user.js"></script>
 		<script type="text/javascript" src="resources/js/uploadify/jquery.uploadify3.1Fixed.js"></script>
 		<script type="text/javascript" src="resources/js/user-import.js"></script>
+		<script type="text/javascript" src="resources/js/echarts-all.js"></script>
 		<script>
 			$(function() {
 				/* $(".left-menu-item-name").hide(); */

@@ -63,7 +63,7 @@ public class ExamServiceImpl implements ExamService {
 					answerSheet.setExamHistroyId(history.getHistId());
 					answerSheet.setExamId(exam.getExamId());
 					answerSheet.setExamPaperId(exam.getExamPaperId());
-					answerSheet.setUserId(user.getUserId());
+					answerSheet.setStudentId(user.getUserId());
 					
 					answerSheet.setCreateTime(new Date());
 					
@@ -296,5 +296,17 @@ public class ExamServiceImpl implements ExamService {
 		
 		return examMapper.getAnswerSheetItemListByAnswerSheetId(answerSheetId);
 	}
+	@Override
+	public void addUserExamHist(ExamHistory history) {
+		examMapper.addUserExamHist(history);
+	}
+	
+	@Override
+	public List<AnswerSheetItem> getAnswerSheetItemListByStudentIdAndTimes(int studentId, int times, String pointCode) {
+		// TODO Auto-generated method stub
+		return examMapper.getAnswerSheetItemListByStudentIdAndTimes(studentId, times, pointCode);
+		
+	}
 	
 }
+

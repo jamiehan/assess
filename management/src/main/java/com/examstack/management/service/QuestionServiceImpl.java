@@ -589,4 +589,14 @@ public class QuestionServiceImpl implements QuestionService {
 	public QuestionTest getQuestionTestById(int id) {
 		return questionMapper.getQuestionTestById(id);
 	}
+
+	@Override
+	public List<KnowledgePoint> getKnowledgePointList() {
+		return questionMapper.getKnowledgePointList();
+	}
+
+	@Override
+	public Integer getQuestionNumByKnowlegePointId(int pointId) {
+		return questionMapper.getQuestionNumByKnowlegePointId(pointId);
+	}
 }

@@ -22,6 +22,8 @@ public class AnswerSheetItem implements Serializable {
 	private boolean right;
 	
 	// add for assess
+	private int times;
+	private int score;
 	private int studentId;
 	private int teacherId;
 	private Date assessTime;
@@ -174,6 +176,22 @@ public class AnswerSheetItem implements Serializable {
 
 	public void setModifierId(int modifierId) {
 		this.modifierId = modifierId;
+	}
+
+	public int getTimes() {
+		return times;
+	}
+
+	public void setTimes(int times) {
+		this.times = times;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
 	}
 
 }

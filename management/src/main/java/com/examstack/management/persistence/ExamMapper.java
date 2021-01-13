@@ -165,5 +165,10 @@ public interface ExamMapper {
 	 * @return
 	 */
 	public List<AnswerSheetItem> getAnswerSheetItemListByAnswerSheetId(int answerSheetId);
+
+	/**
+	 * 根据学生ID和评估轮次，获取答题成绩
+	 */
+	public List<AnswerSheetItem> getAnswerSheetItemListByStudentIdAndTimes(@Param("studentId") int studentId, @Param("times") int times, @Param("pointCode") String pointCode);
 	
 }

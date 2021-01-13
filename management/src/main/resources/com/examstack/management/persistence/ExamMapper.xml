@@ -157,4 +157,10 @@
 		where a.answer_sheet_id=#{answerSheetId}
 	</select>
 	
+	<select id="getAnswerSheetItemListByStudentIdAndTimes" resultType="com.examstack.common.domain.exam.AnswerSheetItem">
+		select id answerSheetItemId, answer_sheet_id answerSheetId, point point,question_type_id questionTypeId,answer answer,question_id questionId, question_code questionCode,comment comment, student_id studentId, teacher_id teacherId, assess_time assessTime, knowlege_point_id knowlegePointId, score
+		from et_answer_sheet_item a 
+		where a.student_id=#{studentId} and a.times=#{times} and a.knowlege_point_code=#{pointCode}
+	</select>
+	
 </mapper>

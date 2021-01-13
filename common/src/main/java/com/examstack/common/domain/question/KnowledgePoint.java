@@ -15,6 +15,8 @@ public class KnowledgePoint {
 	private boolean removeable;
 	private int state;
 	
+	private String pointCode;
+	
 	public boolean isRemoveable() {
 		return removeable;
 	}
@@ -57,4 +59,12 @@ public class KnowledgePoint {
 	public void setState(int state) {
 		this.state = state;
 	}
+	public String getPointCode() {
+		return pointCode;
+	}
+	public void setPointCode(String pointCode) {
+		this.pointCode = pointCode;
+	}
+	
+	
 }

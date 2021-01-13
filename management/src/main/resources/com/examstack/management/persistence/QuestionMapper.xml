@@ -83,6 +83,15 @@
 			</if>
 		</where>
 	</select>
+	
+	<select id="getKnowledgePointList" resultType="com.examstack.common.domain.question.KnowledgePoint">
+		select point_id pointId, point_code pointCode
+		from et_knowledge_point order by point_code
+	</select>
+	
+	<select id="getQuestionNumByKnowlegePointId" resultType="java.lang.Integer">
+		select count(*) from et_question_2_point where point_id=#{pointId};
+	</select>
 
 	<select id="getQuestionTypeList" resultType="com.examstack.common.domain.question.QuestionType">
 		select

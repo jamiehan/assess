@@ -154,7 +154,7 @@ request.setAttribute("leftMenuId",list[3]);
 							</td>
 							<td>
 								<span class="r-update-btn btn-sm btn-success" data-id="21321" data-depid="${item.depId }">修改</span>
-								<span class="r-update-btn btn-sm btn-success" data-id="21321" data-depid="${item.depId }">生成评估报告</span>
+								<span class="r-assessreport-btn btn-sm btn-success" data-id="21321" data-depid="${item.depId }">生成评估报告</span>
 								<span class="disable-btn btn-sm btn-danger" data-id="${item.userId }"
 								data-status="${!item.enabled }" hidden>
 								<c:choose>
@@ -209,6 +209,7 @@ request.setAttribute("leftMenuId",list[3]);
 		<script type="text/javascript"
 		src="resources/js/jquery/jquery-1.9.0.min.js"></script>
 		<script type="text/javascript" src="resources/js/all.js"></script>
+		<script type="text/javascript" src="resources/js/echarts-all.js"></script>
 		<script type="text/javascript" src="resources/js/user-list-inner.js"></script>
 		<!-- Bootstrap JS -->
 		<script type="text/javascript"

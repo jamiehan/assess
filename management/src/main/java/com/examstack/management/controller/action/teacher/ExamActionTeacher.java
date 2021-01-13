@@ -1,30 +1,33 @@
 package com.examstack.management.controller.action.teacher;
 
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.examstack.common.Constants;
 import com.examstack.common.domain.exam.AnswerSheet;
 import com.examstack.common.domain.exam.AnswerSheetItem;
+import com.examstack.common.domain.exam.AssessData;
 import com.examstack.common.domain.exam.Exam;
 import com.examstack.common.domain.exam.ExamHistory;
 import com.examstack.common.domain.exam.Message;
+import com.examstack.common.domain.question.KnowledgePoint;
+import com.examstack.common.domain.user.User;
 import com.examstack.management.security.UserInfo;
 import com.examstack.management.service.ExamService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.examstack.management.service.QuestionService;
+import com.examstack.management.service.UserService;
 import com.google.gson.Gson;
 
 @Controller
@@ -35,6 +38,12 @@ public class ExamActionTeacher {
 	@Autowired
 	private org.springframework.amqp.core.AmqpTemplate qmqpTemplate;
 
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private QuestionService questionService;
+	
 	/**
 	 * 添加考试
 	 * @param exam
@@ -355,29 +364,91 @@ public class ExamActionTeacher {
 	}
 	
 	/**
-	 * 查询一个学生所有的答题卡, 生成评估报告需要的图形数据
-	 * 
-	 */
-	@RequestMapping(value = "/teacher/exam/{studentId}/assessreportdatas", method = RequestMethod.GET)
-	public @ResponseBody List<AnswerSheet> getAnswerSheetList(@PathVariable("studentId") int studentId) {
-	
-		// TODO 生成图形数据
-		List<AnswerSheet> answerSheetList = examService.getAnswerSheetListByStudentId(studentId);
-		
-		return answerSheetList;
-	}
-	
-	/**
 	 * 生成评估报告
 	 * 
 	 */
 	@RequestMapping(value = "/teacher/exam/{studentId}/assessreport", method = RequestMethod.GET)
-	public @ResponseBody List<AnswerSheet> createAssessReport(@PathVariable("studentId") int studentId) {
-	
+	public String createAssessReport(@PathVariable("studentId") int studentId) {
+		// 
 		// TODO 生成图形数据
-		List<AnswerSheet> answerSheetList = examService.getAnswerSheetListByStudentId(studentId);
+//		List<AnswerSheet> answerSheetList = examService.getAnswerSheetListByStudentId(studentId);
 		
-		return answerSheetList;
+		// TODO 跳转到评估报告页面
+//		return answerSheetList;
+		
+		return "assess-report";
+	}
+	
+	/**
+	 * 查询一个学生所有的答题卡, 生成评估报告需要的图形数据
+	 * 
+	 */
+	@RequestMapping(value ={"/admin/exam/{studentId}/assessdatas", "/teacher/exam/{studentId}/assessdatas"}, method = RequestMethod.GET)
+	public @ResponseBody List<AssessData> getAssessData(@PathVariable("studentId") int studentId) {
+		List<AssessData> assessDatas = new ArrayList<AssessData>();
+		
+		// 1. 获取一个学生当前的评估轮次
+		List<User> studentList = userService.getUserListByUserId(studentId);
+		User student = studentList.get(0);
+		int times = student.getTimes();
+		
+		// 2. 获取所有的评估领域
+		List<KnowledgePoint> knowledgePoints = questionService.getKnowledgePointList();
+		int pointId;
+		String pointCode;
+
+		AssessData assessData = null;
+		
+		for (KnowledgePoint knowledgePoint : knowledgePoints) {
+			pointId = knowledgePoint.getPointId();
+			pointCode = knowledgePoint.getPointCode();
+			
+			// 一个领域的图形数据
+			assessData = new AssessData();
+						
+			// 2. 获取指定领域的题目总数
+			int questionNum = questionService.getQuestionNumByKnowlegePointId(pointId);
+			if (questionNum == 0) {
+				continue;
+			}
+			
+			// 生成图形数据的yAxis
+			assessData.addYAxisData(pointCode, questionNum);
+			
+			// 3. 获取指定领域每一轮的评估成绩
+			Map<Integer, Integer> currentScore = new HashMap<Integer, Integer>();
+			List<AnswerSheetItem> answerSheetItems = null;
+			List<Integer> score = null;
+			for (int i = 1; i <= times; i++) {
+				// 根据学生ID和评估轮次获取学生成绩
+				answerSheetItems = examService.getAnswerSheetItemListByStudentIdAndTimes(studentId, i, pointCode);
+				
+				score = new ArrayList<Integer>();
+				for (int k = 0; k < questionNum; k++) {
+					score.add(0);
+				}
+				for (AnswerSheetItem answerSheetItem : answerSheetItems) {
+					if (currentScore.get(answerSheetItem.getQuestionCode()) != null) {
+						score.set(answerSheetItem.getQuestionCode() - 1, answerSheetItem.getScore() - currentScore.get(answerSheetItem.getQuestionCode()));
+					} else {
+						score.set(answerSheetItem.getQuestionCode() - 1, answerSheetItem.getScore());
+					}
+					
+					currentScore.put(answerSheetItem.getQuestionCode(), answerSheetItem.getScore());
+				}
+				
+				assessData.addSeriesData(score, i);
+				
+				// 生成图形数据的legend
+				assessData.addLegendData(i);
+			}
+			
+			assessDatas.add(assessData);
+		}
+		
+		// 返回评估报告需要的图形数据
+		return assessDatas;
+//		return "assess-report";
 	}
 }
 

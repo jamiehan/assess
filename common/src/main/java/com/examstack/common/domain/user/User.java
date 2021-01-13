@@ -32,6 +32,15 @@ public class User implements Serializable {
 	private String filePath;
 	private String fileName;
 	private String groupNames;
+	
+	private int times; // 轮次
+	
+	public int getTimes() {
+		return times;
+	}
+	public void setTimes(int times) {
+		this.times = times;
+	}
 	public int getDepId() {
 		return depId;
 	}

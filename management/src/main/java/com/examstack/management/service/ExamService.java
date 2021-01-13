@@ -143,6 +143,11 @@ public interface ExamService {
 	public List<AnswerSheetItem> getAnswerSheetItemListByAnswerSheetId(int answerSheetId);
 	
 	/**
+	 * 根据学生ID和评估轮次，获取答题成绩
+	 */
+	public List<AnswerSheetItem> getAnswerSheetItemListByStudentIdAndTimes(int studentId, int times, String pointCode);
+	
+	/**
 	 * 获取一个学生的所有答题卡
 	 * 
 	 * @param userId
@@ -171,4 +176,9 @@ public interface ExamService {
 	 * @param answerSheet
 	 */
 	public void updateAnswerSheet(AnswerSheet answerSheet);
+
+	/**
+	 * 添加考试历史
+	 */
+	public void addUserExamHist(ExamHistory history);
 }

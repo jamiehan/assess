@@ -27,6 +27,40 @@ $(function() {
 
 	});
 	
+	$(".r-assessreport-btn").click(function() {
+		$.ajax({
+			headers : {
+				'Accept' : 'application/json',
+				'Content-Type' : 'application/json'
+			},
+			type : "GET",
+			url : "teacher/exam/" + $(this).parent().parent().find(".r-id").text().trim() + "/assessdatas",
+			success : function(message, tst, jqXHR) {
+				$(parent.document.getElementById("assess-report")).modal({
+					backdrop : true,
+					keyboard : true
+				});
+				
+				for (var i = 0; i < message.length; i++) {
+					$("#assess-report-chart-box", parent.document).append("<div id='assessreport-chart-" + i + "' style='width: 400px;height:300px;'></div>")
+					
+					var myChart = echarts.init(parent.document.getElementById('assessreport-chart-' + i));
+
+			        // 指定图表的配置项和数据
+					var option = message[i];
+
+			        // 使用刚指定的配置项和数据显示图表。
+			        myChart.setOption(option);
+				}
+
+			},
+			error : function(jqXHR, textStatus) {
+				util.error("操作失败请稍后尝试");
+			}
+		});
+
+	});
+	
 	$(".r-reset-pwd-btn").click(function() {
 		$(parent.document.getElementById("reset-pwd-modal")).modal({
 			backdrop : true,

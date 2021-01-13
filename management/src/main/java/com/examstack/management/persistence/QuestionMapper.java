@@ -25,6 +25,10 @@ public interface QuestionMapper {
             @Param("fieldId") int fieldId,
             @Param("page") Page<KnowledgePoint> page);
 
+	public List<KnowledgePoint> getKnowledgePointList();
+	
+	public Integer getQuestionNumByKnowlegePointId(int pointId);
+	
 	public List<QuestionType> getQuestionTypeList();
 
 	public Integer insertForeach(@Param("list") List<Question> list);

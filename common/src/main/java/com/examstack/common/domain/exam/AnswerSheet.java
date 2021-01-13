@@ -22,8 +22,8 @@ public class AnswerSheet implements Serializable {
 	private Date startTime;
 	
 	// add for assess
-	private int userId;
-	private int times;
+	private int studentId; // 学生ID
+	private int times; // 评估轮次
 	private int sumScore;
 	private Date createTime;
 	private int creatorId;
@@ -104,12 +104,14 @@ public class AnswerSheet implements Serializable {
 		this.pointRaw = pointRaw;
 	}
 
-	public int getUserId() {
-		return userId;
+	
+
+	public int getStudentId() {
+		return studentId;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
 	}
 
 	public int getTimes() {

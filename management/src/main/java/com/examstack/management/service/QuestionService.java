@@ -20,6 +20,10 @@ public interface QuestionService {
 	public List<Field> getAllField(Page<Field> page);
 
 	public List<KnowledgePoint> getKnowledgePointByFieldId(int FieldId, Page<KnowledgePoint> page);
+	
+	public List<KnowledgePoint> getKnowledgePointList();
+	
+	public Integer getQuestionNumByKnowlegePointId(int pointId);
 
 	public Map<String, KnowledgePoint> getKnowledgePointMapByFieldId(int fieldId, Page<KnowledgePoint> page);
 
