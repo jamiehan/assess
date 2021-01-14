@@ -311,7 +311,42 @@ request.setAttribute("leftMenuId",list[3]);
 														<span class="form-message"></span>
 														<br>
 													</div>
-													<div class="form-line form-question-name" >
+													<div class="form-line form-question-code" style="display: block;">
+														<span class="form-label"><span class="warning-label">*</span>编号：</span>
+														<input type="text" class="df-input-narrow"><span class="form-message"></span>
+														<br>
+													</div>
+													<div class="form-line question-content">
+														<span class="form-label"><span class="warning-label">*</span>任务目标：</span>
+														<textarea class="add-question-ta"></textarea>
+														<span class="add-img add-content-img" style="width:100px;">添加图片</span>
+														<span class="form-message"></span>
+													</div>
+													<div class="form-line form-question-opt" style="display: block;">
+														<span class="form-label"><span class="warning-label">*</span>评分标准：</span>
+														<div class="add-opt-items">
+															<span class="add-opt-item"><label class="que-opt-no">A</label>
+																<input type="text" class="df-input-narrow form-question-opt-item">
+																<span class="add-img add-opt-img">添加图片</span>
+															</span>
+															<span class="add-opt-item"><label class="que-opt-no">B</label>
+																<input type="text" class="df-input-narrow form-question-opt-item">
+																<span class="add-img add-opt-img">添加图片</span>
+															</span>
+															<span class="add-opt-item"><label class="que-opt-no">C</label>
+																<input type="text" class="df-input-narrow form-question-opt-item">
+																<span class="add-img add-opt-img">添加图片</span> <span><i class="small-icon ques-remove-opt fa fa-minus-square" title="删除此选项"></i></span>
+															</span>
+															<span class="add-opt-item"><label class="que-opt-no">D</label>
+																<input type="text" class="df-input-narrow form-question-opt-item">
+																<span class="add-img add-opt-img">添加图片</span> <span><i class="small-icon ques-remove-opt fa fa-minus-square" title="删除此选项"></i></span>
+															</span>
+														</div>
+														<span id="ques-add-opt"><i class="small-icon fa fa-plus-square" title="添加选项"></i></span>
+														<br>
+														<span class="form-message"></span>
+													</div>
+													<div class="form-line form-question-name" hidden>
 														<span class="form-label"><span class="warning-label"></span>题目名称：</span>
 														<span id="question_name"></span>
 
@@ -321,7 +356,7 @@ request.setAttribute("leftMenuId",list[3]);
 														<span class="form-message"></span>
 														<br>
 													</div>
-													<div class="form-line question-knowledge">
+													<div class="form-line question-knowledge" hidden>
 														<span class="form-label"><span class="warning-label">*</span>评估领域：</span>
 														<div>
 															<div class="clearfix">
@@ -351,7 +386,7 @@ request.setAttribute("leftMenuId",list[3]);
 														</div>
 														<span class="form-message"></span>
 													</div>
-													<div class="form-line question-type" id="question-type">
+													<div class="form-line question-type" id="question-type" hidden>
 														<span class="form-label"><span class="warning-label">*</span>题目类型：</span>
 														<select id="question-type-select" class="df-input-narrow" readonly>
 
@@ -372,12 +407,12 @@ request.setAttribute("leftMenuId",list[3]);
 														</select><span class="form-message"></span>
 													</div>
 
-													<div class="form-line form-question-answer1 correct-answer" style="display: block;">
+													<%--<div class="form-line form-question-answer1 correct-answer" hidden>
 														<span class="form-label"><span class="warning-label">*</span>正确答案：</span>
 														<select class="df-input-narrow" id="question_right_answer">
 															<option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option>
 														</select><span class="form-message"></span>
-													</div>
+													</div>--%>
 													<div class="form-line form-question-answer-muti correct-answer" style="display: none;">
 														<span class="form-label"><span class="warning-label">*</span>正确答案：</span>
 
@@ -419,27 +454,27 @@ request.setAttribute("leftMenuId",list[3]);
 														<br>
 
 													</div>
-													<div class="form-line form-question-reference" style="display: block;">
+													<div class="form-line form-question-reference" style="display: none;">
 														<span class="form-label"><span class="warning-label"></span>来源：</span>
 															<input type="text" class="df-input-narrow" style="width: 100%;"><span class="form-message"></span>
 														<br>
 													</div>
-													<div class="form-line form-question-examingpoint" style="display: block;">
+													<div class="form-line form-question-examingpoint" style="display: none;">
 														<span class="form-label"><span class="warning-label"></span>考点：</span>
 															<input id="question_examingPoint"  type="text" class="df-input-narrow" style="width: 100%;"><span class="form-message"></span>
 														<br>
 													</div>
-													<div class="form-line form-question-keyword" style="display: block;">
+													<div class="form-line form-question-keyword" style="display: none;">
 														<span class="form-label"><span class="warning-label"></span>关键字：</span>
 															<input type="text" class="df-input-narrow" id="question_keyword" style="width: 100%;"><span class="form-message"></span>
 														<br>
 													</div>
-													<div class="form-line form-question-analysis" style="display: block;">
+													<div class="form-line form-question-analysis" style="display: none;">
 														<span class="form-label"><span class="warning-label"></span>题目解析：</span>
 														<textarea id="question_analysis" class="add-question-ta" style="width: 100%;"></textarea><span class="form-message"></span>
 														<br>
 													</div>
-													<div class="form-line exampaper-type" id="aq-tag">
+													<div class="form-line exampaper-type" id="aq-tag" hidden>
 														<span class="form-label"><span class="warning-label">*</span>标签：</span>
 														<select id="tag-from-select" class="df-input-narrow">
 															<c:forEach items="${tagList }" var="item">
@@ -605,6 +640,10 @@ request.setAttribute("leftMenuId",list[3]);
 									var html = "<option value=\"" + element.pointId + "\">" + element.fieldName + " > " + element.pointName + "</option>";
 									point.append(html);
 								});
+                                $(".form-question-code input").val(message.object.code);
+                                $(".question-content textarea").val(message.object.name);
+                                $(".form-question-code input").val(message.object.code);
+
 								$(".form-question-analysis textarea").val(message.object.analysis);
 								$(".form-question-reference input").val(message.object.referenceName);
 								$(".form-question-examingpoint input").val(message.object.examingPoint);

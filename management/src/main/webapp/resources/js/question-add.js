@@ -425,10 +425,12 @@ question_add = {
 
         //获取知识点
         var pointList = new Array();
-        var pointOpts = $("#point-to-select option");
+/*        var pointOpts = $("#point-to-select option");
         for (var i = 0; i < pointOpts.length; i++) {
             pointList.push($(pointOpts[i]).attr("value"));
-        }
+        }*/
+		pointList.push($(".assess-field select").val());
+		console.log("$(\".assess-field select\").val()===" + $(".assess-field select").val());
         question_entity.pointList = pointList;
 		question_entity.questionContent = question_add.composeContent();
         question_entity.name = $(".question-content textarea").val();
