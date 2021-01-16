@@ -246,62 +246,74 @@ public class ExamPaperActionTeacher {
 		Message message = new Message();
 		
 		// 1. 获取学生信息
-//		List<User> users = userService.getUserListByUserId(examId);
-//		User student = users.get(0);
-//		
-//		// 当前评估轮次
-//		int times = student.getTimes();
-//		
-//		// 2. 生成康复计划（考试卷）
-//		ExamPaper examPaper = new ExamPaper();
-//		examPaper.setName(student.getUserName() + "_康复计划_" + times); // 康复计划名称
-//		examPaper.setCreator(userInfo.getUsername());
-//		
-//		examPaper.setDuration(366600);
-//		examPaper.setCreator(userInfo.getUsername());
-//		examPaper.setIs_subjective(true);
-//		
-//		// 3. 获取当前轮次的评估成绩
-//		List<AnswerSheetItem> answerSheetItems = null;
-//		
-//		// 添加考试题
-//		List<Integer> idList = new ArrayList<Integer>(); // 题目ID列表
-//		for (AnswerSheetItem answerSheetItem : answerSheetItems) {
-//			if (answerSheetItem.getScore() < 4) { // 小于4分
-//				// 生成考试题
-//				idList.add(answerSheetItem.getQuestionId());
-//			}
-//		}
-//		List<QuestionQueryResult> questions = questionService.getQuestionDescribeListByIdList(idList);
-//		Gson gson = new Gson();
-//		examPaper.setContent(gson.toJson(questions));
-//		
-//		examPaperService.insertExamPaper(examPaper);
-//		
-//		// 4. 生成康复计划的时候，同时生成考试和考试历史，建立康复计划与学生的关联关系
-//		Exam exam = new Exam();
-//		exam.setCreator(userInfo.getUserid());
-//		exam.setCreatorId(userInfo.getUsername());
-//		exam.setApproved(0);
-//		exam.setExamPaperId(examPaper.getId());
-//		
-//		examService.addExam(exam);
-//		
-//		// 生成考试历史
-//		ExamHistory history = new ExamHistory();
-//		history.setExamId(exam.getExamId());
-//		history.setExamPaperId(exam.getExamPaperId());
-//		history.setContent(examPaper.getContent());
-//		history.setDuration(examPaper.getDuration());
-//		//默认创建的记录都是审核通过的
-//		history.setApproved(1);
-//		//String seriNo = sdf.format(now) + StringUtil.format(user.getUserId(), 3) + StringUtil.format(exam.getExamId(), 3);
-//		//history.setSeriNo(seriNo);
-//		history.setVerifyTime(new Date());
-//		history.setUserId(student.getUserId());
-//		examService.addUserExamHist(history);
-//		
-//		message.setGeneratedId(examPaper.getId());
+		// 根据考试id获取从考试历史中获取
+		List<ExamHistory> examHistories = examService.getUserExamHistListByExamId(examId, null, null, 0, null);
+		ExamHistory examHistory = examHistories.get(0);
+		
+		// 学生id
+		List<User> users = userService.getUserListByUserId(examHistory.getUserId());
+		User student = users.get(0);
+		
+		// 当前评估轮次
+		int times = student.getTimes();
+		
+		// 2. 生成康复计划（考试卷）
+		ExamPaper examPaper = new ExamPaper();
+		examPaper.setName(student.getUserName() + "_康复计划_" + times); // 康复计划名称
+		examPaper.setCreator(userInfo.getUsername());
+		
+		examPaper.setDuration(366600);
+		examPaper.setCreator(userInfo.getUsername());
+		examPaper.setIs_subjective(true);
+		
+		// 3. 获取当前轮次的评估成绩
+		List<AnswerSheetItem> answerSheetItems = examService.getAnswerSheetItemListByStudentIdAndTimes(student.getUserId(), times, null);
+		
+		// 添加考试题
+		List<Integer> idList = new ArrayList<Integer>(); // 题目ID列表
+		for (AnswerSheetItem answerSheetItem : answerSheetItems) {
+			if (answerSheetItem.getScore() < 4) { // 小于4分
+				// 生成考试题
+				idList.add(answerSheetItem.getQuestionId());
+			}
+		}
+		
+		// 设置考试题
+		if (idList.size() > 0) {
+			List<QuestionQueryResult> questions = questionService.getQuestionDescribeListByIdList(idList);
+			Gson gson = new Gson();
+			examPaper.setContent(gson.toJson(questions));
+		}
+		
+		examPaperService.insertExamPaper(examPaper);
+		
+		// 4. 生成康复计划的时候，同时生成考试和考试历史，建立康复计划与学生的关联关系
+		Exam exam = new Exam();
+		exam.setExamName(student.getUserName() + "_康复计划_" + times);
+		exam.setCreator(userInfo.getUserid());
+		exam.setCreatorId(userInfo.getUsername());
+		exam.setApproved(0);
+		exam.setExamPaperId(examPaper.getId());
+		
+		examService.addExam(exam);
+		
+		// 生成考试历史
+		ExamHistory history = new ExamHistory();
+		history.setExamId(exam.getExamId());
+		history.setExamPaperId(exam.getExamPaperId());
+		history.setContent(examPaper.getContent());
+		history.setDuration(examPaper.getDuration());
+		//默认创建的记录都是审核通过的
+		history.setApproved(1);
+		
+		String seriNo = "serialNo: " + StringUtil.format(student.getUserId(), 3) + StringUtil.format(exam.getExamId(), 3);
+		history.setSeriNo(seriNo);
+		
+		history.setVerifyTime(new Date());
+		history.setUserId(student.getUserId());
+		examService.addUserExamHist(history);
+		
+		message.setGeneratedId(examPaper.getId());
 		
 		return message;
 	}
