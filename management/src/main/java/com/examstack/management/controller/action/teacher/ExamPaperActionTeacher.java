@@ -24,16 +24,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.examstack.common.domain.exam.AnswerSheet;
 import com.examstack.common.domain.exam.AnswerSheetItem;
+import com.examstack.common.domain.exam.Exam;
+import com.examstack.common.domain.exam.ExamHistory;
 import com.examstack.common.domain.exam.ExamPaper;
 import com.examstack.common.domain.exam.Message;
 import com.examstack.common.domain.exam.PaperCreatorParam;
 import com.examstack.common.domain.question.QuestionQueryResult;
 import com.examstack.common.domain.question.QuestionStruts;
+import com.examstack.common.domain.user.User;
 import com.examstack.common.util.QuestionAdapter;
-import com.examstack.common.util.StandardPasswordEncoderForSha1;
+import com.examstack.common.util.StringUtil;
 import com.examstack.management.security.UserInfo;
 import com.examstack.management.service.ExamPaperService;
+import com.examstack.management.service.ExamService;
 import com.examstack.management.service.QuestionService;
+import com.examstack.management.service.UserService;
 import com.google.gson.Gson;
 
 @Controller
@@ -44,6 +49,12 @@ public class ExamPaperActionTeacher {
 	@Autowired
 	private QuestionService questionService;
 
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private ExamService examService;
+	
 	/**
 	 * 自动或者手动组卷(插入一张空试卷)
 	 * 
@@ -224,33 +235,73 @@ public class ExamPaperActionTeacher {
 		return msg;
 	}
 	
-
 	/**
 	 * 生成康复计划
 	 * 
 	 * add for assess
 	 */
-	@RequestMapping(value = "/teacher/trainingplan-add/{studentId}", method = RequestMethod.POST)
-	public @ResponseBody Message addExamPlan(@PathVariable("studentId") int studentId) {
+	@RequestMapping(value = {"/admin/trainingplan-add/{examId}", "/teacher/trainingplan-add/{examId}"}, method = RequestMethod.POST)
+	public @ResponseBody Message addExamPlan(@PathVariable("examId") int examId) {
 		UserInfo userInfo = (UserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Message message = new Message();
 		
-		// TODO 获取学生信息
-		
-		// 获取评估成绩
-		
-		// 生成康复计划（考试卷）
-		ExamPaper examPaper = new ExamPaper();
-		
-		examPaper.setName("学生名_康复计划");
-		examPaper.setCreator(userInfo.getUsername());
-		examPaper.setIs_subjective(true);
-		
-		examPaperService.insertExamPaper(examPaper);
-		
-		// 添加考试题
-		
-		message.setGeneratedId(examPaper.getId());
+		// 1. 获取学生信息
+//		List<User> users = userService.getUserListByUserId(examId);
+//		User student = users.get(0);
+//		
+//		// 当前评估轮次
+//		int times = student.getTimes();
+//		
+//		// 2. 生成康复计划（考试卷）
+//		ExamPaper examPaper = new ExamPaper();
+//		examPaper.setName(student.getUserName() + "_康复计划_" + times); // 康复计划名称
+//		examPaper.setCreator(userInfo.getUsername());
+//		
+//		examPaper.setDuration(366600);
+//		examPaper.setCreator(userInfo.getUsername());
+//		examPaper.setIs_subjective(true);
+//		
+//		// 3. 获取当前轮次的评估成绩
+//		List<AnswerSheetItem> answerSheetItems = null;
+//		
+//		// 添加考试题
+//		List<Integer> idList = new ArrayList<Integer>(); // 题目ID列表
+//		for (AnswerSheetItem answerSheetItem : answerSheetItems) {
+//			if (answerSheetItem.getScore() < 4) { // 小于4分
+//				// 生成考试题
+//				idList.add(answerSheetItem.getQuestionId());
+//			}
+//		}
+//		List<QuestionQueryResult> questions = questionService.getQuestionDescribeListByIdList(idList);
+//		Gson gson = new Gson();
+//		examPaper.setContent(gson.toJson(questions));
+//		
+//		examPaperService.insertExamPaper(examPaper);
+//		
+//		// 4. 生成康复计划的时候，同时生成考试和考试历史，建立康复计划与学生的关联关系
+//		Exam exam = new Exam();
+//		exam.setCreator(userInfo.getUserid());
+//		exam.setCreatorId(userInfo.getUsername());
+//		exam.setApproved(0);
+//		exam.setExamPaperId(examPaper.getId());
+//		
+//		examService.addExam(exam);
+//		
+//		// 生成考试历史
+//		ExamHistory history = new ExamHistory();
+//		history.setExamId(exam.getExamId());
+//		history.setExamPaperId(exam.getExamPaperId());
+//		history.setContent(examPaper.getContent());
+//		history.setDuration(examPaper.getDuration());
+//		//默认创建的记录都是审核通过的
+//		history.setApproved(1);
+//		//String seriNo = sdf.format(now) + StringUtil.format(user.getUserId(), 3) + StringUtil.format(exam.getExamId(), 3);
+//		//history.setSeriNo(seriNo);
+//		history.setVerifyTime(new Date());
+//		history.setUserId(student.getUserId());
+//		examService.addUserExamHist(history);
+//		
+//		message.setGeneratedId(examPaper.getId());
 		
 		return message;
 	}

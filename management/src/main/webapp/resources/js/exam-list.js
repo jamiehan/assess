@@ -176,20 +176,20 @@ var exams = {
 		},
 		bindGeneratePlan : function bindGeneratePlan(){
 			$(".generate-plan-btn").click(function(){
-
+				
 				$.ajax({
 					headers : {
 						'Accept' : 'application/json',
 						'Content-Type' : 'application/json'
 					},
-					type : "GET",
-					url : util.getCurrentRole() + "/exam/generate-plan/" + $(this).data("id"),
+					type : "POST",
+					url : util.getCurrentRole() + "/trainingplan-add/" + $(this).data("id"),
 					success : function(message, tst, jqXHR) {
 						if (!util.checkSessionOut(jqXHR))
 							return false;
 						if (message.result == "success") {
 							util.success("操作成功!", function(){
-								window.location.reload();
+								window.location.href = util.getCurrentRole() + "/exampaper/exampaper-list/0";
 							});
 						} else {
 							util.error("操作失败请稍后尝试:" + message.result);
@@ -202,9 +202,6 @@ var exams = {
 				});
 
 				return false;
-
-
-
 			});
 		}
 }
