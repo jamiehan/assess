@@ -453,7 +453,7 @@ request.setAttribute("leftMenuId",list[3]);
 								</div>
 							</div>
 							<div class="modal fade" id="assess-report" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-								<div class="modal-dialog">
+								<div class="modal-dialog" style="width: 1200px">
 									<div class="modal-content">
 										<div class="modal-header">
 											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
