@@ -41,13 +41,27 @@ $(function() {
 					keyboard : true
 				});
 				
-				for (var i = 0; i < message.length; i++) {
+				// 设置基本信息
+				$("#assess-info-name", parent.document).html("aaa")
+				
+				assessHistories = message.assessHistories
+				for (var i = 0; i < assessHistories.length; i++) {
+					$("#assess-info-table", parent.document).append("<tr>" +
+							"<td>" + assessHistories[i].time + "</td>" +
+							"<td>" + assessHistories[i].teacher + "</td>" +
+							"<td>" + assessHistories[i].color + "</td>" +
+					"</tr>")
+				}
+				
+				// 生成图表
+				assessDatas = message.assessDatas
+				for (var i = 0; i < assessDatas.length; i++) {
 					$("#assess-report-chart-box", parent.document).append("<div id='assessreport-chart-" + i + "' style='width: 400px;height:300px;'></div>")
 					
 					var myChart = echarts.init(parent.document.getElementById('assessreport-chart-' + i));
 
 			        // 指定图表的配置项和数据
-					var option = message[i];
+					var option = assessDatas[i];
 
 			        // 使用刚指定的配置项和数据显示图表。
 			        myChart.setOption(option);

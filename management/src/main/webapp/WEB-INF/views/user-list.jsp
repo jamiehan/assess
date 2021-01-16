@@ -462,6 +462,19 @@ request.setAttribute("leftMenuId",list[3]);
 											<h6 class="modal-title" id="myModalLabel">评估报告</h6>
 										</div>
 										
+										<table id="assess-info-table">
+											<tr>
+												<td>儿童姓名：</td>
+												<td id="assess-info-name">小王三</td>
+											</tr>
+											<tr>
+												<td>评估日期</td>
+												<td>评估者</td>
+												<td>评估颜色</td>
+											</tr>
+											
+										</table>
+										
 										<div class="modal-body" id="assess-report-chart-box"></div>
 										
 										<div class="modal-footer">

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.examstack.common.domain.exam.AnswerSheet;
 import com.examstack.common.domain.exam.AnswerSheetItem;
 import com.examstack.common.domain.exam.AssessData;
+import com.examstack.common.domain.exam.AssessReportData;
 import com.examstack.common.domain.exam.Exam;
 import com.examstack.common.domain.exam.ExamHistory;
 import com.examstack.common.domain.exam.Message;
@@ -384,12 +385,36 @@ public class ExamActionTeacher {
 	 * 
 	 */
 	@RequestMapping(value ={"/admin/exam/{studentId}/assessdatas", "/teacher/exam/{studentId}/assessdatas"}, method = RequestMethod.GET)
-	public @ResponseBody List<AssessData> getAssessData(@PathVariable("studentId") int studentId) {
+	public @ResponseBody AssessReportData getAssessData(@PathVariable("studentId") int studentId) {
+		AssessReportData assessReportData = new AssessReportData();
+		
+		// 获取学生信息
+		List<User> studentList = userService.getUserListByUserId(studentId);
+		User student = studentList.get(0);
+		
+		assessReportData.setStudentName(student.getUserName());
+		
+		// 获取学生的评估历史记录
+		List<AnswerSheet> answerSheetList = examService.getAnswerSheetListByStudentId(studentId);
+		
+		List<Map<String, String>> assessHistories = new ArrayList<Map<String, String>>();
+		Map<String, String> assessHistory = null;
+		
+		// TODO 使用数据库数据
+		for (AnswerSheet answerSheet : answerSheetList) {
+			assessHistory = new HashMap<String, String>();
+			assessHistory.put("time", "2020-01-01");
+			assessHistory.put("teacher", "王老师");
+			assessHistory.put("color", "#001122");
+			
+			assessHistories.add(assessHistory);
+		}
+		assessReportData.setAssessHistories(assessHistories);
+		
+		// 评估数据
 		List<AssessData> assessDatas = new ArrayList<AssessData>();
 		
 		// 1. 获取一个学生当前的评估轮次
-		List<User> studentList = userService.getUserListByUserId(studentId);
-		User student = studentList.get(0);
 		int times = student.getTimes();
 		
 		// 2. 获取所有的评估领域
@@ -446,8 +471,10 @@ public class ExamActionTeacher {
 			assessDatas.add(assessData);
 		}
 		
+		assessReportData.setAssessDatas(assessDatas);
+		
 		// 返回评估报告需要的图形数据
-		return assessDatas;
+		return assessReportData;
 //		return "assess-report";
 	}
 }
