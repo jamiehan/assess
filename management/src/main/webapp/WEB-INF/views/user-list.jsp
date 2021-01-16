@@ -462,10 +462,11 @@ request.setAttribute("leftMenuId",list[3]);
 											<h6 class="modal-title" id="myModalLabel">评估报告</h6>
 										</div>
 										
-										<table id="assess-info-table">
+										<table id="assess-info-table" border="1">
 											<tr>
 												<td>儿童姓名：</td>
-												<td id="assess-info-name">小王三</td>
+												<td id="assess-info-name" colspan="2">小王三</td>
+												<td></td>
 											</tr>
 											<tr>
 												<td>评估日期</td>

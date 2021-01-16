@@ -49,7 +49,7 @@ $(function() {
 					$("#assess-info-table", parent.document).append("<tr>" +
 							"<td>" + assessHistories[i].time + "</td>" +
 							"<td>" + assessHistories[i].teacher + "</td>" +
-							"<td>" + assessHistories[i].color + "</td>" +
+							"<td bgcolor='" + assessHistories[i].color + "'></td>" +
 					"</tr>")
 				}
 				
