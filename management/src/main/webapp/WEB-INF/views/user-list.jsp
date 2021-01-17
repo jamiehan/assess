@@ -459,7 +459,7 @@ request.setAttribute("leftMenuId",list[3]);
 											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 												&times;
 											</button>
-											<h6 class="modal-title" id="myModalLabel">评估报告</h6>
+											<h6 class="modal-title" id="myModalLabel">初心儿童行为矫正中心评估表</h6>
 										</div>
 										
 										<table id="assess-info-table" border="1">
@@ -475,8 +475,10 @@ request.setAttribute("leftMenuId",list[3]);
 											</tr>
 											
 										</table>
+										<table>
+										<tr class="modal-body" id="assess-report-chart-box"></tr>
+										</table>
 										
-										<div class="modal-body" id="assess-report-chart-box"></div>
 										
 										<div class="modal-footer">
 											<button type="button" class="btn btn-default" data-dismiss="modal">
@@ -604,7 +606,7 @@ request.setAttribute("leftMenuId",list[3]);
 		<script type="text/javascript" src="resources/js/update-user.js"></script>
 		<script type="text/javascript" src="resources/js/uploadify/jquery.uploadify3.1Fixed.js"></script>
 		<script type="text/javascript" src="resources/js/user-import.js"></script>
-		<script type="text/javascript" src="resources/js/echarts-all.js"></script>
+		<script type="text/javascript" src="resources/js/echarts.min.js"></script>
 		<script>
 			$(function() {
 				/* $(".left-menu-item-name").hide(); */

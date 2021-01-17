@@ -430,6 +430,9 @@ public class ExamActionTeacher {
 			
 			// 一个领域的图形数据
 			assessData = new AssessData();
+			
+			// 设置图形title
+			assessData.addTitleData(pointCode, knowledgePoint.getPointName());
 						
 			// 2. 获取指定领域的题目总数
 			int questionNum = questionService.getQuestionNumByKnowlegePointId(pointId);
@@ -465,7 +468,7 @@ public class ExamActionTeacher {
 				assessData.addSeriesData(score, i);
 				
 				// 生成图形数据的legend
-				assessData.addLegendData(i);
+//				assessData.addLegendData(i);
 			}
 			
 			assessDatas.add(assessData);

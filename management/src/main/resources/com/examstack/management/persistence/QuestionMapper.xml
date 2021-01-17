@@ -85,7 +85,7 @@
 	</select>
 	
 	<select id="getKnowledgePointList" resultType="com.examstack.common.domain.question.KnowledgePoint">
-		select point_id pointId, point_code pointCode
+		select point_id pointId, point_code pointCode, point_name pointName
 		from et_knowledge_point order by point_code
 	</select>
 	
