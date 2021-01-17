@@ -123,7 +123,7 @@ request.setAttribute("leftMenuId",list[3]);
 					</div>
 					<div class="col-xs-10" id="right-content">
 						<div class="page-header">
-							<h1><i class="fa fa-file-text"></i> 修改试卷 </h1>
+							<h1><i class="fa fa-file-text"></i> 修改康复计划 </h1>
 						</div>
 						<div class="page-content">
 							<div class="def-bk" id="bk-exampaper">
@@ -146,7 +146,7 @@ request.setAttribute("leftMenuId",list[3]);
 												<span id="add-more-qt-to-paper"><i class="small-icon fa fa-plus-square" title="添加选项"></i><span>增加更多题目</span></span>
 											</div>
 											<div style="float: right;position: relative;top: -50px;">
-											<button class="btn btn-danger save-paper-btn"><i class="fa fa-save"></i>保存试卷</button>
+											<button class="btn btn-danger save-paper-btn"><i class="fa fa-save"></i>保存康复计划</button>
 											</div>
 										</div>
 									</div>
