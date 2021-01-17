@@ -27,7 +27,7 @@
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		
 		<!-- <property name="jdbcUrl"
-			value="jdbc:mysql://218.93.12.45:33306/examonline?useUnicode=true&amp;characterEncoding=UTF-8" />
+			value="jdbc:mysql://39.106.168.36:33306/examonline?useUnicode=true&amp;characterEncoding=UTF-8" />
 		<property name="user" value="examonline" />
 		<property name="password" value="examonline" /> -->
 		<property name="jdbcUrl"

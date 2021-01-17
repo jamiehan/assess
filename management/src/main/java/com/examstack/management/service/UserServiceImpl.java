@@ -41,6 +41,10 @@ public class UserServiceImpl implements UserService {
 			userMapper.insertUser(user);
 			userId = user.getUserId();
 			userMapper.grantUserRole(userId, roleMap.get(authority).getRoleId());
+			if(groupId == 0){
+				groupId = user.getGroupId();
+			}
+
 			if(user.getDepId() != 0 && user.getDepId() != -1)
 				userMapper.addUser2Dep(userId, user.getDepId());
 			if("ROLE_TEACHER".equals(authority)){

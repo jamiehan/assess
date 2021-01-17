@@ -359,7 +359,7 @@
 	</delete>
 
 	<select id="getQuestionByQuestionId" resultType="com.examstack.common.domain.question.Question">
-		select a.id,a.name,a.content,a.question_type_id,a.creator,a.answer,a.analysis,a.reference referenceName,a.keyword keyword,
+		select a.id,a.code,a.name,a.content,a.question_type_id,a.creator,a.answer,a.analysis,a.reference referenceName,a.keyword keyword,
 		a.examing_point examingPoint from et_question a
 		<where>
 			a.id = #{questionId}
