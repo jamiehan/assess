@@ -130,25 +130,28 @@ request.setAttribute("leftMenuId",list[3]);
 												<td>
 													<c:choose>
 														<c:when test="${item.approved == 0 }">
-															未审核
+															未开始
 														</c:when>
 														<c:when test="${item.approved == 1 }">
-															审核通过
+															评估中
 														</c:when>
 														<c:otherwise>
-															审核未通过
+															已完成
 														</c:otherwise>
 													</c:choose>
 												</td>
 												<td>
 													<c:choose>
 														<c:when test="${item.approved == 0 }">
-															<button class="approved-btn" data-id="${item.examId }">通过</button>
-															<button class="disapproved-btn" data-id="${item.examId }">不通过</button>
+															<button class="approved-btn" data-id="${item.examId }">开始评估</button>
+															<%--<button class="disapproved-btn" data-id="${item.examId }">不通过</button>--%>
 														</c:when>
-														<c:when test="${item.approved == 2 }">
+														<c:when test="${item.approved == 1 }">
+															<button class="approved-btn" data-id="${item.examId }">继续评估</button>
+														</c:when>
+														<%--<c:when test="${item.approved == 2 }">
 															<button class="delete-btn" data-id="${item.examId }">删除</button>
-														</c:when>
+														</c:when>--%>
 													</c:choose>
 												</td>
 												
