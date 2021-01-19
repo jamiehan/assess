@@ -444,25 +444,31 @@ public class ExamActionTeacher {
 			assessData.addYAxisData(pointCode, questionNum);
 			
 			// 3. 获取指定领域每一轮的评估成绩
-			Map<Integer, Integer> currentScore = new HashMap<Integer, Integer>();
+			Map<String, Integer> currentScore = new HashMap<String, Integer>();
 			List<AnswerSheetItem> answerSheetItems = null;
 			List<Integer> score = null;
+			Map<String, Integer> tempScore = null;
 			for (int i = 1; i <= times; i++) {
 				// 根据学生ID和评估轮次获取学生成绩
 				answerSheetItems = examService.getAnswerSheetItemListByStudentIdAndTimes(studentId, i, pointCode);
 				
-				score = new ArrayList<Integer>();
-				for (int k = 0; k < questionNum; k++) {
-					score.add(0);
-				}
+				tempScore = new HashMap<String, Integer>();
 				for (AnswerSheetItem answerSheetItem : answerSheetItems) {
 					if (currentScore.get(answerSheetItem.getQuestionCode()) != null) {
-						score.set(answerSheetItem.getQuestionCode() - 1, answerSheetItem.getScore() - currentScore.get(answerSheetItem.getQuestionCode()));
+//						score.add(currentScore.get(answerSheetItem.getQuestionCode()));
+						
+						tempScore.put(answerSheetItem.getQuestionCode(), (answerSheetItem.getScore() - currentScore.get(answerSheetItem.getQuestionCode())));
 					} else {
-						score.set(answerSheetItem.getQuestionCode() - 1, answerSheetItem.getScore());
+//						score.add(answerSheetItem.getScore());
+						tempScore.put(answerSheetItem.getQuestionCode(), answerSheetItem.getScore());
 					}
 					
 					currentScore.put(answerSheetItem.getQuestionCode(), answerSheetItem.getScore());
+				}
+				
+				score = new ArrayList<Integer>();
+				for (int k = 1; k < questionNum + 1; k++) {
+					score.add(tempScore.get(pointCode + k));
 				}
 				
 				assessData.addSeriesData(score, i);

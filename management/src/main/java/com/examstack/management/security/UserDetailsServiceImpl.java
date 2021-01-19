@@ -33,6 +33,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		userInfo = new UserInfo(username,user.getPassword(),true,true,true,true,authorities);
 		userInfo.setUserid(user.getUserId());
 		userInfo.setRolesName(user.getRoles());
+		userInfo.setTrueName(user.getTrueName());
 		return userInfo;
 	}
 	

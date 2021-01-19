@@ -181,4 +181,6 @@ public interface ExamService {
 	 * 添加考试历史
 	 */
 	public void addUserExamHist(ExamHistory history);
+
+	public AnswerSheet getAnswerSheetByExamHistoryId(int histId);
 }

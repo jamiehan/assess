@@ -170,5 +170,7 @@ public interface ExamMapper {
 	 * 根据学生ID和评估轮次，获取答题成绩
 	 */
 	public List<AnswerSheetItem> getAnswerSheetItemListByStudentIdAndTimes(@Param("studentId") int studentId, @Param("times") int times, @Param("pointCode") String pointCode);
+
+	public AnswerSheet getAnswerSheetByExamHistoryId(int histId);
 	
 }
