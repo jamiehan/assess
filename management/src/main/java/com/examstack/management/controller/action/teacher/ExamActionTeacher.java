@@ -1,6 +1,7 @@
 package com.examstack.management.controller.action.teacher;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -46,7 +47,7 @@ public class ExamActionTeacher {
 	@Autowired
 	private QuestionService questionService;
 	
-	private DateFormat df1 = DateFormat.getDateInstance();
+	private DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd");
 	
 	/**
 	 * 添加考试
