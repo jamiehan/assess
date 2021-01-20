@@ -25,7 +25,9 @@ public class Exam implements Serializable {
 	private String creatorId;
 	//准考证号
 	private String seriNo;
-	//0 未审核, 1 审核通过, 2 审核不通过
+	private int userId;
+
+	//0 未开始, 1 评估中, 2 已完成，3 已生成康复计划
 	private int approved;
 	public String getSeriNo() {
 		return seriNo;
@@ -111,5 +113,12 @@ public class Exam implements Serializable {
 	public void setCreator(int creator) {
 		this.creator = creator;
 	}
-	
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 }

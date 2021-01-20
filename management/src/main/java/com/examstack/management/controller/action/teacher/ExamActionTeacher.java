@@ -9,6 +9,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.examstack.common.domain.exam.*;
+import com.examstack.common.util.StringUtil;
+import com.examstack.management.service.ExamPaperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -18,13 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.examstack.common.domain.exam.AnswerSheet;
-import com.examstack.common.domain.exam.AnswerSheetItem;
-import com.examstack.common.domain.exam.AssessData;
-import com.examstack.common.domain.exam.AssessReportData;
-import com.examstack.common.domain.exam.Exam;
-import com.examstack.common.domain.exam.ExamHistory;
-import com.examstack.common.domain.exam.Message;
 import com.examstack.common.domain.question.KnowledgePoint;
 import com.examstack.common.domain.user.User;
 import com.examstack.management.security.UserInfo;
@@ -43,6 +39,9 @@ public class ExamActionTeacher {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private ExamPaperService examPaperService;
 	
 	@Autowired
 	private QuestionService questionService;
@@ -65,6 +64,23 @@ public class ExamActionTeacher {
 			exam.setCreatorId(userInfo.getUsername());
 			exam.setApproved(0);
 			examService.addExam(exam);
+
+			ExamHistory examHistory = new ExamHistory();
+			examHistory.setUserId(exam.getUserId());
+			examHistory.setExamId(exam.getExamId());
+			examHistory.setExamPaperId(exam.getExamPaperId());
+			Date now = new Date();
+			examHistory.setCreateTime(now);
+			SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd");
+			String seriNo = sdf.format(now) + StringUtil.format(exam.getUserId(), 3) + StringUtil.format(exam.getExamId(), 3);
+			examHistory.setSeriNo(seriNo);
+			examHistory.setApproved(0);
+			ExamPaper examPaper = examPaperService.getExamPaperById(exam.getExamPaperId());
+			examHistory.setContent(examPaper.getContent());
+			examHistory.setDuration(examPaper.getDuration());
+
+			//生成考试历史
+			examService.addUserExamHist(examHistory);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

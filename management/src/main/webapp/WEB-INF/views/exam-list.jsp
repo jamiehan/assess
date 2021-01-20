@@ -173,7 +173,7 @@
 																<button class="start-assess-btn" data-id="${item.examId}">开始评估</button>
 															</c:when>
 															<c:when test="${item.approved == 1 }">
-																<button class="start-assess-btn" data-id="${item.examId}">继续评估</button>
+																<button class="continue-assess-btn" data-id="${item.examId}">继续评估</button>
 															</c:when>
 															<%-- examType(1:评估 2：康复计划训练)--%>
 															<c:when test="${item.examType == 1 && item.approved == 2 }">

@@ -163,7 +163,7 @@ request.setAttribute("leftMenuId",list[3]);
 										<div style="padding-left:30px;">
 											<!-- <button class="btn btn-danger"><i class="fa fa-save"></i>保存试卷</button> -->
 										</div>
-										<div style="text-align: center"><button id="assess-commit">提交评估</button></div>
+										<div style="text-align: center"><button id="assess-save">保存评估</button>&nbsp;&nbsp;<button id="assess-commit">提交评估</button></div>
 									</div>
 								</div>
 

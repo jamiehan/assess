@@ -27,7 +27,10 @@ var add_exam={
 					data.examPaperId = $(".add-update-exam-paper select").val();
 					data.effTime = timestampfrom;
 					data.expTime = timestampto;
-					
+                    // data.userId = $(".user-list select").val();
+                    data.userId = $("#userId").val();
+                    console.log("$(\"#userId\").val()" + $("#userId").val());
+					alert($("#userId").val());
 					var groups = $(".add-update-group-list :checked");
 					var groupIds = new Array();
 					groups.each(function(){

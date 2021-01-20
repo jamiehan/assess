@@ -138,7 +138,8 @@
 		select a.user_id as
 		userId,a.user_name as userName,a.true_name as trueName,
 		a.`password` as
-		`password`,a.email as email,a.phone_num as phoneNum, a.times as times, a.create_time as createTime 
+		`password`,a.email as email,a.phone_num as phoneNum, a.times as times, a.create_time as createTime,
+		a.enabled as enabled
 		from et_user a
 		where a.user_id=#{userId}
 	</select>

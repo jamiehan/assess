@@ -290,6 +290,75 @@ public class ExamPageTeacher {
     }
 
 	/**
+	 * 继续评估
+	 * @param model
+	 * @param request
+	 * @param examId
+	 * @return
+	 */
+	@RequestMapping(value = "/teacher/exam/continue-assess/{examId}", method = RequestMethod.GET)
+	private String continueAssessPage(Model model, HttpServletRequest request, @PathVariable int examId) {
+
+		Page<ExamHistory> pageModel = new Page<ExamHistory>();
+		pageModel.setPageNo(1);
+		pageModel.setPageSize(1);
+		List<ExamHistory> history = examService.getUserExamHistListByExamId(examId,null,null,0,pageModel);
+		if( history == null || history.size() == 0 ) {
+			return null;
+		}
+		int examPaperId = history.get(0).getExamPaperId();
+		String strUrl = "http://" + request.getServerName() // 服务器地址
+				+ ":" + request.getServerPort() + "/";
+
+		ExamPaper examPaper = examPaperService.getExamPaperById(examPaperId);
+		StringBuilder sb = new StringBuilder();
+		if(examPaper.getContent() != null && !examPaper.getContent().equals("")){
+			Gson gson = new Gson();
+			String content = examPaper.getContent();
+			List<QuestionQueryResult> questionList = gson.fromJson(content, new TypeToken<List<QuestionQueryResult>>(){}.getType());
+
+			for(QuestionQueryResult question : questionList){
+				QuestionAdapter adapter = new QuestionAdapter(question,strUrl);
+				sb.append(adapter.getStringFromXML());
+			}
+		}
+
+		model.addAttribute("htmlStr", sb);
+		model.addAttribute("examPaperId", examPaperId);
+		model.addAttribute("examHistoryId", history.get(0).getHistId());
+		model.addAttribute("examPaperName", examPaper.getName());
+		model.addAttribute("examId", history.get(0).getExamId());
+		model.addAttribute("userName", history.get(0).getUserName());
+		model.addAttribute("userId", history.get(0).getUserId());
+		return "assess-content";
+	}
+
+	/**
+	 * 保存评估
+	 */
+	@RequestMapping(value = "/teacher/exam/saveassess", method = RequestMethod.POST)
+	public @ResponseBody Message saveAssess(@RequestBody AnswerSheet answerSheet){
+
+		List<AnswerSheetItem> itemList = answerSheet.getAnswerSheetItems();
+
+		//评估状态（0：未开始，1：评估中，2：已完成，3：已生成康复计划）
+		int approved = 1;
+
+		Gson gson = new Gson();
+		//更新评估历史表
+		examService.updateUserExamHist(answerSheet, gson.toJson(answerSheet),approved);
+		//更新评估表状态
+		examService.changeExamStatus(answerSheet.getExamId(), approved);
+
+		//TODO 保存到答题卡表
+
+
+		//TODO 保存到答题卡明细表
+
+		return new Message();
+	}
+
+	/**
 	 * 提交评估
 	 */
 	@RequestMapping(value = "/teacher/exam/assesscommit", method = RequestMethod.POST)
@@ -302,8 +371,8 @@ public class ExamPageTeacher {
 //		data.as = answerSheet;
 		List<AnswerSheetItem> itemList = answerSheet.getAnswerSheetItems();
 
-//		//全部是客观题，则状态更改为已阅卷
-		int approved = 3;
+		////评估状态（0：未开始，1：评估中，2：已完成，3：已生成康复计划）
+		int approved = 2;
 //		for(AnswerSheetItem item : itemList){
 //			if(item.getQuestionTypeId() != 1 && item.getQuestionTypeId() != 2 && item.getQuestionTypeId() != 3){
 //				approved = 2;
@@ -311,7 +380,10 @@ public class ExamPageTeacher {
 //			}
 //		}
 		Gson gson = new Gson();
+		//更新评估历史表
 		examService.updateUserExamHist(answerSheet, gson.toJson(answerSheet),approved);
+		//更新评估表状态
+		examService.changeExamStatus(answerSheet.getExamId(), approved);
 
 		// 获取考试历史
 		ExamHistory examHistory = examService.getUserExamHistListByHistId(answerSheet.getExamHistroyId());

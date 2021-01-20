@@ -127,7 +127,7 @@ request.setAttribute("leftMenuId",list[3]);
 									</select>
 									<span class="form-message"></span>
 								</div>
-								<div class="form-line add-update-group-list">
+								<div class="form-line user-list">
 									<span class="form-label"><span class="warning-label">*</span>被评估人员：</span>
 									<%--<select id="field-switch" class="form-control">--%>
 									<select class="df-input-narrow" id="userId">
