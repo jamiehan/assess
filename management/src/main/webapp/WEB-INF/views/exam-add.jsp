@@ -108,11 +108,11 @@ request.setAttribute("leftMenuId",list[3]);
 									<input id="exam-name" type="text" class="df-input-narrow">
 									<span class="form-message"></span>
 								</div>
-								<div class="form-line add-update-exam-type" hidden>
-									<span class="form-label"><span class="warning-label">*</span>考试类型：</span>
+								<div class="form-line add-update-exam-type">
+									<span class="form-label"><span class="warning-label">*</span>类型：</span>
 									<select class="df-input-narrow">
-										<option value="2">公开考试</option>
-										<option value="1">私有考试</option>
+										<option value="1">评估</option>
+										<option value="2">康复计划</option>
 									</select>
 									<span class="form-message"></span>
 								</div>

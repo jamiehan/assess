@@ -391,6 +391,16 @@ public class ExamPageTeacher {
 		// 获取学生
 		List<User> users = userService.getUserListByUserId(examHistory.getUserId());
 		User student = users.get(0);
+
+		Exam exam = examService.getExamById(answerSheet.getExamId());
+		//评估类型（1：评估 2：康复计划）
+		if( exam.getExamType() == 1 ) {
+			//评估轮次+1
+			int times = student.getTimes();
+			student.setTimes( times + 1 );
+			//更新评估轮次
+			userService.updateUser(student,null);
+		}
 		
 		// 获取答题卡
 		AnswerSheet dbAnswerSheet = examService.getAnswerSheetByExamHistoryId(examHistory.getHistId());

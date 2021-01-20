@@ -99,10 +99,10 @@ public class UserServiceImpl implements UserService {
 		try {
 			userMapper.updateUser(user, oldPassword);
 			
-			if(user.getDepId() != -1){
-				userMapper.deleteUser2Dep(user.getUserId());
-				userMapper.addUser2Dep(user.getUserId(), user.getDepId());
-			}	
+//			if(user.getDepId() != -1){
+//				userMapper.deleteUser2Dep(user.getUserId());
+//				userMapper.addUser2Dep(user.getUserId(), user.getDepId());
+//			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			throw new RuntimeException(e);

@@ -107,6 +107,7 @@
 			<if test="user.fieldId != 0">field_id=#{user.fieldId},</if>
 			<if test="user.company != null">company=#{user.company},</if>
 			<if test="user.department != null">department=#{user.department},</if>
+			<if test="user.times neq 0">times=#{user.times},</if>
 			user_id=#{user.userId}
 		</set>
 		<where>
