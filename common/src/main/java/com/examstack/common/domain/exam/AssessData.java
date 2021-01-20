@@ -61,6 +61,16 @@ public class AssessData implements Serializable {
 		series = new ArrayList<Map<String, Object>>();
 	}
 	
+	public static Map<Integer, String> timeColor = new HashMap<Integer, String>();
+	static {
+		timeColor.put(1, "red");
+		timeColor.put(2, "violet");
+		timeColor.put(3, "blue");
+		timeColor.put(4, "green");
+		timeColor.put(5, "orange");
+		timeColor.put(6, "yellow");
+	}
+	
 	// add title data
 	public void addTitleData(String pointCode, String pointName) {
 		title = new HashMap<String, String>();
@@ -116,6 +126,7 @@ public class AssessData implements Serializable {
 		serie.put("stack", "总量");
 		serie.put("data", data);
 		serie.put("name", "第" + times + "次评估");
+		serie.put("color", timeColor.get(times));
 		
 		series.add(serie);
 	}

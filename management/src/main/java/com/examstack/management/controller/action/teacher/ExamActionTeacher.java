@@ -1,5 +1,6 @@
 package com.examstack.management.controller.action.teacher;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -44,6 +45,8 @@ public class ExamActionTeacher {
 	
 	@Autowired
 	private QuestionService questionService;
+	
+	private DateFormat df1 = DateFormat.getDateInstance();
 	
 	/**
 	 * 添加考试
@@ -403,9 +406,9 @@ public class ExamActionTeacher {
 		// TODO 使用数据库数据
 		for (AnswerSheet answerSheet : answerSheetList) {
 			assessHistory = new HashMap<String, String>();
-			assessHistory.put("time", "2020-01-01");
-			assessHistory.put("teacher", "王老师");
-			assessHistory.put("color", "#001122");
+			assessHistory.put("time", df1.format(answerSheet.getCreateTime()));
+			assessHistory.put("teacher", answerSheet.getCreatorName());
+			assessHistory.put("color", AssessData.timeColor.get(answerSheet.getTimes()));
 			
 			assessHistories.add(assessHistory);
 		}

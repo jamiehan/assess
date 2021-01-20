@@ -268,6 +268,7 @@ public class ExamPaperActionTeacher {
 		examPaper.setField_id(1); // TODO 
 		examPaper.setPass_point(100);
 		examPaper.setTotal_point(100);
+		examPaper.setPaper_type("2"); // 康复计划
 		
 		// 3. 获取当前轮次的评估成绩
 		List<AnswerSheetItem> answerSheetItems = examService.getAnswerSheetItemListByStudentIdAndTimes(student.getUserId(), times, null);
