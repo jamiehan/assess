@@ -298,6 +298,7 @@ public class ExamPaperActionTeacher {
 		exam.setCreatorId(userInfo.getUsername());
 		exam.setApproved(0);
 		exam.setExamPaperId(examPaper.getId());
+		exam.setExamType(2); // 康复计划
 		
 		examService.addExam(exam);
 		

@@ -312,6 +312,10 @@ public class ExamServiceImpl implements ExamService {
 	public AnswerSheet getAnswerSheetByExamHistoryId(int histId) {
 		return examMapper.getAnswerSheetByExamHistoryId(histId);
 	}
+	@Override
+	public AnswerSheet getAnswerSheetByStudentIdAndTimes(int userId, int times) {
+		return examMapper.getAnswerSheetByStudentIdAndTimes(userId, times);
+	}
 	
 }
 

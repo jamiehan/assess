@@ -131,6 +131,12 @@
 		from et_answer_sheet where exam_history_id=#{histId}
 	</select>
 	
+	<select id="getAnswerSheetByStudentIdAndTimes" resultType="com.examstack.common.domain.exam.AnswerSheet">
+		select id answerSheetId, exam_history_id examHistroyId,exam_id examId,exam_paper_id examPaperId,user_id userId, times times, sum_score sumScore, create_time createTime, creator_id creatorId, modify_time modifyTime, modifier_id modifierId
+		from et_answer_sheet 
+		where user_id=#{studentId} and times = #{times}
+	</select>
+	
 	<select id="getAnswerSheetListByStudentId" resultType="com.examstack.common.domain.exam.AnswerSheet">
 		select id answerSheetId, exam_history_id examHistroyId,exam_id examId,exam_paper_id examPaperId,user_id userId, times times, sum_score sumScore, create_time createTime, creator_id creatorId, modify_time modifyTime, modifier_id modifierId, creator_name creatorName
 		from et_answer_sheet a 

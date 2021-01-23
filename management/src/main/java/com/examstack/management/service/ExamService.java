@@ -183,4 +183,6 @@ public interface ExamService {
 	public void addUserExamHist(ExamHistory history);
 
 	public AnswerSheet getAnswerSheetByExamHistoryId(int histId);
+
+	public AnswerSheet getAnswerSheetByStudentIdAndTimes(int userId, int times);
 }

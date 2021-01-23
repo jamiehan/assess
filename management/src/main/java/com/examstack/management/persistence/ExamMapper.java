@@ -172,5 +172,7 @@ public interface ExamMapper {
 	public List<AnswerSheetItem> getAnswerSheetItemListByStudentIdAndTimes(@Param("studentId") int studentId, @Param("times") int times, @Param("pointCode") String pointCode);
 
 	public AnswerSheet getAnswerSheetByExamHistoryId(int histId);
+
+	public AnswerSheet getAnswerSheetByStudentIdAndTimes(@Param("studentId") int studentId, @Param("times") int times);
 	
 }

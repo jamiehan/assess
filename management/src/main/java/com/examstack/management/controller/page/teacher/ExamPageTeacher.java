@@ -404,7 +404,13 @@ public class ExamPageTeacher {
 		}
 		
 		// 获取答题卡
-		AnswerSheet dbAnswerSheet = examService.getAnswerSheetByExamHistoryId(examHistory.getHistId());
+		AnswerSheet dbAnswerSheet = null;
+		if (exam.getExamType() == 2) { // 康复计划，获取本轮次的评估答题卡
+			dbAnswerSheet = examService.getAnswerSheetByStudentIdAndTimes(student.getUserId(), student.getTimes());
+		} else if (exam.getExamType() == 1){ // 评估
+			dbAnswerSheet = examService.getAnswerSheetByExamHistoryId(examHistory.getHistId());
+		}
+		
 		if (dbAnswerSheet != null) {
 			answerSheet.setAnswerSheetId(dbAnswerSheet.getAnswerSheetId());
 //			examService.updateAnswerSheet(answerSheet);
