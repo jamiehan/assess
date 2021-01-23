@@ -1,5 +1,6 @@
 package com.examstack.management.controller.page.teacher;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -412,6 +413,8 @@ public class ExamPageTeacher {
 			answerSheet.setCreatorName(userInfo.getTrueName());
 			
 			answerSheet.setTimes(student.getTimes());
+			
+			answerSheet.setCreateTime(new Date());
 			
 			examService.addAnswerSheet(answerSheet);
 		}
