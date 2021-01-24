@@ -241,10 +241,12 @@ request.setAttribute("leftMenuId",list[3]);
 										<tr>
 											<!-- <td></td> -->
 											<td>ID</td>
+											<td class="question-code-td" style="width:120px">编号</td>
 											<td class="question-name-td" style="width:240px">题目名称</td>
 									<%--		<td style="width:60px">类型</td>
 											<td>专业</td>--%>
 											<td>评估领域</td>
+											<td>排序</td>
 											<td>创建人</td>
 											<td style="width:90px;">操作</td>
 										</tr>
@@ -256,6 +258,7 @@ request.setAttribute("leftMenuId",list[3]);
 												<td style="display:none;">
 												<input type="checkbox" value="${items.id }">
 												</td><td>${items.id }</td>
+												<td>${items.code }</td>
 												<td>
 													<a href="<%=list[1]%>/question/question-preview/${items.id }" target="_blank" title="预览">${items.name }</a>
 														<div class="question-tags">
@@ -269,6 +272,7 @@ request.setAttribute("leftMenuId",list[3]);
 												<%--<td>${items.questionTypeName }</td>
 												<td>${items.fieldName }</td>--%>
 												<td>${items.pointName }</td>
+												<td>${items.sort }</td>
 												<td>${items.creator }</td> 
 												<td>
 													<c:choose>

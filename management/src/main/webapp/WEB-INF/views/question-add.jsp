@@ -190,6 +190,7 @@ request.setAttribute("leftMenuId",list[3]);
 									<input type="text" class="df-input-narrow"><span class="form-message"></span>
 									<br>
 								</div>
+
 								<div class="form-line question-content">
 									<span class="form-label"><span class="warning-label">*</span>任务目标：</span>
 									<textarea class="add-question-ta"></textarea>									
@@ -220,6 +221,11 @@ request.setAttribute("leftMenuId",list[3]);
 									<span id="ques-add-opt"><i class="small-icon fa fa-plus-square" title="添加选项"></i></span>
 									<br>
 									<span class="form-message"></span>
+								</div>
+								<div class="form-line form-question-sort" style="display: block;">
+									<span class="form-label"><span class="warning-label">*</span>排序：</span>
+									<input type="text" class="df-input-narrow"><span class="form-message"></span>
+									<br>
 								</div>
 								<div class="form-line form-question-answer1 correct-answer" style="display: none;">
 									<span class="form-label"><span class="warning-label">*</span>正确答案：</span>

@@ -222,7 +222,7 @@ request.setAttribute("leftMenuId",list[3]);
 													<span class="form-message"></span>
 													<br>
 												</div>
-												<div class="form-line form-group" style="display: block;">
+												<div class="form-line form-group" style="display: none;">
 													<span class="form-label"><span class="warning-label">*</span>添加用户到：</span>
 													<input type="text" class="df-input-narrow" id="group-add" value="默认分组" disabled="disabled">
 													<span class="form-message"></span>

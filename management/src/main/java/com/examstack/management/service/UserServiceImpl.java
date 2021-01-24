@@ -54,8 +54,8 @@ public class UserServiceImpl implements UserService {
 				group.setUserId(userId);
 				userMapper.addGroup(group);
 			}if("ROLE_STUDENT".equals(authority)){
-				//只能给学员分配自己已经有的分组
-				List<Group> groupList = userMapper.getGroupListByUserId(user.getCreateBy(), null);
+				//添加学生到指定组
+				/*List<Group> groupList = userMapper.getGroupListByUserId(groupId, null);
 				boolean flag = false;
 				for(Group group : groupList){
 					if(group.getGroupId() == groupId){
@@ -68,8 +68,10 @@ public class UserServiceImpl implements UserService {
 						userMapper.addUserGroup(userId, groupId);
 					}else
 						throw new Exception("不能将学员分配给一个不存在的分组");
+				}*/
+				if( groupId != 0 ) {
+					userMapper.addUserGroup(userId, groupId);
 				}
-				
 			}
 			return userId;
 		} catch (Exception e) {

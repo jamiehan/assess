@@ -236,19 +236,19 @@ request.setAttribute("leftMenuId",list[3]);
 									<br>
 								</div>
 								<div class="form-line form-national-id" style="display: block;">
-									<span class="form-label"><span class="warning-label">*</span>身份证号：</span>
+									<span class="form-label"><span class="warning-label"></span>身份证号：</span>
 									<input type="text" class="df-input-narrow" id="national-id-add" maxlength="18">
 									<span class="form-message"></span>
 									<br>
 								</div>
 								<div class="form-line form-phone" style="display: block;">
-									<span class="form-label"><span class="warning-label">*</span>手机：</span>
+									<span class="form-label"><span class="warning-label"></span>手机：</span>
 									<input type="text" class="df-input-narrow" id="phone-add" maxlength="18">
 									<span class="form-message"></span>
 									<br>
 								</div>
 								<div class="form-line form-email" style="display: block;">
-									<span class="form-label"><span class="warning-label">*</span>邮箱：</span>
+									<span class="form-label"><span class="warning-label"></span>邮箱：</span>
 									<input type="text" class="df-input-narrow" id="email-add" maxlength="90">
 									<span class="form-message"></span>
 									<br>

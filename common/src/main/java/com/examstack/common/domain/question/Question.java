@@ -45,6 +45,7 @@ public class Question implements Serializable {
 	private String filePath;
 	private int test_num;
 	private int test_id;
+	private int sort;
 
 	public String getCode() {
 		return code;
@@ -52,6 +53,14 @@ public class Question implements Serializable {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	public int getSort() {
+		return sort;
+	}
+
+	public void setSort(int sort) {
+		this.sort = sort;
 	}
 
 	public List<QuestionTag> getTagList() {
