@@ -163,7 +163,7 @@
 	</update>
 	
 	<select id="getAnswerSheetItemListByAnswerSheetId" resultType="com.examstack.common.domain.exam.AnswerSheetItem">
-		select id answerSheetItemId, answer_sheet_id answerSheetId, point point,question_type_id questionTypeId,answer answer,question_id questionId,comment comment, student_id studentId, teacher_id teacherId, assess_time assessTime, knowlege_point_id knowlegePointId
+		select id answerSheetItemId, answer_sheet_id answerSheetId, point point,question_type_id questionTypeId,answer answer,question_id questionId,comment comment, student_id studentId, teacher_id teacherId, assess_time assessTime, knowlege_point_id knowlegePointId, score score
 		from et_answer_sheet_item a 
 		where a.answer_sheet_id=#{answerSheetId}
 	</select>

@@ -427,17 +427,18 @@ public class ExamPageTeacher {
 		
 		// 保存到答题卡明细表
 		List<AnswerSheetItem> dbItemList = null;
-		Map<Integer, Integer> itemIdMap = null;
+		Map<Integer, AnswerSheetItem> itemIdMap = null;
 		if (dbAnswerSheet != null) {
 			dbItemList = examService.getAnswerSheetItemListByAnswerSheetId(dbAnswerSheet.getAnswerSheetId());
-			itemIdMap = new HashMap<Integer, Integer>();
+			itemIdMap = new HashMap<Integer, AnswerSheetItem>();
 			
 			for (AnswerSheetItem item : dbItemList) {
-				itemIdMap.put(item.getQuestionId(), item.getAnswerSheetItemId());
+				itemIdMap.put(item.getQuestionId(), item);
 			}
 		}
 		
 		Question question = null;
+		AnswerSheetItem dbItem = null;
 		for (AnswerSheetItem item : itemList) {
 			switch (item.getAnswer()) {
 			case "A":
@@ -458,8 +459,12 @@ public class ExamPageTeacher {
 			}
 			
 			if (dbAnswerSheet != null) {
-				item.setAnswerSheetItemId(itemIdMap.get(item.getQuestionId()));
-				examService.updateAnswerSheetItem(item);
+				// 成绩只能增不能降
+				dbItem = itemIdMap.get(item.getQuestionId());
+				if (item.getScore() > dbItem.getScore()) {
+					item.setAnswerSheetItemId(dbItem.getAnswerSheetItemId());
+					examService.updateAnswerSheetItem(item);
+				}
 			} else {
 				item.setStudentId(student.getUserId());
 				
