@@ -218,7 +218,7 @@ request.setAttribute("leftMenuId",list[3]);
 													<br>
 												</div>
 												<div class="form-line form-knowledge-desc" style="display: block;">
-													<span class="form-label"><span class="warning-label">*</span>描述：</span>
+													<span class="form-label"><span class="warning-label"></span>描述：</span>
 													<input type="text" class="df-input-narrow" id="memo">
 													<span class="form-message"></span>
 													<br>

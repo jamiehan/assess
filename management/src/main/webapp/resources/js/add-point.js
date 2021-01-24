@@ -49,9 +49,9 @@ var add_point = {
         var check_c = this.checkCode();
 		var check_n = this.checkName();
 		// var check_e = this.checkEmail();
-		var check_m = this.checkMemo();
+		//var check_m = this.checkMemo();
 		
-		result = check_c && check_n && check_m;
+		result = check_c && check_n;
 		return result;
 	},
     checkCode : function checkCode() {
