@@ -154,7 +154,7 @@ request.setAttribute("leftMenuId",list[3]);
 											<tr>
 												
 												<td>${item.pointId }</td>
-												<td>ABCD</td>
+												<td>${item.pointCode }</td>
 												<td>${item.pointName }</td>
 												<%--<td>${item.fieldName }</td>--%>
 												<td>${item.memo }</td>
@@ -205,7 +205,7 @@ request.setAttribute("leftMenuId",list[3]);
 													<span class="form-message"></span>
 													<br>
 												</div>
-												<div class="form-line form-knowledge-name" style="display: block;">
+												<div class="form-line form-knowledge-code" style="display: block;">
 													<span class="form-label"><span class="warning-label">*</span>编码：</span>
 													<input type="text" class="df-input-narrow" id="code">
 													<span class="form-message"></span>
@@ -219,7 +219,7 @@ request.setAttribute("leftMenuId",list[3]);
 												</div>
 												<div class="form-line form-knowledge-desc" style="display: block;">
 													<span class="form-label"><span class="warning-label">*</span>描述：</span>
-													<input type="text" class="df-input-narrow" id="password">
+													<input type="text" class="df-input-narrow" id="memo">
 													<span class="form-message"></span>
 													<br>
 												</div>

@@ -69,7 +69,7 @@
 	</select>
 
 	<select id="getKnowledgePointByFieldId" resultType="com.examstack.common.domain.question.KnowledgePoint">
-		select a.point_id pointId,a.point_name pointName,a.field_id
+		select a.point_id pointId,a.point_name pointName,a.point_code pointCode,a.field_id
 		fieldId,a.memo,a.state,b.field_name fieldName,
 		case when exists(select
 		1 from et_question_2_point m where m.point_id=a.point_id) then 0
@@ -278,8 +278,8 @@
 	<insert id="addKnowledgePoint" parameterType="com.examstack.common.domain.question.KnowledgePoint"
 		useGeneratedKeys="true" keyProperty="pointId">
 		insert into
-		et_knowledge_point(point_name,memo,state,field_id) values (
-		#{pointName},#{memo},#{state},#{fieldId}
+		et_knowledge_point(point_name,memo,state,point_code,field_id) values (
+		#{pointName},#{memo},#{state},#{pointCode},#{fieldId}
 		)
 	</insert>
 

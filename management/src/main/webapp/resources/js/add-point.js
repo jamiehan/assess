@@ -16,6 +16,7 @@ var add_point = {
 			if (result) {
 				var data = new Object();
 				data.pointName = $("#name").val();
+                data.pointCode = $("#code").val();
 				data.memo = $("#memo").val();
 				data.fieldId = $("#job-type-input-select").val();
 				jQuery.ajax({
@@ -45,13 +46,25 @@ var add_point = {
 	verifyInput : function verifyInput() {
 		$(".form-message").empty();
 		var result = true;
+        var check_c = this.checkCode();
 		var check_n = this.checkName();
 		// var check_e = this.checkEmail();
 		var check_m = this.checkMemo();
 		
-		result = check_n && check_m;
+		result = check_c && check_n && check_m;
 		return result;
 	},
+    checkCode : function checkCode() {
+        var f_code = $(".form-knowledge-code input").val();
+        if (f_code == "") {
+            $(".form-knowledge-code .form-message").text("评估领域编码不能为空");
+            return false;
+        } else if (f_code.length > 2 || f_code.length < 1) {
+            $(".form-knowledge-code .form-message").text("请保持在1~2个字符以内");
+            return false;
+        }
+        return true;
+    },
 
 	checkName : function checkName() {
 		var f_name = $(".form-knowledge-name input").val();
