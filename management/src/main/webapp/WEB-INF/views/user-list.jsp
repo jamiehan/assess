@@ -393,7 +393,7 @@ request.setAttribute("leftMenuId",list[3]);
 											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 												&times;
 											</button>
-											<h6 class="modal-title" id="myModalLabel">修改用户账号</h6>
+											<h6 class="modal-title" id="myModalLabel">修改用户</h6>
 										</div>
 										<div class="modal-body">
 											<form id="user-update-form" style="margin-top:40px;"  action="secure/update-user">
@@ -416,19 +416,19 @@ request.setAttribute("leftMenuId",list[3]);
 													<br>
 												</div>
 												<div class="form-line form-national-id-u" style="display: block;">
-													<span class="form-label"><span class="warning-label">*</span>身份证号：</span>
+													<span class="form-label"><span class="warning-label"></span>身份证号：</span>
 													<input type="text" class="df-input-narrow" id="national-id-update" maxlength="18">
 													<span class="form-message"></span>
 													<br>
 												</div>
 												<div class="form-line form-phone-u" style="display: block;">
-													<span class="form-label"><span class="warning-label">*</span>手机：</span>
+													<span class="form-label"><span class="warning-label"></span>手机：</span>
 													<input type="text" class="df-input-narrow" id="phone-update" maxlength="20">
 													<span class="form-message"></span>
 													<br>
 												</div>
 												<div class="form-line form-email-u" style="display: block;">
-													<span class="form-label"><span class="warning-label">*</span>邮箱：</span>
+													<span class="form-label"><span class="warning-label"></span>邮箱：</span>
 													<input type="text" class="df-input-narrow" id="email-update" maxlength="90">
 													<span class="form-message"></span>
 													<br>
@@ -439,7 +439,7 @@ request.setAttribute("leftMenuId",list[3]);
 													<span class="form-message"></span>
 													<br>
 												</div>
-												<div class="form-line form-department-u" style="display: block;">
+												<div class="form-line form-department-u" style="display: none;">
 													<span class="form-label"><span class="warning-label"></span>部门：</span>
 													<select id="department-input-select-u" class="df-input-narrow">
 														<option value="-1">--请选择--</option>
@@ -447,6 +447,17 @@ request.setAttribute("leftMenuId",list[3]);
 															<option value="${item.depId }">${item.depName }</option>
 														</c:forEach>
 													</select>
+													<span class="form-message"></span>
+													<br>
+												</div>
+												<div class="form-line form-link" style="display: block;">
+													<span class="form-label"><span class="warning-label"></span>所属老师组：</span>
+													<select id="teacher-group-modify" class="df-input-narrow">
+														<c:forEach items="${groupList }" var="item">
+															<option value="${item.groupId }">${item.groupName }</option>
+														</c:forEach>
+													</select>
+
 													<span class="form-message"></span>
 													<br>
 												</div>

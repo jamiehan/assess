@@ -105,6 +105,10 @@ public class UserServiceImpl implements UserService {
 //				userMapper.deleteUser2Dep(user.getUserId());
 //				userMapper.addUser2Dep(user.getUserId(), user.getDepId());
 //			}
+			//更新用户所属组
+			if( user.getGroupId() != 0 ) {
+				userMapper.updateUserGroup(user.getUserId(), user.getGroupId());
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			throw new RuntimeException(e);

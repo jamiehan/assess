@@ -24,6 +24,13 @@ $(function() {
 				$(this).attr("selected","selected");
 			}
 		});
+        var groupId = $(this).data("groupId");
+        $("#user-update-form #teacher-group-modify option[value='-1']", parent.document).attr("selected", "selected");
+        $("#user-update-form #teacher-group-modify", parent.document).children("option").each(function(){
+            if($(this).val() == groupId){
+                $(this).attr("selected","selected");
+            }
+        });
 
 	});
 	

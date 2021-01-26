@@ -22,6 +22,7 @@ var update_account = {
 				data.nationalId = $(".form-national-id-u input").val();
 				data.depId = $("#department-input-select-u").val();
 				data.trueName = $(".form-truename-u input").val();
+                data.groupId = $("#teacher-group-modify").val();
 				jQuery.ajax({
 					headers : {
 						'Accept' : 'application/json',
@@ -90,12 +91,12 @@ var update_account = {
 		var result = true;
 		var check_u = this.checkUsername();
 		var check_t = this.checkTrueName();
-		var check_e = this.checkEmail();
+		var check_e = true;//this.checkEmail();
 		var check_p = /*this.checkPassword()*/true;
 		var check_com = /*this.checkCompany();*/true;
-		var check_id = this.checkNationalId();
-		var check_phone = this.checkPhoneNum();
-		var check_dep = this.checkDepartment();
+		var check_id = true;//this.checkNationalId();
+		var check_phone = true;//this.checkPhoneNum();
+		var check_dep = true;//this.checkDepartment();
 		result = check_u && check_t && check_e && check_p && check_com && check_id && check_phone && check_dep;
 		return result;
 	},

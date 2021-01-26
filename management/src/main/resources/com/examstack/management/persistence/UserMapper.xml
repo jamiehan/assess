@@ -173,6 +173,9 @@
 	<insert id="addUserGroup">
 		replace into et_user_2_group(user_id,group_id) values (#{userId},#{groupId})
 	</insert>
+	<update id="updateUserGroup">
+		update et_user_2_group set group_id=#{groupId} where user_id=#{userId}
+	</update>
 	<insert id="addUsers2Group">
 		replace into et_user_2_group(user_id,group_id) values 
 		<foreach collection="array" open="" close="" index="index" item="item" separator=",">
