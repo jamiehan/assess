@@ -487,7 +487,7 @@ request.setAttribute("leftMenuId",list[3]);
 										<table id="assess-info-table" border="1">
 											<tr>
 												<td>儿童姓名：</td>
-												<td id="assess-info-name" colspan="2">小王三</td>
+												<td id="assess-info-name" colspan="2"></td>
 												<td></td>
 											</tr>
 											<tr>
@@ -495,12 +495,13 @@ request.setAttribute("leftMenuId",list[3]);
 												<td>评估者</td>
 												<td>评估颜色</td>
 											</tr>
-											
-										</table>
-										<table>
-										<tr class="modal-body" id="assess-report-chart-box"></tr>
 										</table>
 										
+										<table id="assess-report-chart-table">
+										
+										<tr class="modal-body" id="assess-report-chart-box"></tr>
+										
+										</table>
 										
 										<div class="modal-footer">
 											<button type="button" class="btn btn-default" data-dismiss="modal">

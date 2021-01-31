@@ -49,7 +49,7 @@ $(function() {
 				});
 				
 				// 设置基本信息
-				$("#assess-info-name", parent.document).html("aaa")
+				$("#assess-info-name", parent.document).html(message.studentName)
 				
 				assessHistories = message.assessHistories
 				for (var i = 0; i < assessHistories.length; i++) {
@@ -59,68 +59,25 @@ $(function() {
 							"<td bgcolor='" + assessHistories[i].color + "'></td>" +
 					"</tr>")
 				}
-				console.log(echarts.version)
+				
 				// 生成图表
 				assessDatas = message.assessDatas
+				lineNum = 0
 				for (var i = 0; i < assessDatas.length; i++) {
-					$("#assess-report-chart-box", parent.document).append("<td><div id='assessreport-chart-" + i + "' style='width: 300px; height: 200px; display: inline'></div</td>>")
+					// 生成新行
+					if (i % 4 == 0) {
+						lineNum = lineNum + 1
+						$("#assess-report-chart-table", parent.document).append("<tr id='assess-report-chart-box-" + lineNum + "'></tr>")
+					}
+					
+					height = assessDatas[i].yAxis.data.length * 40
+					
+					$("#assess-report-chart-box-" + lineNum, parent.document).append("<td><div id='assessreport-chart-" + i + "' style='width: 300px; height: " + height + "px; display: inline'></div</td>>")
 					
 					var myChart = echarts.init(parent.document.getElementById('assessreport-chart-' + i));
 
 			        // 指定图表的配置项和数据
 					var option = assessDatas[i];
-//					var option = {
-//						    tooltip: {
-//						        trigger: 'axis',
-//						        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-//						            type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-//						        }
-//						    },
-//						    // legend: {
-//						    //     data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
-//						    // },
-//						    title: {
-//						        text: "A aasdfasdfasdfaf",
-//						        bottom: "bottom",
-//						        left: "center"
-//						    },
-//						    grid: {
-//						        left: '3%',
-//						        right: '4%',
-//						        bottom: '5%',
-//						        containLabel: true
-//						    },
-//						    xAxis: {
-//						        type: 'value',
-//						        max: 4
-//						    },
-//						    yAxis: {
-//						        type: 'category',
-//						        data: ['A1', 'A2']
-//						    },
-//						    series: [
-//						        {
-//						            name: '第一次评估',
-//						            type: 'bar',
-//						            stack: '总量',
-//						            label: {
-//						                show: true,
-//						                position: 'insideRight'
-//						            },
-//						            data: [2, 3]
-//						        },
-//						        {
-//						            name: '第二次评估',
-//						            type: 'bar',
-//						            stack: '总量',
-//						            label: {
-//						                show: true,
-//						                position: 'insideRight'
-//						            },
-//						            data: [1, 1]
-//						        }
-//						    ]
-//						};
 
 			        // 使用刚指定的配置项和数据显示图表。
 			        myChart.setOption(option);
