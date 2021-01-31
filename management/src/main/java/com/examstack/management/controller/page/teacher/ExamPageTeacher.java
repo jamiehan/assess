@@ -109,10 +109,10 @@ public class ExamPageTeacher {
 			    .getPrincipal();
 		List<Group> groupList = userService.getGroupListByUserId(userInfo.getUserid(), null);
 		List<ExamPaper> examPaperList = examPaperService.getEnabledExamPaperList(userInfo.getUsername(), null);
-		Page<User> pageUser = new Page<>();
+		/*Page<User> pageUser = new Page<>();
 		pageUser.setPageNo(1);
-		pageUser.setPageSize(1);
-		List<User> userList = userService.getUserListByRoleId(userInfo.getRoleMap().get("ROLE_STUDENT").getRoleId(), pageUser);
+		pageUser.setPageSize(1);*/
+		List<User> userList = userService.getUserListByRoleId(userInfo.getRoleMap().get("ROLE_STUDENT").getRoleId(), null);
 		model.addAttribute("groupList", groupList);
 		model.addAttribute("examPaperList", examPaperList);
 		model.addAttribute("userList", userList);
