@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.examstack.common.domain.question.QuestionFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -73,8 +74,8 @@ public class ExamPaperPageTeacher {
 	 * @param exampaperId
 	 * @return
 	 */
-	@RequestMapping(value = "/teacher/exampaper/exampaper-edit/{exampaperId}", method = RequestMethod.GET)
-	private String examPaperEditPage(Model model, HttpServletRequest request, @PathVariable int exampaperId){
+	@RequestMapping(value = "/teacher/exampaper/exampaper-edit/{exampaperId}-{pointId}", method = RequestMethod.GET)
+	private String examPaperEditPage(Model model, HttpServletRequest request, @PathVariable int exampaperId, @PathVariable int pointId){
 		String strUrl = "http://" + request.getServerName() // 服务器地址
 				+ ":" + request.getServerPort() + "/";
 		
@@ -88,11 +89,24 @@ public class ExamPaperPageTeacher {
 				as.setAnswer(question.getAnswer());
 				as.setQuestion_type_id(question.getQuestionTypeId());
 				as.setPoint(question.getQuestionPoint());*/
-				QuestionAdapter adapter = new QuestionAdapter(question,strUrl);
-				sb.append(adapter.getStringFromXML());
+				if(pointId==0 || question.getKnowledgePointId()==pointId){
+					QuestionAdapter adapter = new QuestionAdapter(question,strUrl);
+					sb.append(adapter.getStringFromXML());
+				}
+
 			}
 		}
-		
+		int fieldId = 0;
+		int knowledge = pointId;
+		int questionType = 0;
+		QuestionFilter qf = new QuestionFilter();
+		qf.setFieldId(fieldId);
+		qf.setKnowledge(knowledge);
+		qf.setQuestionType(questionType);
+		model.addAttribute("questionFilter", qf);
+		model.addAttribute("fieldList", questionService.getAllField(null));
+		model.addAttribute("knowledgeList",
+				questionService.getKnowledgePointByFieldId(fieldId,null));
 		model.addAttribute("htmlStr", sb);
 		model.addAttribute("exampaperid", exampaperId);
 		model.addAttribute("exampapername", examPaper.getName());

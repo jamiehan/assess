@@ -170,8 +170,9 @@ request.setAttribute("leftMenuId",list[3]);
 											<td>创建人</td>
 										</tr>
 									</thead>
-									<tbody>
-										
+									<tbody id="question-ids">
+										<input type="checkbox" onclick="clickDome(this);"/>
+										&nbsp;&nbsp;&nbsp;&nbsp;全 选
 										<c:forEach items="${questionList }" var="items">
 											<tr>
 												<td>
@@ -215,5 +216,15 @@ request.setAttribute("leftMenuId",list[3]);
 		<script type="text/javascript" src="resources/bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="resources/js/all.js"></script>
 		<script type="text/javascript" src="resources/js/question-list4dialog.js?v=1"></script>
+		<script>
+            function clickDome(obj){
+                if($(obj).prop("checked")){
+                    $("#question-ids").find("input[type='checkbox']").prop("checked",true);
+                }else{
+                    $("#question-ids").find("input[type='checkbox']").prop("checked",false);
+                }
+            }
+		</script>
+
 	</body>
 </html>

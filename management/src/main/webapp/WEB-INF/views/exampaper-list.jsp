@@ -187,7 +187,7 @@ request.setAttribute("leftMenuId",list[3]);
 												<td>
 													<c:choose>
 														<c:when test="${item.status == 0 }">
-															<a href="<%=list[1]%>/exampaper/exampaper-edit/${item.id}" class="btn-sm btn-info" title="修改内容"><i class="ace-icon fa fa-pencil bigger-120"></i></a>
+															<a href="<%=list[1]%>/exampaper/exampaper-edit/${item.id}-0" class="btn-sm btn-info" title="修改内容"><i class="ace-icon fa fa-pencil bigger-120"></i></a>
 															<!-- <a class="change-property simple-btn" >修改属性</a>
 															<a class="publish-paper simple-btn">上线</a> -->
 															<a class="delete-paper btn-sm btn-danger" title="删除"><i class="ace-icon fa fa-trash-o"></i></a>

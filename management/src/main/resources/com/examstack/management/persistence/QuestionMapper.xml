@@ -386,7 +386,7 @@
 		CONCAT('
 		知识关键点：',a.keyword) end)
 		pointName,GROUP_CONCAT(d.field_name)
-		fieldName
+		fieldName,GROUP_CONCAT(c.point_id) knowledgePointId
 		from et_question
 		a,et_question_2_point
 		b,et_knowledge_point

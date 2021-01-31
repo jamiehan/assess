@@ -22,7 +22,7 @@ request.setAttribute("leftMenuId",list[3]);
     
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>育涵科技</title>
+		<title>初心评估</title>
 		<meta name="keywords" content="">
 		<link rel="shortcut icon" href="<%=basePath%>resources/images/favicon.ico" />
 		<link href="resources/bootstrap/css/bootstrap-huan.css" rel="stylesheet">
@@ -134,12 +134,43 @@ request.setAttribute("leftMenuId",list[3]);
 											<i class="fa fa-send"></i>
 											<span id="exampaper-title-name"> ${exampapername} </span>
 											<span style="display:none;" id="exampaper-id">${exampaperid}</span>
-											
+
 										</div>
+
+										<div id="question-filter">
+											<dl id="question-filter-knowledge">
+												<dt>
+													评估领域：
+												</dt>
+												<dd>
+													<c:choose>
+														<c:when test="${questionFilter.knowledge == 0 }">
+															<span data-id="0" class="label label-info">全部</span>
+														</c:when>
+														<c:otherwise>
+															<span data-id="0">全部</span>
+														</c:otherwise>
+													</c:choose>
+													<c:forEach items="${knowledgeList}" var="knowledge">
+														<c:choose>
+															<c:when test="${questionFilter.knowledge == knowledge.pointId }">
+																<span data-id="${knowledge.pointId}" class="label label-info">${knowledge.pointName}</span>
+															</c:when>
+															<c:otherwise>
+																<span data-id="${knowledge.pointId}">${knowledge.pointName}</span>
+															</c:otherwise>
+														</c:choose>
+													</c:forEach>
+												</dd>
+											</dl>
+										</div>
+
+
+
 										<div id="exampaper-desc-container">
 											<div id="exampaper-desc" class="exampaper-filter">
-												
-											
+
+
 											</div>
 											<div style="margin-top: 5px;">
 												<span>试卷总分：</span><span id="exampaper-total-point" style="margin-right:20px;"></span>
@@ -179,13 +210,15 @@ request.setAttribute("leftMenuId",list[3]);
 						        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						        <h4 class="modal-title">选择题目添加到康复计划中</h4>
 						      </div>
+
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">关闭窗口</button>
+									<button id="add-list-to-exampaper" type="button" class="btn btn-primary">添加选中</button>
+								</div>
 						      <div class="modal-body">
 						        <iframe  id="qt-selector-iframe" src="<%=list[1]%>/question/question-list/filterdialog-0-0-0-0-1.html" width="100%"></iframe>
 						      </div>
-						      <div class="modal-footer">
-							        <button type="button" class="btn btn-default" data-dismiss="modal">关闭窗口</button>
-							        <button id="add-list-to-exampaper" type="button" class="btn btn-primary">添加选中</button>
-							      </div>
+
 						      
 						    </div><!-- /.modal-content -->
 						  </div><!-- /.modal-dialog -->

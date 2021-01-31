@@ -3,7 +3,7 @@ $(function() {
 });
 
 var examing = {
-		
+
 		initial : function initial() {
 			this.refreshNavi();
 			this.bindNaviBehavior();
@@ -18,33 +18,34 @@ var examing = {
 			this.blindChangePoint();
 			this.bindAddQustionToPaper();
 			this.bindSavePaper();
+			this.bindChangeSearchParam();
 
 		},
 		bindNaviBehavior : function bindNaviBehavior() {
 
 			var nav = $("#question-navi");
 			var naviheight = $("#question-navi").height() - 33;
-		
+
 
 			$("#exampaper-footer").height($("#question-navi").height());
 
 			nav.css({
 				position : 'fixed',
 				bottom : '0px',
-				"z-index" : '1'	
+				"z-index" : '1'
 			});
 
-			
+
 
 			$("#question-navi-controller").click(function() {
 				if($("#question-navi-content").is(":visible") ){
 					$("#question-navi-content").hide();
 				}else{
 					$("#question-navi-content").show();
-					
+
 				}
-				
-				
+
+
 
 				/*var nav = $("#question-navi");
 				var attr = nav.attr("style");
@@ -80,7 +81,7 @@ var examing = {
 		 */
 		bindQuestionFilter : function bindQuestionFilter() {
 			// $(".exampaper-filter-item").bi
-//	 		
+//
 			// $("span.efi-selected").find(".efi-qcode").text();
 			$("#exampaper-desc").delegate("span.exampaper-filter-item", "click", function() {
 				var qtype = $(this).find(".efi-qcode").text();
@@ -92,6 +93,27 @@ var examing = {
 				examing.doQuestionFilt(qtype);
 			});
 		},
+
+    bindChangeSearchParam : function bindChangeSearchParam(){
+        $("#question-filter dl dd span").click(function(){
+        	// alert($(this).data("id"));
+            if($(this).hasClass("label"))return false;
+            if($(this).parent().parent().attr("id") == "question-filter-knowledge" ){
+            	  var exampaperId = $("#exampaper-id").text();
+                 var pointId = $(this).data("id");
+                document.location.href = document.getElementsByTagName('base')[0].href
+                    + util.getCurrentRole() + '/exampaper/exampaper-edit/' + exampaperId+'-'+pointId;
+
+            }else{
+                var exampaperId = $("#exampaper-id").text();
+                var pointId = 0;
+                document.location.href = document.getElementsByTagName('base')[0].href
+                    + util.getCurrentRole() + '/exampaper/exampaper-edit/' + exampaperId+'-'+pointId;
+            }
+        });
+
+
+    },
 		/**
 		 * 刷新题目导航
 		 */
@@ -114,24 +136,24 @@ var examing = {
 				return false;
 			}
 			var questiontypes = this.questiontypes;
-			
+
 			var summery = "";
 			for (var i = 0; i < questiontypes.length; i++) {
 				var question_sum_q = $("." + questiontypes[i].code).length;
 				if (question_sum_q == 0) {
 					continue;
 				} else {
-					summery = summery + "<span class=\"exampaper-filter-item efi-" + questiontypes[i].code + "\">" 
-					+ questiontypes[i].name + "[<span class=\"efi-tno\">" 
-					+ $("." + questiontypes[i].code).length + "</span>]<span class=\"efi-qcode\" style=\"display:none;\">" 
+					summery = summery + "<span class=\"exampaper-filter-item efi-" + questiontypes[i].code + "\">"
+					+ questiontypes[i].name + "[<span class=\"efi-tno\">"
+					+ $("." + questiontypes[i].code).length + "</span>]<span class=\"efi-qcode\" style=\"display:none;\">"
 					+ questiontypes[i].code + "</span></span>";
 				}
 			}
 			$("#exampaper-desc").html(summery);
-			
+
 			examing.doQuestionFilt($($(".exampaper-filter-item")[0]).find(".efi-qcode").text());
-			
-			
+
+
 			examing.refreshTotalPoint();
 		},
 		/**
@@ -142,7 +164,7 @@ var examing = {
 			var point_array = $(".question-point");
 			for(var i = 0; i<point_array.length;i++){
 				var pointtmp = parseFloat($(point_array[i]).text());
-				
+
 				if(isNaN(pointtmp)){
 					continue;
 				}else{
@@ -151,19 +173,19 @@ var examing = {
 			}
 			$("#exampaper-total-point").text(question_sum_p_all/10);
 		},
-		
+
 		/**
-		 *切换到指定的题型 
+		 *切换到指定的题型
 		 */
 		doQuestionFilt : function doQuestionFilt(questiontype) {
-			
+
 			if($("#exampaper-desc .efi-" + questiontype).hasClass("efi-selected")){
 				return false;
 			}else{
 				var questions = $("li.question");
 				questions.hide();
 				$("#exampaper-body ." + questiontype).show();
-				
+
 				$(".exampaper-filter-item").removeClass("efi-selected");
 				$("#exampaper-desc .efi-" + questiontype).addClass("efi-selected");
 			}
@@ -190,12 +212,12 @@ var examing = {
 			"name" : "分析题",
 			"code" : "qt-analytical"
 		}),
-		
+
 		bindOpenModal : function bindOpenModal(){
 				$("#add-more-qt-to-paper").click(function() {
-				
+
 					$("#question-selector-modal").modal({backdrop:true,keyboard:true});
-				
+
 				});
 		},
 		/**
@@ -206,22 +228,22 @@ var examing = {
 				var clickindex = $("a.question-navi-item").index(this);
 				var questions = $("li.question");
 				var targetQuestion = questions[clickindex];
-				
+
 				var targetQuestionType = $(questions[clickindex]).find(".question-type").text();
-				
+
 				examing.doQuestionFilt("qt-" + targetQuestionType);
 //				$(targetQuestion).focus();
-				
+
 				examing.scrollToElement($(targetQuestion));
 			});
 		},
-		
+
 		addRemoveBtn : function(){
 			var deletehtml = "<a class=\"tmp-ques-remove\" title=\"删除此题\">删除</a>";
 			$(".question-title").append(deletehtml);
-			
+
 		},
-		
+
 		bindRemoveQustionFromPaper : function bindRemoveQustionFromPaper(){
 			$("#exampaper-body").on("click", "a.tmp-ques-remove", function(){
 				$(this).parent().parent().remove();
@@ -241,21 +263,21 @@ var examing = {
 				scrollTop : offsetTop
 			}, time);
 		},
-		
+
 		blindChangePoint : function blindChangePoint() {
 			$("#exampaper-body").on("click", "span.question-point", function(){
 				$("#question-point-modal").modal({backdrop:true,keyboard:true});
-				
+
 				$("#question-point-modal .qt-point-destination input").val($(this).text());
-				
+
 				var questions = $("li.question");
 				var indexno = questions.index($(this).parent().parent().parent());
-				
+
 				$("#qt-point-target-index").text(indexno + 1);
-				
-				
+
+
 			});
-			
+
 			$("#update-point-btn").click(function(){
 				var targetno = parseInt($("#qt-point-target-index").text());
 				var newPoint = parseFloat($(".qt-point-destination input").val());
@@ -268,7 +290,7 @@ var examing = {
 					return false;
 				}
 			});
-			
+
 			$("#update-point-type-btn").click(function(){
 				var targetno = parseInt($("#qt-point-target-index").text());
 				var newPoint = parseFloat($(".qt-point-destination input").val());
@@ -283,7 +305,7 @@ var examing = {
 				}
 			});
 		},
-		
+
 		composeEntity : function composeEntity(){
 			var forms = $(".question");
 			var map = new Object();
@@ -294,11 +316,11 @@ var examing = {
 			});
 			return map;
 		},
-		
+
 		bindSavePaper : function bindSavePaper(){
 			var btn = $(".save-paper-btn");
 			btn.click(function(){
-				
+
 				var map = examing.composeEntity();
 				var count = 0;
 				for (var k in map) {
@@ -310,8 +332,8 @@ var examing = {
 					util.error("总分不能有小数");
 					return false;
 				}
-				
-				
+
+
 				if(count!=  $(".question").length){
 					util.error("存在重复的题目，请检查");
 					return false;
@@ -325,7 +347,7 @@ var examing = {
 						url : util.getCurrentRole() + '/exampaper/update-exampaper/' + $("#exampaper-id").text(),
 						data : JSON.stringify(map)
 					});
-					
+
 					request.done(function(message,tst,jqXHR) {
 						if(!util.checkSessionOut(jqXHR))return false;
 						if (message.result == "success") {
@@ -342,7 +364,7 @@ var examing = {
 				}
 			});
 		},
-		
+
 		bindAddQustionToPaper : function bindAddQustionToPaper(){
 			$("button#add-list-to-exampaper").click(function() {
 				var values = new Array();
@@ -368,14 +390,14 @@ var examing = {
 						for(var i=0;i<questionList.length;i++){
 							var question=questionList[i];
 							var deletehtml = "<a class=\"tmp-ques-remove\" title=\"删除此题\">删除</a>";
-							
+
 							/*var current_answer = "";
 							if(question.question_type_id==3){
 								current_answer = question.answer == "T"? "正确":"错误";
 							}else{
 								current_answer = question.answer;
 							}*/
-							
+
 							/*var answerhtml = "<div class=\"tmp-correct-answer\"><span>正确答案：</span><p>"+ current_answer +"</p></div>";*/
 							var newquestion = $('<div/>').html(question.content).contents();
 						/*	newquestion.append(answerhtml);*/
@@ -390,9 +412,9 @@ var examing = {
 
 						var questions = $("li.question");
 						examing.scrollToElement($(questions[questions.length-1]));
-						
+
 					});
-						 
+
 					request.fail(function(jqXHR, textStatus) {
 						util.error("操作失败请稍后尝试");
 					});
@@ -402,13 +424,13 @@ var examing = {
 		reloadIframe : function reloadIframe(){
 			 document.getElementById('qt-selector-iframe').contentWindow.location.reload();
 		},
-		
+
 		getType : function getType(input) {
 		    var m = (/[\d]+(\.[\d]+)?/).exec(input);
 		    if (m) {
 		       // Check if there is a decimal place
 		       if (m[1]) { return 'float'; }
-		       else { return 'int'; }          
+		       else { return 'int'; }
 		    }
 		    return 'string';
 		}
