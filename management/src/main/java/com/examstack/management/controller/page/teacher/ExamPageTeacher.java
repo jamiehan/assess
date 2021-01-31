@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -109,10 +110,10 @@ public class ExamPageTeacher {
 			    .getPrincipal();
 		List<Group> groupList = userService.getGroupListByUserId(userInfo.getUserid(), null);
 		List<ExamPaper> examPaperList = examPaperService.getEnabledExamPaperList(userInfo.getUsername(), null);
-		Page<User> pageUser = new Page<>();
+		/*Page<User> pageUser = new Page<>();
 		pageUser.setPageNo(1);
-		pageUser.setPageSize(1);
-		List<User> userList = userService.getUserListByRoleId(userInfo.getRoleMap().get("ROLE_STUDENT").getRoleId(), pageUser);
+		pageUser.setPageSize(1);*/
+		List<User> userList = userService.getUserListByRoleId(userInfo.getRoleMap().get("ROLE_STUDENT").getRoleId(), null);
 		model.addAttribute("groupList", groupList);
 		model.addAttribute("examPaperList", examPaperList);
 		model.addAttribute("userList", userList);
@@ -318,8 +319,14 @@ public class ExamPageTeacher {
 			String content = examPaper.getContent();
 			List<QuestionQueryResult> questionList = gson.fromJson(content, new TypeToken<List<QuestionQueryResult>>(){}.getType());
 
+			String answerSheet = history.get(0).getAnswerSheet();
+			AnswerSheet answerSheetObj = gson.fromJson(answerSheet, AnswerSheet.class);
+			List<AnswerSheetItem> answerSheetItems = answerSheetObj.getAnswerSheetItems();
+			Map<Integer, AnswerSheetItem> collect = answerSheetItems.stream().collect(Collectors.toMap(AnswerSheetItem::getQuestionId, a -> a, (k1, k2) -> k1));
+
 			for(QuestionQueryResult question : questionList){
-				QuestionAdapter adapter = new QuestionAdapter(question,strUrl);
+				AnswerSheetItem answerSheetItem = collect.get(question.getQuestionId());
+				QuestionAdapter adapter = new QuestionAdapter(answerSheetItem, question, strUrl);
 				sb.append(adapter.getStringFromXML());
 			}
 		}

@@ -52,7 +52,7 @@ public class QuestionAdapter {
 		this.answerSheetItem = answerSheetItem;
 		this.questionQueryResult = questionQueryResult;
 		Gson gson = new Gson();
-		this.questionContent = gson.fromJson(question.getContent(), QuestionContent.class);
+		this.questionContent = gson.fromJson(questionQueryResult.getContent(), QuestionContent.class);
 		this.baseUrl = baseUrl;
 	}
 
@@ -108,9 +108,9 @@ public class QuestionAdapter {
 			sb.append("singlechoice").append("</span>");
 			sb.append("<span class=\"knowledge-point-id\" style=\"display: none;\">").append(questionQueryResult.getKnowledgePointId()).append("</span>");
 			sb.append("<span class=\"question-type-id\" style=\"display: none;\">").append(questionQueryResult.getQuestionTypeId()).append("</span>");
-			sb.append("<span>[单选题]</span>");
+			/*sb.append("<span>[单选题]</span>");*/
 			sb.append("<span class=\"question-point-content\">");
-			sb.append("<span>(</span><span class=\"question-point\">").append(pointStrFormat(questionQueryResult.getQuestionPoint())).append("</span><span>分)</span>");
+			/*sb.append("<span>(</span><span class=\"question-point\">").append(pointStrFormat(questionQueryResult.getQuestionPoint())).append("</span><span>分)</span>");*/
 			sb.append("</span>");
 			sb.append("<span class=\"question-id\" style=\"display:none;\">")
 					.append(questionQueryResult.getQuestionId())
@@ -135,7 +135,11 @@ public class QuestionAdapter {
 				String value = questionContent.getChoiceList().get(key);
 				sb.append("<input type=\"radio\" value=\"")
 						.append(key)
-						.append("\" name=\"question-radio1\" class=\"question-input\">");
+						.append("\" name=\"question-radio1\" class=\"question-input\"");
+				if(key.equals(answerSheetItem.getAnswer()) ) {
+					sb.append("checked");
+				}
+				sb.append(">");
 				sb.append("<span class=\"question-li-text\">");
 				sb.append(key).append(": ").append(value);
 				if (questionContent.getChoiceImgList() != null)
@@ -343,7 +347,7 @@ public class QuestionAdapter {
 		}
 		sb.append("<div class=\"answer-desc\">");
 		sb.append("<div class=\"answer-desc-summary\">");
-		sb.append("<span>正确答案：</span>");
+		/*sb.append("<span>正确答案：</span>");
 		if (questionQueryResult.getQuestionTypeId() == 3) {
 			if (questionQueryResult.getAnswer().equals("T"))
 				sb.append("<span class=\"answer_value\">").append("对").append("</span><br>");
@@ -382,7 +386,7 @@ public class QuestionAdapter {
 		sb.append("</p></div></div>");
 		sb.append("</div>");
 
-		sb.append("</li>");
+		sb.append("</li>");*/
 		return sb.toString();
 	}
 

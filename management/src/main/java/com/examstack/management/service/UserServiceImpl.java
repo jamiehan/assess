@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
 				userMapper.addUser2Dep(userId, user.getDepId());
 			if("ROLE_TEACHER".equals(authority)){
 				Group group = new Group();
-				group.setGroupName("默认分组");
+				group.setGroupName(user.getTrueName() + "老师班级");
 				group.setDefaultt(true);
 				group.setUserId(userId);
 				userMapper.addGroup(group);

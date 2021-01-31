@@ -357,19 +357,19 @@ request.setAttribute("leftMenuId",list[3]);
 									<br>
 								</div>
 								<div class="form-line form-national-id-u" style="display: block;">
-									<span class="form-label"><span class="warning-label">*</span>身份证号：</span>
+									<span class="form-label"><span class="warning-label"></span>身份证号：</span>
 									<input type="text" class="df-input-narrow" id="national-id-update" maxlength="18">
 									<span class="form-message"></span>
 									<br>
 								</div>
 								<div class="form-line form-phone-u" style="display: block;">
-									<span class="form-label"><span class="warning-label">*</span>手机：</span>
+									<span class="form-label"><span class="warning-label"></span>手机：</span>
 									<input type="text" class="df-input-narrow" id="phone-update" maxlength="18">
 									<span class="form-message"></span>
 									<br>
 								</div>
 								<div class="form-line form-email-u" style="display: block;">
-									<span class="form-label"><span class="warning-label">*</span>邮箱：</span>
+									<span class="form-label"><span class="warning-label"></span>邮箱：</span>
 									<input type="text" class="df-input-narrow" id="email-update" maxlength="90">
 									<span class="form-message"></span>
 									<br>
