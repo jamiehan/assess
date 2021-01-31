@@ -64,11 +64,11 @@ var create_account = {
 		var result = true;
 		var check_u = this.checkUsername();
 		var check_t = this.checkTrueName();
-		var check_e = this.checkEmail();
+		var check_e = true;//this.checkEmail();
 		var check_p = this.checkPassword();
 		var check_com = /*this.checkCompany();*/true;
-		var check_id = this.checkNationalId();
-		var check_phone = this.checkPhoneNum();
+		var check_id = true;//this.checkNationalId();
+		var check_phone = true;//this.checkPhoneNum();
 		var check_dep = /*this.checkDepartment()*/true;
 		result = check_u && check_t && check_e && check_p && check_com && check_id && check_phone && check_dep;
 		return result;
@@ -79,8 +79,8 @@ var create_account = {
 		if (username == "") {
 			$(".form-username .form-message").text("用户名不能为空");
 			return false;
-		} else if (username.length > 20 || username.length < 4) {
-			$(".form-username .form-message").text("请保持在4-20个字符以内");
+		} else if (username.length > 20 || username.length < 2) {
+			$(".form-username .form-message").text("请保持在2-20个字符以内");
 			return false;
 		} else {
 			var re = /[\+|\-|\\|\/||&|!|~|@|#|\$|%|\^|\*|\(|\)|=|\?|´|"|<|>|\.|,|:|;|\]|\[|\{|\}|\|]+/;
