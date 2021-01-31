@@ -262,9 +262,13 @@ public class ExamPaperActionTeacher {
 		examPaper.setName(student.getUserName() + "_康复计划_" + times); // 康复计划名称
 		examPaper.setCreator(userInfo.getUsername());
 		
-		examPaper.setDuration(366600);
+		examPaper.setDuration(366600); // TODO 不限时间
 		examPaper.setCreator(userInfo.getUsername());
 		examPaper.setIs_subjective(true);
+		examPaper.setField_id(1); // TODO 
+		examPaper.setPass_point(100);
+		examPaper.setTotal_point(100);
+		examPaper.setPaper_type("2"); // 康复计划
 		
 		// 3. 获取当前轮次的评估成绩
 		List<AnswerSheetItem> answerSheetItems = examService.getAnswerSheetItemListByStudentIdAndTimes(student.getUserId(), times, null);
@@ -294,6 +298,7 @@ public class ExamPaperActionTeacher {
 		exam.setCreatorId(userInfo.getUsername());
 		exam.setApproved(0);
 		exam.setExamPaperId(examPaper.getId());
+		exam.setExamType(2); // 康复计划
 		
 		examService.addExam(exam);
 		

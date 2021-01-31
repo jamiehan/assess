@@ -22,6 +22,7 @@ var create_account = {
 				data.nationalId = $(".form-national-id input").val();
 				data.trueName = $(".form-truename input").val();
 				data.depId = $("#department-input-select").val();
+                data.groupId = $("#teacher-group").val();
 				var action = $(this).data("action") + "-" + $("#user-add-form #group-add-id").val();
 				var url = $(this).data("url");
 				jQuery.ajax({
@@ -66,13 +67,13 @@ var create_account = {
 		var result = true;
 		var check_u = this.checkUsername();
 		var check_t = this.checkTrueName();
-		var check_e = this.checkEmail();
+		// var check_e = this.checkEmail();
 		var check_p = this.checkPassword();
 		var check_com = /*this.checkCompany();*/true;
-		var check_id = this.checkNationalId();
-		var check_phone = this.checkPhoneNum();
-		var check_dep = this.checkDepartment();
-		result = check_u && check_t && check_e && check_p && check_com && check_id && check_phone && check_dep;
+		// var check_id = this.checkNationalId();
+		// var check_phone = this.checkPhoneNum();
+		// var check_dep = this.checkDepartment();
+		result = check_u && check_t && check_p && check_com;
 		return result;
 	},
 
@@ -180,7 +181,7 @@ var create_account = {
 	checkNationalId : function checkNationalId() {
 		var idcard = $(".form-national-id input").val();
 		if (idcard == "") {
-			$(".form-national-id .form-message").text("单位不能为空");
+			$(".form-national-id .form-message").text("身份证不能为空");
 			return false;
 		} else if (idcard.length > 20 || idcard.idcard < 5) {
 			$(".form-national-id .form-message").text("请保持在5-20个字符以内");

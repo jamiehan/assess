@@ -209,7 +209,7 @@ request.setAttribute("leftMenuId",list[3]);
 		<script type="text/javascript"
 		src="resources/js/jquery/jquery-1.9.0.min.js"></script>
 		<script type="text/javascript" src="resources/js/all.js"></script>
-		<script type="text/javascript" src="resources/js/echarts-all.js"></script>
+		<script type="text/javascript" src="resources/js/echarts.min.js"></script>
 		<script type="text/javascript" src="resources/js/user-list-inner.js"></script>
 		<!-- Bootstrap JS -->
 		<script type="text/javascript"

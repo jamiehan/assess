@@ -118,7 +118,7 @@ request.setAttribute("leftMenuId",list[3]);
 					</div>
 					<div class="col-xs-10" id="right-content">
 						<div class="page-header">
-							<h1><i class="fa fa-file-text"></i> 预览试卷 </h1>
+							<h1><i class="fa fa-file-text"></i> 预览康复计划 </h1>
 						</div>
 						<div class="page-content">
 							<div class="def-bk" id="bk-exampaper">

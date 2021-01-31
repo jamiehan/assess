@@ -19,6 +19,7 @@ var examing = {
         this.startTimer();
         this.bindSubmit();
         this.loadAnswerSheet();
+        this.bindAssessSave();
         this.bindAssessCommit();
     },
 
@@ -438,6 +439,54 @@ var examing = {
             modal.hideProgress();
         });
     },
+    saveAssess : function saveAssess() {
+        modal.showProgress();
+        var answerSheetItems = examing.genrateAnswerSheet();
+
+        var data = new Object();
+        // var exam_history_id = $("#current-list-id").val();
+        // data.exam_history_id = exam_history_id;
+        var examHistroyId = $("#hist-id").val();
+        data.examHistroyId = examHistroyId;
+        data.examId=$("#exam-id").val();
+        data.examPaperId=$("#paper-id").val();
+        data.userId=$("#user-id").val();
+        data.answerSheetItems = answerSheetItems;
+        data.sumScore = $("#exampaper-total-point").text();
+
+        // $(".btn-success").attr("disabled", "disabled");
+        console.log("data.answerSheet===" + data.answerSheet)
+        var request = $.ajax({
+            headers : {
+                'Accept' : 'application/json',
+                'Content-Type' : 'application/json'
+            },
+            type : "POST",
+            // url : "student/practice-finished",
+            url: util.getCurrentRole() + "/exam/saveassess",
+            data : JSON.stringify(data)
+        });
+
+        request.done(function(message, tst, jqXHR) {
+            if (!util.checkSessionOut(jqXHR))
+                return false;
+            if (message.result == "success") {
+                $(window).unbind('beforeunload');
+                util.success("提交评估成功！", function() {
+                    // window.location.replace(document.getElementsByTagName('base')[0].href + 'student/finish-exam');
+                    window.location.replace(document.getElementsByTagName('base')[0].href + 'teacher/exam/exam-list');
+
+                });
+            } else {
+                util.error(message.result);
+            }
+            modal.hideProgress();
+        });
+        request.fail(function(jqXHR, textStatus) {
+            alert("系统繁忙请稍后尝试");
+            modal.hideProgress();
+        });
+    },
     finishAssess : function finishAssess() {
         modal.showProgress();
         var answerSheetItems = examing.genrateAnswerSheet();
@@ -588,6 +637,15 @@ var examing = {
         data.as = answerSheet;
 
         localStorage.answerSheet = data;
+    },
+    //保存评估
+    bindAssessSave : function bindAssessSave(){
+        console.log("Assess save...");
+        $("#assess-save").click(function() {
+
+                examing.saveAssess();
+
+        });
     },
     //提交评估
     bindAssessCommit : function bindAssessCommit(){

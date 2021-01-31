@@ -222,7 +222,7 @@ request.setAttribute("leftMenuId",list[3]);
 													<span class="form-message"></span>
 													<br>
 												</div>
-												<div class="form-line form-group" style="display: block;">
+												<div class="form-line form-group" style="display: none;">
 													<span class="form-label"><span class="warning-label">*</span>添加用户到：</span>
 													<input type="text" class="df-input-narrow" id="group-add" value="默认分组" disabled="disabled">
 													<span class="form-message"></span>
@@ -247,19 +247,19 @@ request.setAttribute("leftMenuId",list[3]);
 													<br>
 												</div>
 												<div class="form-line form-national-id" style="display: block;">
-													<span class="form-label"><span class="warning-label">*</span>身份证号：</span>
+													<span class="form-label"><span class="warning-label"></span>身份证号：</span>
 													<input type="text" class="df-input-narrow" id="national-id-add" maxlength="18">
 													<span class="form-message"></span>
 													<br>
 												</div>
 												<div class="form-line form-phone" style="display: block;">
-													<span class="form-label"><span class="warning-label">*</span>手机：</span>
+													<span class="form-label"><span class="warning-label"></span>手机：</span>
 													<input type="text" class="df-input-narrow" id="phone-add" maxlength="20">
 													<span class="form-message"></span>
 													<br>
 												</div>
 												<div class="form-line form-email" style="display: block;">
-													<span class="form-label"><span class="warning-label">*</span>邮箱：</span>
+													<span class="form-label"><span class="warning-label"></span>邮箱：</span>
 													<input type="text" class="df-input-narrow" id="email-add" maxlength="90">
 													<span class="form-message"></span>
 													<br>
@@ -270,7 +270,7 @@ request.setAttribute("leftMenuId",list[3]);
 													<span class="form-message"></span>
 													<br>
 												</div>
-												<div class="form-line form-department" style="display: block;">
+												<div class="form-line form-department" style="display: none;">
 													<span class="form-label"><span class="warning-label"></span>部门单位：</span>
 													<select id="department-input-select" class="df-input-narrow">
 														<option value="-1">--请选择--</option>
@@ -278,6 +278,17 @@ request.setAttribute("leftMenuId",list[3]);
 															<option value="${item.depId }">${item.depName }</option>
 														</c:forEach>
 													</select>
+													<span class="form-message"></span>
+													<br>
+												</div>
+												<div class="form-line form-link" style="display: block;">
+													<span class="form-label"><span class="warning-label"></span>所属老师组：</span>
+													<select id="teacher-group" class="df-input-narrow">
+														<c:forEach items="${groupList }" var="item">
+															<option value="${item.groupId }">${item.groupName }</option>
+														</c:forEach>
+													</select>
+
 													<span class="form-message"></span>
 													<br>
 												</div>
@@ -382,7 +393,7 @@ request.setAttribute("leftMenuId",list[3]);
 											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 												&times;
 											</button>
-											<h6 class="modal-title" id="myModalLabel">修改用户账号</h6>
+											<h6 class="modal-title" id="myModalLabel">修改用户</h6>
 										</div>
 										<div class="modal-body">
 											<form id="user-update-form" style="margin-top:40px;"  action="secure/update-user">
@@ -405,19 +416,19 @@ request.setAttribute("leftMenuId",list[3]);
 													<br>
 												</div>
 												<div class="form-line form-national-id-u" style="display: block;">
-													<span class="form-label"><span class="warning-label">*</span>身份证号：</span>
+													<span class="form-label"><span class="warning-label"></span>身份证号：</span>
 													<input type="text" class="df-input-narrow" id="national-id-update" maxlength="18">
 													<span class="form-message"></span>
 													<br>
 												</div>
 												<div class="form-line form-phone-u" style="display: block;">
-													<span class="form-label"><span class="warning-label">*</span>手机：</span>
+													<span class="form-label"><span class="warning-label"></span>手机：</span>
 													<input type="text" class="df-input-narrow" id="phone-update" maxlength="20">
 													<span class="form-message"></span>
 													<br>
 												</div>
 												<div class="form-line form-email-u" style="display: block;">
-													<span class="form-label"><span class="warning-label">*</span>邮箱：</span>
+													<span class="form-label"><span class="warning-label"></span>邮箱：</span>
 													<input type="text" class="df-input-narrow" id="email-update" maxlength="90">
 													<span class="form-message"></span>
 													<br>
@@ -428,7 +439,7 @@ request.setAttribute("leftMenuId",list[3]);
 													<span class="form-message"></span>
 													<br>
 												</div>
-												<div class="form-line form-department-u" style="display: block;">
+												<div class="form-line form-department-u" style="display: none;">
 													<span class="form-label"><span class="warning-label"></span>部门：</span>
 													<select id="department-input-select-u" class="df-input-narrow">
 														<option value="-1">--请选择--</option>
@@ -436,6 +447,17 @@ request.setAttribute("leftMenuId",list[3]);
 															<option value="${item.depId }">${item.depName }</option>
 														</c:forEach>
 													</select>
+													<span class="form-message"></span>
+													<br>
+												</div>
+												<div class="form-line form-link" style="display: block;">
+													<span class="form-label"><span class="warning-label"></span>所属老师组：</span>
+													<select id="teacher-group-modify" class="df-input-narrow">
+														<c:forEach items="${groupList }" var="item">
+															<option value="${item.groupId }">${item.groupName }</option>
+														</c:forEach>
+													</select>
+
 													<span class="form-message"></span>
 													<br>
 												</div>
@@ -459,7 +481,7 @@ request.setAttribute("leftMenuId",list[3]);
 											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 												&times;
 											</button>
-											<h6 class="modal-title" id="myModalLabel">评估报告</h6>
+											<h6 class="modal-title" id="myModalLabel">初心儿童行为矫正中心评估表</h6>
 										</div>
 										
 										<table id="assess-info-table" border="1">
@@ -475,8 +497,10 @@ request.setAttribute("leftMenuId",list[3]);
 											</tr>
 											
 										</table>
+										<table>
+										<tr class="modal-body" id="assess-report-chart-box"></tr>
+										</table>
 										
-										<div class="modal-body" id="assess-report-chart-box"></div>
 										
 										<div class="modal-footer">
 											<button type="button" class="btn btn-default" data-dismiss="modal">
@@ -604,7 +628,7 @@ request.setAttribute("leftMenuId",list[3]);
 		<script type="text/javascript" src="resources/js/update-user.js"></script>
 		<script type="text/javascript" src="resources/js/uploadify/jquery.uploadify3.1Fixed.js"></script>
 		<script type="text/javascript" src="resources/js/user-import.js"></script>
-		<script type="text/javascript" src="resources/js/echarts-all.js"></script>
+		<script type="text/javascript" src="resources/js/echarts.min.js"></script>
 		<script>
 			$(function() {
 				/* $(".left-menu-item-name").hide(); */

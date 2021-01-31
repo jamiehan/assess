@@ -107,6 +107,7 @@
 			<if test="user.fieldId != 0">field_id=#{user.fieldId},</if>
 			<if test="user.company != null">company=#{user.company},</if>
 			<if test="user.department != null">department=#{user.department},</if>
+			<if test="user.times neq 0">times=#{user.times},</if>
 			user_id=#{user.userId}
 		</set>
 		<where>
@@ -138,7 +139,8 @@
 		select a.user_id as
 		userId,a.user_name as userName,a.true_name as trueName,
 		a.`password` as
-		`password`,a.email as email,a.phone_num as phoneNum, a.times as times, a.create_time as createTime 
+		`password`,a.email as email,a.phone_num as phoneNum, a.times as times, a.create_time as createTime,
+		a.enabled as enabled
 		from et_user a
 		where a.user_id=#{userId}
 	</select>
@@ -171,6 +173,9 @@
 	<insert id="addUserGroup">
 		replace into et_user_2_group(user_id,group_id) values (#{userId},#{groupId})
 	</insert>
+	<update id="updateUserGroup">
+		update et_user_2_group set group_id=#{groupId} where user_id=#{userId}
+	</update>
 	<insert id="addUsers2Group">
 		replace into et_user_2_group(user_id,group_id) values 
 		<foreach collection="array" open="" close="" index="index" item="item" separator=",">

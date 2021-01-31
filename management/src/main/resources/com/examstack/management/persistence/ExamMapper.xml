@@ -109,8 +109,8 @@
 	</delete>
 	
 	<insert id="addAnswerSheet" parameterType="com.examstack.common.domain.exam.AnswerSheet" useGeneratedKeys="true" keyProperty="answerSheetId" >
-		insert into et_answer_sheet(exam_history_id,exam_id,exam_paper_id,user_id,create_time,creator_id)
-		values(#{examHistroyId},#{examId},#{examPaperId},#{userId},#{createTime},#{creatorId})
+		insert into et_answer_sheet(exam_history_id,exam_id,exam_paper_id,user_id,create_time,creator_id, creator_name, times)
+		values(#{examHistroyId},#{examId},#{examPaperId},#{userId},#{createTime},#{creatorId},#{creatorName}, #{times})
 	</insert>
 	
 	<update id="updateAnswerSheet" parameterType="com.examstack.common.domain.exam.AnswerSheet">
@@ -126,15 +126,26 @@
 		from et_answer_sheet where id=#{answerSheetId}
 	</select>
 	
-	<select id="getAnswerSheetListByStudentId" resultType="com.examstack.common.domain.exam.AnswerSheet">
+	<select id="getAnswerSheetByExamHistoryId" resultType="com.examstack.common.domain.exam.AnswerSheet">
 		select id answerSheetId, exam_history_id examHistroyId,exam_id examId,exam_paper_id examPaperId,user_id userId, times times, sum_score sumScore, create_time createTime, creator_id creatorId, modify_time modifyTime, modifier_id modifierId
+		from et_answer_sheet where exam_history_id=#{histId}
+	</select>
+	
+	<select id="getAnswerSheetByStudentIdAndTimes" resultType="com.examstack.common.domain.exam.AnswerSheet">
+		select id answerSheetId, exam_history_id examHistroyId,exam_id examId,exam_paper_id examPaperId,user_id userId, times times, sum_score sumScore, create_time createTime, creator_id creatorId, modify_time modifyTime, modifier_id modifierId
+		from et_answer_sheet 
+		where user_id=#{studentId} and times = #{times}
+	</select>
+	
+	<select id="getAnswerSheetListByStudentId" resultType="com.examstack.common.domain.exam.AnswerSheet">
+		select id answerSheetId, exam_history_id examHistroyId,exam_id examId,exam_paper_id examPaperId,user_id userId, times times, sum_score sumScore, create_time createTime, creator_id creatorId, modify_time modifyTime, modifier_id modifierId, creator_name creatorName
 		from et_answer_sheet a 
 		where a.user_id=#{studentId}
 	</select>
 	
 	<insert id="addAnswerSheetItem" parameterType="com.examstack.common.domain.exam.AnswerSheetItem" useGeneratedKeys="true" keyProperty="answerSheetItemId" >
-		insert into et_answer_sheet_item(answer_sheet_id, point, question_type_id, answer, question_id, question_code, comment, student_id, teacher_id, assess_time, knowlege_point_id)
-		values(#{answerSheetId}, #{point},#{questionTypeId},#{answer},#{questionId},#{questionCode},#{comment}, #{studentId}, #{teacherId}, #{assessTime}, #{knowlegePointId})
+		insert into et_answer_sheet_item(answer_sheet_id, point, question_type_id, answer, question_id, question_code, comment, student_id, teacher_id, assess_time, knowlege_point_id, knowlege_point_code, times, score)
+		values(#{answerSheetId}, #{point},#{questionTypeId},#{answer},#{questionId},#{questionCode},#{comment}, #{studentId}, #{teacherId}, #{assessTime}, #{knowlegePointId}, #{knowlegePointCode}, #{times}, #{score})
 	</insert>
 	
 	<select id="getAnswerSheetItemById" resultType="com.examstack.common.domain.exam.AnswerSheetItem">
@@ -146,13 +157,13 @@
 	<update id="updateAnswerSheetItem" parameterType="com.examstack.common.domain.exam.AnswerSheetItem">
 		update et_answer_sheet_item
 		<set>
-			point = #{point},question_type_id=#{questionTypeId},answer=#{answer},question_id=#{questionId},comment=#{comment}, teacher_id=#{teacherId}, assess_time=#{assessTime}
+			score = #{score},answer=#{answer}
 		</set>
 		where id=#{answerSheetItemId}
 	</update>
 	
 	<select id="getAnswerSheetItemListByAnswerSheetId" resultType="com.examstack.common.domain.exam.AnswerSheetItem">
-		select id answerSheetItemId, answer_sheet_id answerSheetId, point point,question_type_id questionTypeId,answer answer,question_id questionId,comment comment, student_id studentId, teacher_id teacherId, assess_time assessTime, knowlege_point_id knowlegePointId
+		select id answerSheetItemId, answer_sheet_id answerSheetId, point point,question_type_id questionTypeId,answer answer,question_id questionId,comment comment, student_id studentId, teacher_id teacherId, assess_time assessTime, knowlege_point_id knowlegePointId, score score
 		from et_answer_sheet_item a 
 		where a.answer_sheet_id=#{answerSheetId}
 	</select>

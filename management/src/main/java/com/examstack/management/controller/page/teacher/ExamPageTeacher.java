@@ -1,25 +1,40 @@
 package com.examstack.management.controller.page.teacher;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.examstack.common.domain.exam.*;
-import com.examstack.common.domain.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.examstack.common.domain.exam.AnswerSheet;
+import com.examstack.common.domain.exam.AnswerSheetItem;
+import com.examstack.common.domain.exam.Exam;
+import com.examstack.common.domain.exam.ExamHistory;
+import com.examstack.common.domain.exam.ExamPaper;
+import com.examstack.common.domain.exam.Message;
+import com.examstack.common.domain.question.Question;
 import com.examstack.common.domain.question.QuestionQueryResult;
 import com.examstack.common.domain.user.Group;
+import com.examstack.common.domain.user.User;
 import com.examstack.common.util.Page;
 import com.examstack.common.util.PagingUtil;
 import com.examstack.common.util.QuestionAdapter;
 import com.examstack.management.security.UserInfo;
 import com.examstack.management.service.ExamPaperService;
 import com.examstack.management.service.ExamService;
+import com.examstack.management.service.QuestionService;
 import com.examstack.management.service.UserService;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -33,6 +48,10 @@ public class ExamPageTeacher {
 	private ExamPaperService examPaperService;
 	@Autowired
 	private ExamService examService;
+	
+	@Autowired
+	private QuestionService questionService;
+	
 	/**
 	 * 考试管理
 	 * 
@@ -272,19 +291,89 @@ public class ExamPageTeacher {
     }
 
 	/**
+	 * 继续评估
+	 * @param model
+	 * @param request
+	 * @param examId
+	 * @return
+	 */
+	@RequestMapping(value = "/teacher/exam/continue-assess/{examId}", method = RequestMethod.GET)
+	private String continueAssessPage(Model model, HttpServletRequest request, @PathVariable int examId) {
+
+		Page<ExamHistory> pageModel = new Page<ExamHistory>();
+		pageModel.setPageNo(1);
+		pageModel.setPageSize(1);
+		List<ExamHistory> history = examService.getUserExamHistListByExamId(examId,null,null,0,pageModel);
+		if( history == null || history.size() == 0 ) {
+			return null;
+		}
+		int examPaperId = history.get(0).getExamPaperId();
+		String strUrl = "http://" + request.getServerName() // 服务器地址
+				+ ":" + request.getServerPort() + "/";
+
+		ExamPaper examPaper = examPaperService.getExamPaperById(examPaperId);
+		StringBuilder sb = new StringBuilder();
+		if(examPaper.getContent() != null && !examPaper.getContent().equals("")){
+			Gson gson = new Gson();
+			String content = examPaper.getContent();
+			List<QuestionQueryResult> questionList = gson.fromJson(content, new TypeToken<List<QuestionQueryResult>>(){}.getType());
+
+			for(QuestionQueryResult question : questionList){
+				QuestionAdapter adapter = new QuestionAdapter(question,strUrl);
+				sb.append(adapter.getStringFromXML());
+			}
+		}
+
+		model.addAttribute("htmlStr", sb);
+		model.addAttribute("examPaperId", examPaperId);
+		model.addAttribute("examHistoryId", history.get(0).getHistId());
+		model.addAttribute("examPaperName", examPaper.getName());
+		model.addAttribute("examId", history.get(0).getExamId());
+		model.addAttribute("userName", history.get(0).getUserName());
+		model.addAttribute("userId", history.get(0).getUserId());
+		return "assess-content";
+	}
+
+	/**
+	 * 保存评估
+	 */
+	@RequestMapping(value = "/teacher/exam/saveassess", method = RequestMethod.POST)
+	public @ResponseBody Message saveAssess(@RequestBody AnswerSheet answerSheet){
+
+		List<AnswerSheetItem> itemList = answerSheet.getAnswerSheetItems();
+
+		//评估状态（0：未开始，1：评估中，2：已完成，3：已生成康复计划）
+		int approved = 1;
+
+		Gson gson = new Gson();
+		//更新评估历史表
+		examService.updateUserExamHist(answerSheet, gson.toJson(answerSheet),approved);
+		//更新评估表状态
+		examService.changeExamStatus(answerSheet.getExamId(), approved);
+
+		//TODO 保存到答题卡表
+
+
+		//TODO 保存到答题卡明细表
+
+		return new Message();
+	}
+
+	/**
 	 * 提交评估
 	 */
 	@RequestMapping(value = "/teacher/exam/assesscommit", method = RequestMethod.POST)
 	public @ResponseBody Message submitAssess(@RequestBody AnswerSheet answerSheet){
-
+		UserInfo userInfo = (UserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
 //		AnswerSheet answerSheet = answerSheet;
 //		int examHistoryId = exam_history_id;
 //				data.exam_history_id = exam_history_id;
 //		data.as = answerSheet;
 		List<AnswerSheetItem> itemList = answerSheet.getAnswerSheetItems();
 
-//		//全部是客观题，则状态更改为已阅卷
-		int approved = 3;
+		////评估状态（0：未开始，1：评估中，2：已完成，3：已生成康复计划）
+		int approved = 2;
 //		for(AnswerSheetItem item : itemList){
 //			if(item.getQuestionTypeId() != 1 && item.getQuestionTypeId() != 2 && item.getQuestionTypeId() != 3){
 //				approved = 2;
@@ -292,12 +381,105 @@ public class ExamPageTeacher {
 //			}
 //		}
 		Gson gson = new Gson();
+		//更新评估历史表
 		examService.updateUserExamHist(answerSheet, gson.toJson(answerSheet),approved);
+		//更新评估表状态
+		examService.changeExamStatus(answerSheet.getExamId(), approved);
 
-		//TODO 保存到答题卡表
+		// 获取考试历史
+		ExamHistory examHistory = examService.getUserExamHistListByHistId(answerSheet.getExamHistroyId());
+		
+		// 获取学生
+		List<User> users = userService.getUserListByUserId(examHistory.getUserId());
+		User student = users.get(0);
 
-
-		//TODO 保存到答题卡明细表
+		Exam exam = examService.getExamById(answerSheet.getExamId());
+		//评估类型（1：评估 2：康复计划）
+		if( exam.getExamType() == 1 ) {
+			//评估轮次+1
+			int times = student.getTimes();
+			student.setTimes( times + 1 );
+			//更新评估轮次
+			userService.updateUser(student,null);
+		}
+		
+		// 获取答题卡
+		AnswerSheet dbAnswerSheet = null;
+		if (exam.getExamType() == 2) { // 康复计划，获取本轮次的评估答题卡
+			dbAnswerSheet = examService.getAnswerSheetByStudentIdAndTimes(student.getUserId(), student.getTimes());
+		} else if (exam.getExamType() == 1){ // 评估
+			dbAnswerSheet = examService.getAnswerSheetByExamHistoryId(examHistory.getHistId());
+		}
+		
+		if (dbAnswerSheet != null) {
+			answerSheet.setAnswerSheetId(dbAnswerSheet.getAnswerSheetId());
+//			examService.updateAnswerSheet(answerSheet);
+		} else {
+			answerSheet.setCreatorId(userInfo.getUserid());
+			answerSheet.setCreatorName(userInfo.getTrueName());
+			
+			answerSheet.setTimes(student.getTimes());
+			
+			answerSheet.setCreateTime(new Date());
+			
+			examService.addAnswerSheet(answerSheet);
+		}
+		
+		// 保存到答题卡明细表
+		List<AnswerSheetItem> dbItemList = null;
+		Map<Integer, AnswerSheetItem> itemIdMap = null;
+		if (dbAnswerSheet != null) {
+			dbItemList = examService.getAnswerSheetItemListByAnswerSheetId(dbAnswerSheet.getAnswerSheetId());
+			itemIdMap = new HashMap<Integer, AnswerSheetItem>();
+			
+			for (AnswerSheetItem item : dbItemList) {
+				itemIdMap.put(item.getQuestionId(), item);
+			}
+		}
+		
+		Question question = null;
+		AnswerSheetItem dbItem = null;
+		for (AnswerSheetItem item : itemList) {
+			switch (item.getAnswer()) {
+			case "A":
+				item.setScore(1);
+				break;
+			case "B":
+				item.setScore(2);
+				break;
+			case "C":
+				item.setScore(3);
+				break;
+			case "D":
+				item.setScore(4);
+				break;
+			default:
+				item.setScore(0);
+				break;
+			}
+			
+			if (dbAnswerSheet != null) {
+				// 成绩只能增不能降
+				dbItem = itemIdMap.get(item.getQuestionId());
+				if (item.getScore() > dbItem.getScore()) {
+					item.setAnswerSheetItemId(dbItem.getAnswerSheetItemId());
+					examService.updateAnswerSheetItem(item);
+				}
+			} else {
+				item.setStudentId(student.getUserId());
+				
+				item.setTimes(student.getTimes());
+				
+				item.setAnswerSheetId(answerSheet.getAnswerSheetId());
+				
+				// questioncode and knowledgepoint code
+				question = questionService.getQuestionByQuestionId(item.getQuestionId());
+				item.setQuestionCode(question.getCode());
+				item.setKnowlegePointCode(question.getCode().substring(0,1));
+				
+				examService.addAnswerSheetItem(item);
+			}
+		}
 
 		return new Message();
 	}

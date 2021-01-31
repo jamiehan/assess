@@ -93,6 +93,13 @@ public interface UserMapper {
 	public void updateGroup(@Param("groupId") int groupId, @Param("groupName") String groupName);
 
 	/**
+	 * 更新用户所属分组
+	 * @param userId
+	 * @param groupId
+	 */
+	public void updateUserGroup(@Param("userId") int userId,@Param("groupId") int groupId);
+
+	/**
 	 * 获取所有的角色
 	 * 
 	 * @return

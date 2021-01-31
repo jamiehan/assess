@@ -8,6 +8,7 @@ var exams = {
 			this.bindDelete();
 			this.bindAddUser();
 			this.bindStartAssess();
+			this.bindContinueAssess();
 			this.bindGeneratePlan();
 
 		},
@@ -172,6 +173,12 @@ var exams = {
 
 
 
+			});
+		},
+		bindContinueAssess : function bindContinueAssess(){
+			$(".continue-assess-btn").click(function(){
+				window.location.href = util.getCurrentRole() + "/exam/continue-assess/" + $(this).data("id");
+				return false;
 			});
 		},
 		bindGeneratePlan : function bindGeneratePlan(){

@@ -241,10 +241,12 @@ request.setAttribute("leftMenuId",list[3]);
 										<tr>
 											<!-- <td></td> -->
 											<td>ID</td>
+											<td class="question-code-td" style="width:120px">编号</td>
 											<td class="question-name-td" style="width:240px">题目名称</td>
 									<%--		<td style="width:60px">类型</td>
 											<td>专业</td>--%>
 											<td>评估领域</td>
+											<td>排序</td>
 											<td>创建人</td>
 											<td style="width:90px;">操作</td>
 										</tr>
@@ -256,6 +258,7 @@ request.setAttribute("leftMenuId",list[3]);
 												<td style="display:none;">
 												<input type="checkbox" value="${items.id }">
 												</td><td>${items.id }</td>
+												<td>${items.code }</td>
 												<td>
 													<a href="<%=list[1]%>/question/question-preview/${items.id }" target="_blank" title="预览">${items.name }</a>
 														<div class="question-tags">
@@ -269,6 +272,7 @@ request.setAttribute("leftMenuId",list[3]);
 												<%--<td>${items.questionTypeName }</td>
 												<td>${items.fieldName }</td>--%>
 												<td>${items.pointName }</td>
+												<td>${items.sort }</td>
 												<td>${items.creator }</td> 
 												<td>
 													<c:choose>
@@ -310,6 +314,14 @@ request.setAttribute("leftMenuId",list[3]);
 														<span id="question_id"></span>
 														<span class="form-message"></span>
 														<br>
+													</div>
+													<div class="form-line assess-field" id="assess-field">
+														<span class="form-label"><span class="warning-label">*</span>评估领域：</span>
+														<select id="assess-field-select" class="df-input-narrow">
+															<c:forEach items="${knowledgePointList}" var="item">
+																<option value="${item.pointId }">${item.pointName }</option>
+															</c:forEach>
+														</select><span class="form-message"></span>
 													</div>
 													<div class="form-line form-question-code" style="display: block;">
 														<span class="form-label"><span class="warning-label">*</span>编号：</span>
@@ -369,7 +381,7 @@ request.setAttribute("leftMenuId",list[3]);
 																</div>
 																<div id="aq-course2" style="padding:0px; float:right;width:48%;">
 																	<select id="point-from-select" class="df-input-narrow" size="4" style="width:100%;">
-																	</select>
+																		q-label-item				</select>
 																</div>
 															</div>
 															
@@ -642,7 +654,22 @@ request.setAttribute("leftMenuId",list[3]);
 								});
                                 $(".form-question-code input").val(message.object.code);
                                 $(".question-content textarea").val(message.object.name);
-                                $(".form-question-code input").val(message.object.code);
+                                // $(".form-question-code input").val(message.object.code);
+
+                                var add_opt_items = $(".add-opt-item");
+
+                                for (var i = 0; i < add_opt_items.length; i++) {
+                                    var add_opt_item = $(add_opt_items[i]);
+                                    /*//选项标签
+                                    var opt_img = add_opt_item.find(".display-opt-img");
+                                    if (opt_img.length > 0) {
+                                        // imageMap[add_opt_item.children(".que-opt-no").text()] = opt_img.data("url");
+                                        imageMap[add_opt_item.children(".que-opt-no").text()] = opt_img.data("url");
+                                    }*/
+                                    // choiceMap[add_opt_item.children(".que-opt-no").text()] = add_opt_item.children("input").val();
+                                    add_opt_item.children("input").val(message.object.questionContent.choiceList[add_opt_item.children(".que-opt-no").text()]);
+                                }
+
 
 								$(".form-question-analysis textarea").val(message.object.analysis);
 								$(".form-question-reference input").val(message.object.referenceName);

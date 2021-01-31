@@ -147,14 +147,20 @@
 											<td>${item.creatorId }</td>
 											<td><c:choose>
 													<c:when test="${item.approved == 0 }">
-															未完成
-														</c:when>
+															未开始
+													</c:when>
 													<c:when test="${item.approved == 1 }">
+															评估中
+													</c:when>
+													<c:when test="${item.approved == 2 }">
 															已完成
-														</c:when>
+													</c:when>
+													<c:when test="${item.approved == 3 }">
+															已生成康复计划
+													</c:when>
 													<c:otherwise>
-															未完成
-														</c:otherwise>
+
+													</c:otherwise>
 												</c:choose>
 											</td>
 											<%--<c:if test="${fn:contains(sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.authorities,'ROLE_ADMIN') }">--%>
@@ -162,8 +168,26 @@
 
 													<%--<a target="_blank" href="<%=list[1]%>/exam/exam-assess/27">开始评估</a>
 													<a target="_blank" href="<%=list[1]%>/exam/generate-plan/27">生成康复计划</a>--%>
-													<button class="start-assess-btn" data-id="${item.examId}">开始评估</button>
-													<button class="generate-plan-btn" data-id="${item.examId}">生成康复计划</button>
+														<c:choose>
+															<c:when test="${item.approved == 0 }">
+																<button class="start-assess-btn" data-id="${item.examId}">开始评估</button>
+															</c:when>
+															<c:when test="${item.approved == 1 }">
+																<button class="continue-assess-btn" data-id="${item.examId}">继续评估</button>
+															</c:when>
+															<%-- examType(1:评估 2：康复计划训练)--%>
+															<c:when test="${item.examType == 1 && item.approved == 2 }">
+																<button class="generate-plan-btn" data-id="${item.examId}">生成康复计划</button>
+															</c:when>
+															<c:when test="${item.approved == 3 }">
+
+															</c:when>
+															<c:otherwise>
+
+															</c:otherwise>
+														</c:choose>
+
+
 
 													<%--<button class="assess-btn" data-id="${item.examId }">开始评估</button>--%>
 													<%--<c:choose>

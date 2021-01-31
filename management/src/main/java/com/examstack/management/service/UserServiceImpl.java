@@ -41,6 +41,10 @@ public class UserServiceImpl implements UserService {
 			userMapper.insertUser(user);
 			userId = user.getUserId();
 			userMapper.grantUserRole(userId, roleMap.get(authority).getRoleId());
+			if(groupId == 0){
+				groupId = user.getGroupId();
+			}
+
 			if(user.getDepId() != 0 && user.getDepId() != -1)
 				userMapper.addUser2Dep(userId, user.getDepId());
 			if("ROLE_TEACHER".equals(authority)){
@@ -50,8 +54,8 @@ public class UserServiceImpl implements UserService {
 				group.setUserId(userId);
 				userMapper.addGroup(group);
 			}if("ROLE_STUDENT".equals(authority)){
-				//只能给学员分配自己已经有的分组
-				List<Group> groupList = userMapper.getGroupListByUserId(user.getCreateBy(), null);
+				//添加学生到指定组
+				/*List<Group> groupList = userMapper.getGroupListByUserId(groupId, null);
 				boolean flag = false;
 				for(Group group : groupList){
 					if(group.getGroupId() == groupId){
@@ -64,8 +68,10 @@ public class UserServiceImpl implements UserService {
 						userMapper.addUserGroup(userId, groupId);
 					}else
 						throw new Exception("不能将学员分配给一个不存在的分组");
+				}*/
+				if( groupId != 0 ) {
+					userMapper.addUserGroup(userId, groupId);
 				}
-				
 			}
 			return userId;
 		} catch (Exception e) {
@@ -95,10 +101,14 @@ public class UserServiceImpl implements UserService {
 		try {
 			userMapper.updateUser(user, oldPassword);
 			
-			if(user.getDepId() != -1){
-				userMapper.deleteUser2Dep(user.getUserId());
-				userMapper.addUser2Dep(user.getUserId(), user.getDepId());
-			}	
+//			if(user.getDepId() != -1){
+//				userMapper.deleteUser2Dep(user.getUserId());
+//				userMapper.addUser2Dep(user.getUserId(), user.getDepId());
+//			}
+			//更新用户所属组
+			if( user.getGroupId() != 0 ) {
+				userMapper.updateUserGroup(user.getUserId(), user.getGroupId());
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			throw new RuntimeException(e);

@@ -103,7 +103,8 @@ question_add = {
 			var r_checkCode = question_add.checkCode();
 			var r_checkContent = question_add.checkContent();
 			var r_checkOpt = question_add.checkOpt();
-			result = result && r_checkCode && r_checkContent && r_checkOpt;
+			var r_checkSort = question_add.checkSort();
+			result = result && r_checkCode && r_checkContent && r_checkOpt && r_checkSort;
 		} else if (2 == question_type) {
 			var r_checkContent = question_add.checkContent();
 			var r_checkOpt = question_add.checkOpt();
@@ -171,6 +172,20 @@ question_add = {
             $(".form-question-code .form-message").text("内容过长，请保持在500个字符以内");
             $(".form-question-code input").focus();
             $(".form-question-code input").addClass("has-error");
+            return false;
+        } else {
+            return true;
+        }
+    },
+    /**
+     *检查排序
+     */
+    checkSort : function checkSort() {
+        var sort = $(".form-question-sort input").val();
+        if (sort == "") {
+            $(".form-question-sort .form-message").text("请输入排序序号");
+            $(".form-question-sort input").focus();
+            $(".form-question-sort input").addClass("has-error");
             return false;
         } else {
             return true;
@@ -403,7 +418,7 @@ question_add = {
 	},
 
 	composeEntity : function composeEntity() {
-
+		// alert("composeEntity....")
         var question_entity = new Object();
         question_entity.question_type_id = 1;//$("#question-type select").val();
 
@@ -439,6 +454,8 @@ question_add = {
 		question_entity.examingPoint = $(".form-question-examingpoint input").val();
 		question_entity.keyword = $(".form-question-keyword input").val();
         question_entity.code = $(".form-question-code input").val();
+        // alert($(".form-question-sort input").val());
+        question_entity.sort = $(".form-question-sort input").val();
 		// alert(question_entity)
 		return question_entity;
 	},

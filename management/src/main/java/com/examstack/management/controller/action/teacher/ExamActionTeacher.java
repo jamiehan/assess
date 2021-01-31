@@ -1,5 +1,7 @@
 package com.examstack.management.controller.action.teacher;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -7,6 +9,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.examstack.common.domain.exam.*;
+import com.examstack.common.util.StringUtil;
+import com.examstack.management.service.ExamPaperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -16,13 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.examstack.common.domain.exam.AnswerSheet;
-import com.examstack.common.domain.exam.AnswerSheetItem;
-import com.examstack.common.domain.exam.AssessData;
-import com.examstack.common.domain.exam.AssessReportData;
-import com.examstack.common.domain.exam.Exam;
-import com.examstack.common.domain.exam.ExamHistory;
-import com.examstack.common.domain.exam.Message;
 import com.examstack.common.domain.question.KnowledgePoint;
 import com.examstack.common.domain.user.User;
 import com.examstack.management.security.UserInfo;
@@ -41,9 +39,14 @@ public class ExamActionTeacher {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private ExamPaperService examPaperService;
 	
 	@Autowired
 	private QuestionService questionService;
+	
+	private DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd");
 	
 	/**
 	 * 添加考试
@@ -61,6 +64,23 @@ public class ExamActionTeacher {
 			exam.setCreatorId(userInfo.getUsername());
 			exam.setApproved(0);
 			examService.addExam(exam);
+
+			ExamHistory examHistory = new ExamHistory();
+			examHistory.setUserId(exam.getUserId());
+			examHistory.setExamId(exam.getExamId());
+			examHistory.setExamPaperId(exam.getExamPaperId());
+			Date now = new Date();
+			examHistory.setCreateTime(now);
+			SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd");
+			String seriNo = sdf.format(now) + StringUtil.format(exam.getUserId(), 3) + StringUtil.format(exam.getExamId(), 3);
+			examHistory.setSeriNo(seriNo);
+			examHistory.setApproved(0);
+			ExamPaper examPaper = examPaperService.getExamPaperById(exam.getExamPaperId());
+			examHistory.setContent(examPaper.getContent());
+			examHistory.setDuration(examPaper.getDuration());
+
+			//生成考试历史
+			examService.addUserExamHist(examHistory);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -403,9 +423,9 @@ public class ExamActionTeacher {
 		// TODO 使用数据库数据
 		for (AnswerSheet answerSheet : answerSheetList) {
 			assessHistory = new HashMap<String, String>();
-			assessHistory.put("time", "2020-01-01");
-			assessHistory.put("teacher", "王老师");
-			assessHistory.put("color", "#001122");
+			assessHistory.put("time", df1.format(answerSheet.getCreateTime()));
+			assessHistory.put("teacher", answerSheet.getCreatorName());
+			assessHistory.put("color", AssessData.timeColor.get(answerSheet.getTimes()));
 			
 			assessHistories.add(assessHistory);
 		}
@@ -430,6 +450,9 @@ public class ExamActionTeacher {
 			
 			// 一个领域的图形数据
 			assessData = new AssessData();
+			
+			// 设置图形title
+			assessData.addTitleData(pointCode, knowledgePoint.getPointName());
 						
 			// 2. 获取指定领域的题目总数
 			int questionNum = questionService.getQuestionNumByKnowlegePointId(pointId);
@@ -441,31 +464,37 @@ public class ExamActionTeacher {
 			assessData.addYAxisData(pointCode, questionNum);
 			
 			// 3. 获取指定领域每一轮的评估成绩
-			Map<Integer, Integer> currentScore = new HashMap<Integer, Integer>();
+			Map<String, Integer> currentScore = new HashMap<String, Integer>();
 			List<AnswerSheetItem> answerSheetItems = null;
 			List<Integer> score = null;
+			Map<String, Integer> tempScore = null;
 			for (int i = 1; i <= times; i++) {
 				// 根据学生ID和评估轮次获取学生成绩
 				answerSheetItems = examService.getAnswerSheetItemListByStudentIdAndTimes(studentId, i, pointCode);
 				
-				score = new ArrayList<Integer>();
-				for (int k = 0; k < questionNum; k++) {
-					score.add(0);
-				}
+				tempScore = new HashMap<String, Integer>();
 				for (AnswerSheetItem answerSheetItem : answerSheetItems) {
 					if (currentScore.get(answerSheetItem.getQuestionCode()) != null) {
-						score.set(answerSheetItem.getQuestionCode() - 1, answerSheetItem.getScore() - currentScore.get(answerSheetItem.getQuestionCode()));
+//						score.add(currentScore.get(answerSheetItem.getQuestionCode()));
+						
+						tempScore.put(answerSheetItem.getQuestionCode(), (answerSheetItem.getScore() - currentScore.get(answerSheetItem.getQuestionCode())));
 					} else {
-						score.set(answerSheetItem.getQuestionCode() - 1, answerSheetItem.getScore());
+//						score.add(answerSheetItem.getScore());
+						tempScore.put(answerSheetItem.getQuestionCode(), answerSheetItem.getScore());
 					}
 					
 					currentScore.put(answerSheetItem.getQuestionCode(), answerSheetItem.getScore());
 				}
 				
+				score = new ArrayList<Integer>();
+				for (int k = 1; k < questionNum + 1; k++) {
+					score.add(tempScore.get(pointCode + k));
+				}
+				
 				assessData.addSeriesData(score, i);
 				
 				// 生成图形数据的legend
-				assessData.addLegendData(i);
+//				assessData.addLegendData(i);
 			}
 			
 			assessDatas.add(assessData);

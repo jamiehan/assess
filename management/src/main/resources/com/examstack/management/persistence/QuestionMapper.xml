@@ -6,7 +6,7 @@
 
 	<!-- 题目列表部分 -->
 	<select id="getQuestionList" resultType="com.examstack.common.domain.question.Question">
-		select a.id,a.code,a.name,a.content,a.question_type_id,a.creator,a.answer,a.analysis,a.reference referenceName,group_concat(concat(d.field_name,'-',c.point_name)) pointName,
+		select a.id,a.code,a.name,a.content,a.question_type_id,a.creator,a.answer,a.analysis,a.reference referenceName,c.point_name pointName,
 		e.name
 		questionTypeName, examing_point examingPoint,test_id,test_num,
 		(select group_concat(m.tag_name,' ') from et_tag m,et_question_2_tag n
@@ -42,7 +42,7 @@
 				and instr(a.name,#{filter.searchParam})&lt;&gt;0
 			</if>
 		</where>
-		group by a.id,a.name,a.content,a.question_type_id,a.creator,a.answer,a.analysis,a.reference,a.examing_point,e.`name`,a.examing_point,tags
+		group by a.id,a.name,a.content,a.question_type_id,a.creator,a.answer,a.analysis,a.reference,a.examing_point,c.point_name, e.`name`,a.examing_point,tags
 		<if test="filter.testId != 0">
 			and a.test_id = #{filter.testId}
 		</if>
@@ -69,7 +69,7 @@
 	</select>
 
 	<select id="getKnowledgePointByFieldId" resultType="com.examstack.common.domain.question.KnowledgePoint">
-		select a.point_id pointId,a.point_name pointName,a.field_id
+		select a.point_id pointId,a.point_name pointName,a.point_code pointCode,a.field_id
 		fieldId,a.memo,a.state,b.field_name fieldName,
 		case when exists(select
 		1 from et_question_2_point m where m.point_id=a.point_id) then 0
@@ -85,7 +85,7 @@
 	</select>
 	
 	<select id="getKnowledgePointList" resultType="com.examstack.common.domain.question.KnowledgePoint">
-		select point_id pointId, point_code pointCode
+		select point_id pointId, point_code pointCode, point_name pointName
 		from et_knowledge_point order by point_code
 	</select>
 	
@@ -192,10 +192,10 @@
     <insert id="insertQuestion" parameterType="com.examstack.common.domain.question.Question"
 		useGeneratedKeys="true" keyProperty="id">
 		insert into et_question
-		(code,name,content,question_type_id,create_time,creator,
+		(code,name,content,sort,question_type_id,create_time,creator,
 		answer,analysis,reference,examing_point,keyword,points,test_num,test_id)
 		values
-		(#{code},#{name},#{content},#{question_type_id},#{create_time},#{creator},
+		(#{code},#{name},#{content},#{sort},#{question_type_id},#{create_time},#{creator},
 		#{answer},#{analysis},#{referenceName},#{examingPoint},#{keyword},#{points},#{test_num},#{test_id})
 	</insert>
 	<update id="updateQuestion">
@@ -278,8 +278,8 @@
 	<insert id="addKnowledgePoint" parameterType="com.examstack.common.domain.question.KnowledgePoint"
 		useGeneratedKeys="true" keyProperty="pointId">
 		insert into
-		et_knowledge_point(point_name,memo,state,field_id) values (
-		#{pointName},#{memo},#{state},#{fieldId}
+		et_knowledge_point(point_name,memo,state,point_code,field_id) values (
+		#{pointName},#{memo},#{state},#{pointCode},#{fieldId}
 		)
 	</insert>
 
@@ -359,7 +359,7 @@
 	</delete>
 
 	<select id="getQuestionByQuestionId" resultType="com.examstack.common.domain.question.Question">
-		select a.id,a.name,a.content,a.question_type_id,a.creator,a.answer,a.analysis,a.reference referenceName,a.keyword keyword,
+		select a.id,a.code,a.name,a.content,a.question_type_id,a.creator,a.answer,a.analysis,a.reference referenceName,a.keyword keyword,
 		a.examing_point examingPoint from et_question a
 		<where>
 			a.id = #{questionId}
