@@ -136,7 +136,7 @@ public class QuestionAdapter {
 				sb.append("<input type=\"radio\" value=\"")
 						.append(key)
 						.append("\" name=\"question-radio1\" class=\"question-input\"");
-				if(key.equals(answerSheetItem.getAnswer()) ) {
+				if(answerSheetItem != null && key.equals(answerSheetItem.getAnswer()) ) {
 					sb.append("checked");
 				}
 				sb.append(">");
