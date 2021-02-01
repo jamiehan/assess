@@ -1,6 +1,7 @@
 package com.examstack.management.service;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -185,4 +186,6 @@ public interface ExamService {
 	public AnswerSheet getAnswerSheetByExamHistoryId(int histId);
 
 	public AnswerSheet getAnswerSheetByStudentIdAndTimes(int userId, int times);
+	
+	public HashSet<Integer> getFullScoreQuestionIds(int studentId);
 }

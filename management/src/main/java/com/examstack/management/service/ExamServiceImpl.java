@@ -3,6 +3,7 @@ package com.examstack.management.service;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -315,6 +316,11 @@ public class ExamServiceImpl implements ExamService {
 	@Override
 	public AnswerSheet getAnswerSheetByStudentIdAndTimes(int userId, int times) {
 		return examMapper.getAnswerSheetByStudentIdAndTimes(userId, times);
+	}
+	
+	@Override
+	public HashSet<Integer> getFullScoreQuestionIds(int studentId) {
+		return examMapper.getFullScoreQuestionIds(studentId);
 	}
 	
 }

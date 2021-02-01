@@ -177,4 +177,9 @@
 		</if>
 	</select>
 	
+	<select id="getFullScoreQuestionIds" resultType="Integer">
+		select distinct question_id
+		from et_answer_sheet_item
+		where student_id=#{studentId} and score=4
+	</select>
 </mapper>

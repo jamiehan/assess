@@ -1,5 +1,6 @@
 package com.examstack.management.persistence;
 
+import java.util.HashSet;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -175,4 +176,5 @@ public interface ExamMapper {
 
 	public AnswerSheet getAnswerSheetByStudentIdAndTimes(@Param("studentId") int studentId, @Param("times") int times);
 	
+	public HashSet<Integer> getFullScoreQuestionIds(@Param("studentId") int studentId);
 }

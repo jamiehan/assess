@@ -2,8 +2,10 @@ package com.examstack.management.controller.page.teacher;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
@@ -264,6 +266,7 @@ public class ExamPageTeacher {
 		if( history == null || history.size() == 0 ) {
 			return null;
 		}
+		
         int examPaperId = history.get(0).getExamPaperId();
 		String strUrl = "http://" + request.getServerName() // 服务器地址
                 + ":" + request.getServerPort() + "/";
@@ -271,13 +274,18 @@ public class ExamPageTeacher {
         ExamPaper examPaper = examPaperService.getExamPaperById(examPaperId);
         StringBuilder sb = new StringBuilder();
         if(examPaper.getContent() != null && !examPaper.getContent().equals("")){
-            Gson gson = new Gson();
+            
+        	// 获取学生得4分的题
+        	Set<Integer> fullScores = examService.getFullScoreQuestionIds(history.get(0).getUserId());
+        	
+        	Gson gson = new Gson();
             String content = examPaper.getContent();
             List<QuestionQueryResult> questionList = gson.fromJson(content, new TypeToken<List<QuestionQueryResult>>(){}.getType());
-
             for(QuestionQueryResult question : questionList){
-                QuestionAdapter adapter = new QuestionAdapter(question,strUrl);
-                sb.append(adapter.getStringFromXML());
+            	if (fullScores == null || !fullScores.contains(question.getQuestionId())) {
+                    QuestionAdapter adapter = new QuestionAdapter(question,strUrl);
+                    sb.append(adapter.getStringFromXML());
+            	}
             }
         }
 
@@ -315,6 +323,10 @@ public class ExamPageTeacher {
 		ExamPaper examPaper = examPaperService.getExamPaperById(examPaperId);
 		StringBuilder sb = new StringBuilder();
 		if(examPaper.getContent() != null && !examPaper.getContent().equals("")){
+
+        	// 获取学生得4分的题
+        	Set<Integer> fullScores = examService.getFullScoreQuestionIds(history.get(0).getUserId());
+        	
 			Gson gson = new Gson();
 			String content = examPaper.getContent();
 			List<QuestionQueryResult> questionList = gson.fromJson(content, new TypeToken<List<QuestionQueryResult>>(){}.getType());
@@ -325,9 +337,11 @@ public class ExamPageTeacher {
 			Map<Integer, AnswerSheetItem> collect = answerSheetItems.stream().collect(Collectors.toMap(AnswerSheetItem::getQuestionId, a -> a, (k1, k2) -> k1));
 
 			for(QuestionQueryResult question : questionList){
-				AnswerSheetItem answerSheetItem = collect.get(question.getQuestionId());
-				QuestionAdapter adapter = new QuestionAdapter(answerSheetItem, question, strUrl);
-				sb.append(adapter.getStringFromXML());
+				if (fullScores == null || !fullScores.contains(question.getQuestionId())) {
+					AnswerSheetItem answerSheetItem = collect.get(question.getQuestionId());
+					QuestionAdapter adapter = new QuestionAdapter(answerSheetItem, question, strUrl);
+					sb.append(adapter.getStringFromXML());
+				}
 			}
 		}
 
