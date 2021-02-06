@@ -189,7 +189,7 @@ public class ExamPaperActionAdmin {
 		try{
 			ExamPaper examPaper = examPaperService.getExamPaperById(examPaperId);
 			if(examPaper.getStatus() == 1){
-				message.setResult("已发布的试卷不允许删除");
+				message.setResult("该康复计划正在评估中，不允许删除");
 				return message;
 			}
 			examPaperService.deleteExamPaper(examPaperId);

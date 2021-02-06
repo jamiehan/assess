@@ -261,7 +261,7 @@ public class ExamPaperActionTeacher {
 		ExamPaper examPaper = new ExamPaper();
 		examPaper.setName(student.getUserName() + "_康复计划_" + times); // 康复计划名称
 		examPaper.setCreator(userInfo.getUsername());
-		
+		examPaper.setStatus(1);//1  生成康复计划的同时，评估记录（考试exam)也将生成。该状态为1（已完成），则不能删除
 		examPaper.setDuration(366600); // TODO 不限时间
 		examPaper.setCreator(userInfo.getUsername());
 		examPaper.setIs_subjective(true);

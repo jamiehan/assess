@@ -193,7 +193,7 @@ request.setAttribute("leftMenuId",list[3]);
 															<a class="delete-paper btn-sm btn-danger" title="删除"><i class="ace-icon fa fa-trash-o"></i></a>
 														</c:when>
 														<c:when test="${item.status == 1 }">
-															<a class="offline-paper simple-btn">下线</a>
+															<%--<a class="offline-paper simple-btn">下线</a>--%>
 														</c:when>
 													</c:choose>
 													<%--<a class="export-paper btn-sm btn-success" data-id="${item.id}" title="导出"><i class="fa fa-download"></i></a>--%>
