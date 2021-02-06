@@ -102,6 +102,14 @@ public interface UserService {
 	 * @return
 	 */
 	public List<User> getUserListByGroupIdAndParams(int groupId, String authority, String searchStr, Page<User> page);
+
+    /**
+     *
+     * @param groupIdList
+     * @param page
+     * @return
+     */
+    public List<User> getUserListByGroupIdList(List<Integer> groupIdList,Page<User> page);
 	
 	/**
 	 * 将一批用户插入到用户分组

@@ -95,8 +95,12 @@
 	<select id="getExamList" resultType="com.examstack.common.domain.exam.Exam">
 		select id examId,exam_name examName,exam_subscribe examSubscribe,exam_type examType,start_time effTime,end_time expTime,exam_paper_id examPaperId,creator,creator_id creatorId,approved,(select name from et_exam_paper m where a.exam_paper_id=m.id) examPaperName
 		from et_exam a
+		where 1=1
+		<if test="username != null and username neq ''">
+			and a.creator_id = #{username}
+		</if>
 		<if test="array != null">
-			where a.exam_type in		
+			and a.exam_type in
 			<foreach collection="array" item="item" open="(" close=")" separator="," index="index">
 				#{item}
 			</foreach>

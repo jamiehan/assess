@@ -68,7 +68,12 @@ public class ExamPageTeacher {
 		Page<Exam> pageModel = new Page<Exam>();
 		pageModel.setPageNo(page);
 		pageModel.setPageSize(8);
-		List<Exam> examList = examService.getExamList(pageModel,1,2);
+
+		UserInfo userInfo = (UserInfo) SecurityContextHolder.getContext()
+				.getAuthentication()
+				.getPrincipal();
+		String username = userInfo.getUsername();
+		List<Exam> examList = examService.getExamList(pageModel,username,1,2);
 		String pageStr = PagingUtil.getPagelink(page, pageModel.getTotalPage(), "", "teacher/exam/exam-list");
 
 		model.addAttribute("examList", examList);
@@ -89,7 +94,12 @@ public class ExamPageTeacher {
 		Page<Exam> pageModel = new Page<Exam>();
 		pageModel.setPageNo(page);
 		pageModel.setPageSize(10);
-		List<Exam> examList = examService.getExamList(pageModel,3);
+
+		UserInfo userInfo = (UserInfo) SecurityContextHolder.getContext()
+				.getAuthentication()
+				.getPrincipal();
+		String username = userInfo.getUsername();
+		List<Exam> examList = examService.getExamList(pageModel, username,3);
 		String pageStr = PagingUtil.getPageBtnlink(page,
 				pageModel.getTotalPage());
 		model.addAttribute("examList", examList);
@@ -115,7 +125,11 @@ public class ExamPageTeacher {
 		/*Page<User> pageUser = new Page<>();
 		pageUser.setPageNo(1);
 		pageUser.setPageSize(1);*/
-		List<User> userList = userService.getUserListByRoleId(userInfo.getRoleMap().get("ROLE_STUDENT").getRoleId(), null);
+
+//		List<User> userList = userService.getUserListByRoleId(userInfo.getRoleMap().get("ROLE_STUDENT").getRoleId(), null);
+		List<Integer> groupIdList = groupList.stream().map(Group::getGroupId).collect(Collectors.toList());
+
+		List<User> userList = userService.getUserListByGroupIdList(groupIdList,null);
 		model.addAttribute("groupList", groupList);
 		model.addAttribute("examPaperList", examPaperList);
 		model.addAttribute("userList", userList);

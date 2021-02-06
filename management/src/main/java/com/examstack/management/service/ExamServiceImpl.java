@@ -118,12 +118,12 @@ public class ExamServiceImpl implements ExamService {
 		}
 	}
 	@Override
-	public List<Exam> getExamList(Page<Exam> page,int ... typeIdList) {
+	public List<Exam> getExamList(Page<Exam> page,String username,int ... typeIdList) {
 		// TODO Auto-generated method stub
 		
 		if(typeIdList.length == 0)
 			typeIdList = null;
-		return examMapper.getExamList(typeIdList,page);
+		return examMapper.getExamList(typeIdList,username,page);
 	}
 	@Override
 	public List<ExamHistory> getUserExamHistListByExamId(int examId, String searchStr, String order, int limit, Page<ExamHistory> page) {

@@ -35,7 +35,7 @@ public interface ExamService {
 	 * @param typeIdList 考试类型
 	 * @return
 	 */
-	public List<Exam> getExamList(Page<Exam> page,int ... typeIdList);
+	public List<Exam> getExamList(Page<Exam> page,String username,int ... typeIdList);
 	
 	/**
 	 * 根据考试id获取考试历史记录

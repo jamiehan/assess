@@ -31,7 +31,7 @@ public interface ExamMapper {
 	 * @param page
 	 * @return
 	 */
-	public List<Exam> getExamList(@Param("array") int[] idList,@Param("page") Page<Exam> page);
+	public List<Exam> getExamList(@Param("array") int[] idList,@Param("username") String username,@Param("page") Page<Exam> page);
 	
 	/**
 	 * 根据考试id获取考试历史记录

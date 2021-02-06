@@ -175,6 +175,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public List<User> getUserListByGroupIdList(List<Integer> groupIdList, Page<User> page) {
+		// TODO Auto-generated method stub
+		return userMapper.getUserListByGroupIdList(groupIdList, page);
+	}
+
+	@Override
 	public void addUsers2Group(String[] userNames, int groupId,HashMap<String,Role> roleMap) {
 		// TODO Auto-generated method stub
 		List<User> userList = userMapper.getUserByNames(userNames,roleMap.get("ROLE_STUDENT").getRoleId());

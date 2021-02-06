@@ -61,7 +61,7 @@ public class ExamPageAdmin {
 		Page<Exam> pageModel = new Page<Exam>();
 		pageModel.setPageNo(page);
 		pageModel.setPageSize(8);
-		List<Exam> examList = examService.getExamList(pageModel,1,2);
+		List<Exam> examList = examService.getExamList(pageModel,null,1,2);
 		String pageStr = PagingUtil.getPagelink(page, pageModel.getTotalPage(), "", "admin/exam/exam-list");
 
 		model.addAttribute("examList", examList);
@@ -82,7 +82,7 @@ public class ExamPageAdmin {
 		Page<Exam> pageModel = new Page<Exam>();
 		pageModel.setPageNo(page);
 		pageModel.setPageSize(10);
-		List<Exam> examList = examService.getExamList(pageModel,3);
+		List<Exam> examList = examService.getExamList(pageModel,null,3);
 		String pageStr = PagingUtil.getPageBtnlink(page,
 				pageModel.getTotalPage());
 		model.addAttribute("examList", examList);
