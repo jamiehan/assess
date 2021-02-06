@@ -643,6 +643,7 @@ request.setAttribute("leftMenuId",list[3]);
 				});
 				$(".edit-group-btn").click(function(e) {
 					var selectGroupName = $(this).parent().parent().text().trim();
+					selectGroupName = selectGroupName.substring(0, selectGroupName.indexOf("-"));
 					var selectGroupId = $(this).parent().parent().data("id");
 
 					$("#group-name-edit").val(selectGroupName);
