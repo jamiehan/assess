@@ -49,9 +49,9 @@ public class ExamPaperServiceImpl implements ExamPaperService {
 	private QuestionService questionService;
 
 	@Override
-	public List<ExamPaper> getExamPaperList(String searchStr, String paperType, Page<ExamPaper> page) {
+	public List<ExamPaper> getExamPaperList(String searchStr, String paperType, Page<ExamPaper> page, String username) {
 		// TODO Auto-generated method stub
-		return examPaperMapper.getExamPaperList(searchStr, paperType, page);
+		return examPaperMapper.getExamPaperList(searchStr, paperType, page, username);
 	}
 
 	@Override

@@ -5,7 +5,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import com.examstack.common.domain.question.QuestionFilter;
+import com.examstack.management.security.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,7 +44,15 @@ public class ExamPaperPageTeacher {
 		Page<ExamPaper> pageModel = new Page<ExamPaper>();
 		pageModel.setPageNo(page);
 		pageModel.setPageSize(8);
-		List<ExamPaper> paper = examPaperService.getExamPaperList(searchStr, paperType, pageModel);
+
+		UserInfo userInfo = (UserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username = userInfo.getUsername();
+
+		List<ExamPaper> paper = null;
+		if (!"admin".equals(username) ) {
+			paper = examPaperService.getExamPaperList(searchStr, paperType, pageModel,username);
+		}
+
 		List<Field> fieldList = questionService.getAllField(null);
 		
 		String pageStr = PagingUtil.getPagelink(page, pageModel.getTotalPage(), "", "teacher/exampaper/exampaper-list/" + paperType);

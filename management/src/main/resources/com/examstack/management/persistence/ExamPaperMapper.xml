@@ -8,6 +8,9 @@
 		id,name,content,duration,pass_point,total_point,status,summary,is_visible,answer_sheet,group_id,
 		is_subjective,creator,paper_type,field_id from et_exam_paper
 		where (#{paperType}=0 or field_id=#{paperType})
+		<if test="username != null and username neq ''">
+			and creator=#{username} or creator = 'admin'
+		</if>
 		<if test="searchStr neq ''">
 			and (instr(content,#{searchStr}) &lt;&gt; 0 or instr(name,#{searchStr}) &lt;&gt; 0)
 		</if>

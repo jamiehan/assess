@@ -17,7 +17,7 @@ public interface ExamPaperService {
 	 * @param paperType 试卷类型（专业）
 	 * @return
 	 */
-	public List<ExamPaper> getExamPaperList(String searchStr, String paperType, Page<ExamPaper> page);
+	public List<ExamPaper> getExamPaperList(String searchStr, String paperType, Page<ExamPaper> page, String username);
 	/**
 	 * 插入一张试卷
 	 * @param examPaper

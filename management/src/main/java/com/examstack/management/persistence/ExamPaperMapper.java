@@ -9,7 +9,7 @@ import com.examstack.common.util.Page;
 
 public interface ExamPaperMapper {
 
-	public List<ExamPaper> getExamPaperList(@Param("searchStr") String searchStr,@Param("paperType") String paperType, @Param("page") Page<ExamPaper> page);
+	public List<ExamPaper> getExamPaperList(@Param("searchStr") String searchStr,@Param("paperType") String paperType, @Param("page") Page<ExamPaper> page, @Param("username") String username);
 	
 	public void insertExamPaper(ExamPaper examPaper);
 	

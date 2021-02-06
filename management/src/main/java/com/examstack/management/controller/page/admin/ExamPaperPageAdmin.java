@@ -42,7 +42,7 @@ public class ExamPaperPageAdmin {
 		Page<ExamPaper> pageModel = new Page<ExamPaper>();
 		pageModel.setPageNo(page);
 		pageModel.setPageSize(8);
-		List<ExamPaper> paper = examPaperService.getExamPaperList(searchStr, paperType, pageModel);
+		List<ExamPaper> paper = examPaperService.getExamPaperList(searchStr, paperType, pageModel,null);
 		List<Field> fieldList = questionService.getAllField(null);
 		
 		String pageStr = PagingUtil.getPagelink(page, pageModel.getTotalPage(), "", "admin/exampaper/exampaper-list/" + paperType);
