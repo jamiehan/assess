@@ -312,7 +312,7 @@ var examing = {
 			forms.each(function(){
 				var question_point = $(this).find("span.question-point").text();
 				var question_id = $(this).find("span.question-id").text();
-				map[question_id] = question_point;
+				map[question_id] = 4;//question_point;
 			});
 			return map;
 		},
