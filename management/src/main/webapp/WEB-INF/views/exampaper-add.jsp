@@ -122,8 +122,6 @@ request.setAttribute("leftMenuId",list[3]);
 									<select class="df-input-narrow">
 										<option value="1" selected="selected">手动组卷</option>
 										<option value="2">自动组卷</option>
-
-										
 									</select>
 									<span class="form-message"></span>
 								</div>

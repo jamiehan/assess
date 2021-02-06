@@ -3,6 +3,7 @@ package com.examstack.common.domain.question;
 public class QuestionQueryResult {
 
 	private int questionId;
+	private String code;
 	private String content;
 	private String answer;
 	private String analysis;
@@ -43,6 +44,15 @@ public class QuestionQueryResult {
 	public void setQuestionId(int questionId) {
 		this.questionId = questionId;
 	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
 	public String getContent() {
 		return content;
 	}

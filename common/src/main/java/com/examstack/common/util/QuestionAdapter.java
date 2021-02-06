@@ -117,7 +117,7 @@ public class QuestionAdapter {
 					.append("</span>");
 			sb.append("</div>");
 			sb.append("<form class=\"question-body\">");
-			sb.append("<p class=\"question-body-text\">").append(questionContent.getTitle());
+			sb.append("<p class=\"question-body-text\">").append(questionQueryResult.getCode() + questionContent.getTitle());
 			if (questionContent.getTitleImg() != null)
 				if (!questionContent.getTitleImg().trim().equals(""))
 					sb.append(

@@ -376,7 +376,7 @@
 	<select id="getQuestionAnalysisListByIdList"
 		resultType="com.examstack.common.domain.question.QuestionQueryResult">
 		SELECT a.id
-		questionId,a.content,a.answer,a.analysis,a.question_type_id
+		questionId,a.code,a.content,a.answer,a.analysis,a.question_type_id
 		questionTypeId,a.reference
 		referenceName,a.examing_point
 		examingPoint,GROUP_CONCAT(d.field_name,'
