@@ -177,4 +177,6 @@ public interface ExamMapper {
 	public AnswerSheet getAnswerSheetByStudentIdAndTimes(@Param("studentId") int studentId, @Param("times") int times);
 	
 	public HashSet<Integer> getFullScoreQuestionIds(@Param("studentId") int studentId);
+
+	List<AnswerSheetItem> getQuestionLastScoreList(@Param("studentId") int studentId);
 }

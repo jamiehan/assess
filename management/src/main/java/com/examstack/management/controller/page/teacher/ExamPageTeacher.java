@@ -295,12 +295,20 @@ public class ExamPageTeacher {
         	Gson gson = new Gson();
             String content = examPaper.getContent();
             List<QuestionQueryResult> questionList = gson.fromJson(content, new TypeToken<List<QuestionQueryResult>>(){}.getType());
+
+            // 获取学生各题得的最大分
+			List<AnswerSheetItem> questionLastScoreList = examService.getQuestionLastScoreList(history.get(0).getUserId());
+			Map<Integer, AnswerSheetItem> collect = questionLastScoreList.stream().collect(Collectors.toMap(AnswerSheetItem::getQuestionId, a -> a, (k1, k2) -> k1));
+
             for(QuestionQueryResult question : questionList){
             	if (fullScores == null || !fullScores.contains(question.getQuestionId())) {
-                    QuestionAdapter adapter = new QuestionAdapter(question,strUrl);
+
+					AnswerSheetItem answerSheetItem = collect.get(question.getQuestionId());
+                    QuestionAdapter adapter = new QuestionAdapter(answerSheetItem,question,strUrl);
                     sb.append(adapter.getStringFromXML());
             	}
             }
+
         }
 
         model.addAttribute("htmlStr", sb);

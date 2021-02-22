@@ -188,4 +188,6 @@ public interface ExamService {
 	public AnswerSheet getAnswerSheetByStudentIdAndTimes(int userId, int times);
 	
 	public HashSet<Integer> getFullScoreQuestionIds(int studentId);
+
+	List<AnswerSheetItem> getQuestionLastScoreList(int studentId);
 }

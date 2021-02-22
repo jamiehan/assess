@@ -186,4 +186,12 @@
 		from et_answer_sheet_item
 		where student_id=#{studentId} and score=4
 	</select>
+
+	<select id="getQuestionLastScoreList" resultType="com.examstack.common.domain.exam.AnswerSheetItem">
+		SELECT question_id as questionId,max(answer) as answer,max(score) as score
+		FROM `et_answer_sheet_item` where student_id=#{studentId}
+		group by question_id
+	</select>
+
+
 </mapper>

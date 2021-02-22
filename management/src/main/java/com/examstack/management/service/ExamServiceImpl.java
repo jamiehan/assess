@@ -322,6 +322,11 @@ public class ExamServiceImpl implements ExamService {
 	public HashSet<Integer> getFullScoreQuestionIds(int studentId) {
 		return examMapper.getFullScoreQuestionIds(studentId);
 	}
+
+	@Override
+	public List<AnswerSheetItem> getQuestionLastScoreList(int studentId){
+		return examMapper.getQuestionLastScoreList(studentId);
+	}
 	
 }
 
