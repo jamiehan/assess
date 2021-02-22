@@ -48,6 +48,13 @@ $(function() {
 					keyboard : true
 				});
 				
+				// 清空
+				$("#assess-info-table", parent.document).empty();
+				
+				// 设置表头
+				$("#assess-info-table", parent.document).append("<tr><td>儿童姓名：</td><td id='assess-info-name' colspan='2'></td><td></td></tr>")
+				$("#assess-info-table", parent.document).append("<tr><td>评估日期</td><td>评估者</td><td>评估颜色</td></tr>")
+				
 				// 设置基本信息
 				$("#assess-info-name", parent.document).html(message.studentName)
 				
