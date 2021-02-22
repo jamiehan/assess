@@ -228,20 +228,20 @@ request.setAttribute("leftMenuId",list[3]);
 													<span class="form-message"></span>
 													<br>
 												</div>
-												<div class="form-line form-username" style="display: block;">
+												<div class="form-line form-username" style="display: none;">
 													<span class="form-label"><span class="warning-label">*</span>用户名：</span>
 													<input type="text" class="df-input-narrow" id="name-add" maxlength="20">
 													<span class="form-message"></span>
 													<br>
 												</div>
-												<div class="form-line form-password" style="display: block;">
+												<div class="form-line form-password" style="display: none;">
 													<span class="form-label"><span class="warning-label">*</span>密码：</span>
 													<input type="text" class="df-input-narrow" id="password-add" maxlength="20">
 													<span class="form-message"></span>
 													<br>
 												</div>
 												<div class="form-line form-truename" style="display: block;">
-													<span class="form-label"><span class="warning-label">*</span>真实姓名：</span>
+													<span class="form-label"><span class="warning-label">*</span>学生姓名：</span>
 													<input type="text" class="df-input-narrow" id="truename-add" maxlength="20">
 													<span class="form-message"></span>
 													<br>
@@ -403,14 +403,14 @@ request.setAttribute("leftMenuId",list[3]);
 													<span class="form-message"></span>
 													<br>
 												</div>
-												<div class="form-line form-username-u" style="display: block;">
+												<div class="form-line form-username-u" style="display: none;">
 													<span class="form-label"><span class="warning-label">*</span>用户名：</span>
 													<input type="text" class="df-input-narrow" id="name-update" disabled="disabled" maxlength="20">
 													<span class="form-message"></span>
 													<br>
 												</div>
 												<div class="form-line form-truename-u" style="display: block;">
-													<span class="form-label"><span class="warning-label">*</span>真实姓名：</span>
+													<span class="form-label"><span class="warning-label">*</span>学生姓名：</span>
 													<input type="text" class="df-input-narrow" id="truename-update" maxlength="20">
 													<span class="form-message"></span>
 													<br>
@@ -507,9 +507,9 @@ request.setAttribute("leftMenuId",list[3]);
 											<button type="button" class="btn btn-default" data-dismiss="modal">
 												关闭窗口
 											</button>
-											<button id="update-teacher-btn" type="button" class="btn btn-primary">
+											<%--<button id="update-teacher-btn" type="button" class="btn btn-primary">
 												确定修改
-											</button>
+											</button>--%>
 										</div>
 									</div>
 								</div>

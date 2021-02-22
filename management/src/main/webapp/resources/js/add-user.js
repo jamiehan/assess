@@ -65,10 +65,10 @@ var create_account = {
 		//return true;
 		$(".form-message").empty();
 		var result = true;
-		var check_u = this.checkUsername();
+		var check_u = true;//this.checkUsername();
 		var check_t = this.checkTrueName();
 		// var check_e = this.checkEmail();
-		var check_p = this.checkPassword();
+		var check_p = true;//this.checkPassword();
 		var check_com = /*this.checkCompany();*/true;
 		// var check_id = this.checkNationalId();
 		// var check_phone = this.checkPhoneNum();

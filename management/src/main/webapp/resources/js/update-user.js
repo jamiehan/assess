@@ -89,7 +89,7 @@ var update_account = {
 	verifyInput : function verifyInput() {
 		$(".form-message").empty();
 		var result = true;
-		var check_u = this.checkUsername();
+		var check_u = true;//this.checkUsername();
 		var check_t = this.checkTrueName();
 		var check_e = true;//this.checkEmail();
 		var check_p = /*this.checkPassword()*/true;

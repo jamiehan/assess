@@ -91,7 +91,7 @@ request.setAttribute("leftMenuId",list[3]);
 				<thead>
 					<tr>
 						<td>ID</td>
-						<td>用户名</td>
+						<%--<td>用户名</td>--%>
 						<td>姓名和身份证</td>
 						<td>手机邮箱</td>
 						<td>所属分组</td>
@@ -104,13 +104,13 @@ request.setAttribute("leftMenuId",list[3]);
 					<c:forEach items="${userList }" var="item">
 						<tr>
 							<td><span class="r-id">${item.userId }</span></td>
-							<td><span class="r-name">${item.userName }</span>
+							<%--<td><span class="r-name">${item.userName }</span>
 								<div>
-									<%-- <a href="javascript:parent.location.href='admin/training/student-practice-status/${item.userId}'">学习进度</a> --%>
+									&lt;%&ndash; <a href="javascript:parent.location.href='admin/training/student-practice-status/${item.userId}'">学习进度</a> &ndash;%&gt;
 									<a href="javascript:parent.open('admin/training/student-practice-status/${item.userId}','_blank' )">学习进度</a>
 								</div>
 							
-							</td>
+							</td>--%>
 							<td>
 								<div class="r-truename">
 									${item.trueName }
