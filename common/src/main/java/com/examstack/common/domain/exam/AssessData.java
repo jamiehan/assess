@@ -75,7 +75,8 @@ public class AssessData implements Serializable {
 	public void addTitleData(String pointCode, String pointName) {
 		title = new HashMap<String, String>();
 		
-		title.put("text", pointCode + " " + pointName);
+//		title.put("text", pointCode + " " + pointName);
+		title.put("text", pointName);
 		title.put("bottom", "bottom");
 		title.put("left", "center");
 	}
