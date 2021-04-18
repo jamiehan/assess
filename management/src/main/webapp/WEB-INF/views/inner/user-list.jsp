@@ -93,6 +93,8 @@ request.setAttribute("leftMenuId",list[3]);
 						<td>ID</td>
 						<%--<td>用户名</td>--%>
 						<td>姓名和身份证</td>
+						<td>性别</td>
+						<td>年龄</td>
 						<td>手机邮箱</td>
 						<td>所属分组</td>
 						<td>创建时间</td>
@@ -117,6 +119,14 @@ request.setAttribute("leftMenuId",list[3]);
 								</div>
 								<div class="r-national-id">
 									${item.nationalId }
+								</div>
+							</td>
+							<td>
+								<div class="r-sex">
+										
+								</div>
+								<div class="r-age">
+
 								</div>
 							</td>
 							<td>
@@ -145,10 +155,10 @@ request.setAttribute("leftMenuId",list[3]);
 							<td>
 								<c:choose>
 									<c:when test="${item.enabled }">
-										<span>启用</span>
+										<span>在园</span>
 									</c:when>
 									<c:otherwise>
-										<span>禁用</span>
+										<span>离开</span>
 									</c:otherwise>
 								</c:choose>
 							</td>
